@@ -1,0 +1,82 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* ADHOC / Base */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.iS-port {
+    background-color: #333;
+    overflow: hidden;
+    position: relative;
+
+    .iS-view {
+        min-height: 111px;
+        min-width: 999px;
+        position: relative;
+        z-index: 1;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-transform: translateZ(0);-moz-transform: translateZ(0);-ms-transform: translateZ(0);-o-transform: translateZ(0);transform: translateZ(0);
+        -webkit-touch-callout: none;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;
+        -webkit-text-size-adjust: none;-moz-text-size-adjust: none;-ms-text-size-adjust: none;-o-text-size-adjust: none;text-size-adjust: none;
+    }
+    .iS-proxy {
+        cursor: pointer;
+        min-height: 11px;
+        min-width: 33px;
+        position: absolute;
+        top: 0;
+        z-index: 9;
+    }
+    .iS-peg {
+        background-color: #ddd;
+        min-height: 11px;
+        min-width: 11px;
+        position: absolute;
+        z-index: 1;
+    }
+    .slides {
+        background-color: #eee;
+        background-size: 100% 100%;
+        cursor: -webkit-grab;
+        float: left;
+        min-height: 111px;
+        min-width: 333px;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.iS-port._spending {
+    $indi: 20px; // indicator
+    $revW: $fullwidth;
+    $revH: 257px; // reveal H and W
+    $revWm: $lillwidth;
+    $revHm: 257px; // reveal H and W
+
+    width: $revW;
+
+    &, * {
+        border: 0;
+    }
+    .iS-view {
+        width: $revW * 3 + 1px;
+        height: $revH * 1 + $indi;
+    }
+    .iS-proxy {
+        background-image: url(../images/controls/cubes.png);
+        height: $indi;
+        right: 40%;
+        top: 230px;
+        width: (3 * $indi * 2) - $indi;
+    }
+    .iS-peg {
+        height: $indi - 1;
+        opacity: 0.9;
+        width: $indi;
+    }
+    .slides {
+        height: $revH;
+        background-image: url(../images/features/_bkgr.png);
+        margin: $unit $unit 0;
+        width: $revW - $indi;
+    }
+}
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

@@ -74,46 +74,45 @@ var Util = (function (W, $) { /// IIFE
  * Randomize array element order in-place.
  * Using Fisher-Yates shuffle algorithm.
  */
+
 function shuffleArray(array) {
-	for (var i = array.length - 1; i > 0; i--) {
-		var j = Math.floor(Math.random() * (i + 1));
-		var temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	}
-	return array;
+    var i, j, temp;
+    for (i = array.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
 }
 
 /**
  * Indexof IE8 polyfill
  */
 if (!Array.prototype.indexOf) {
-	Array.prototype.indexOf = function(elt /*, from*/)
-	{
-		var len = this.length >>> 0;
-		var from = Number(arguments[1]) || 0;
-		from = (from < 0)
-			? Math.ceil(from)
-			: Math.floor(from);
-		if (from < 0)
-			from += len;
+    Array.prototype.indexOf = function (elt /*, from*/) {
+        var len = this.length >>> 0;
+        var from = Number(arguments[1]) || 0;
+        from = (from < 0) ? Math.ceil(from) : Math.floor(from);
+        if (from < 0) {
+            from += len;
+        }
 
-		for (; from < len; from++)
-		{
-			if (from in this &&
-				this[from] === elt)
-				return from;
-		}
-		return -1;
-	};
+        for (; from < len; from++) {
+            if (from in this && this[from] === elt) {
+                return from;
+            }
+        }
+        return -1;
+    };
 }
 // usage: log('inside coolFunc',this,arguments);
 // http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
 window.log = function () {
     window.log.history = window.log.history || [];
     window.log.history.push(arguments);
-    if (this.console){
-        this.console.log(Array.prototype.slice.call(arguments))
+    if (this.console) {
+        this.console.log(Array.prototype.slice.call(arguments));
     }
 };
 

@@ -1,26 +1,28 @@
 /*jslint es5:true, white:false */
-/*globals _, Global, Servo, Rotor, */
+/*globals _, C, W, Glob, Util, jQuery,
+        Servo, Rotor, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-
-function Main(W, $) {
+var Main = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Main',
-        self = new Global(name, '(kicker and binder)'),
+        self = new G.constructor(name, '(kicker and binder)'),
         Df;
 
     Df = { // DEFAULTS
         inits: function () {
-            Df.inited = true;
         },
     };
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function _init() {
-        if (Df.inited) {
+        if (self.inited(true)) {
             return null;
         }
+        C.info('Main init @ ' + Date() + ' debug:', W.debug, self.mode);
+
         Df.inits();
+
         Servo.attach('._spending.iS-port');
         Rotor.attach('._spending');
     }
@@ -32,8 +34,9 @@ function Main(W, $) {
         __: Df,
         init: _init,
     });
+
     return self;
-}
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

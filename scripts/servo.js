@@ -1,10 +1,11 @@
 /*jslint es5:true, white:false */
-/*globals Global, IScroll, jQuery, window */
+/*globals _, C, W, Glob, Util, jQuery,
+        IScroll, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Servo = (function (W, $) { //IIFE
+var Servo = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Servo',
-        self = new Global(name, '(wrap iscroll controller)'),
+        self = new G.constructor(name, '(wrap iscroll controller)'),
         Df;
 
     Df = { // DEFAULTS
@@ -16,20 +17,26 @@ var Servo = (function (W, $) { //IIFE
         },
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    // HELPERS (defaults dependancy only)
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
     /// attach expand/contract/status events to items with _reveal
 
     function servoNext(scroller) {
-        C.log(name, 'servoNext', scroller);
+        if (U.debug()) {
+            C.debug(name, 'servoNext', scroller);
+        }
         var ln, pg;
 
-        ln = scroller.pages.length - (1);
-        pg = (1 + scroller.currentPage.pageX) % ln;
+        ln = scroller.pages.length;
+        pg = (1 + scroller.currentPage.pageX) % (ln - 1);
         scroller.goToPage(pg, 0);
     }
 
     function _autoServo(scroller) {
-        C.log(name, '_autoServo', scroller);
+        if (U.debug()) {
+            C.debug(name, '_autoServo', scroller);
+        }
         var interval, pager;
 
         if (!scroller.pages) {
@@ -45,7 +52,7 @@ var Servo = (function (W, $) { //IIFE
         $(pager.wrapper) //
         .parent() //
         .one('click keypress touchend', function () {
-            C.log(name, 'click keypress touchend', scroller);
+            C.debug(name, 'click keypress touchend', scroller);
             W.clearInterval(interval);
         });
 
@@ -53,7 +60,9 @@ var Servo = (function (W, $) { //IIFE
     }
 
     function _attach(viewSelector) {
-        C.log(name, '_attach viewport', viewSelector)
+        if (U.debug()) {
+            C.debug(name, '_attach viewport', viewSelector);
+        }
         var viewport, peg, scroller;
 
         viewport = $(viewSelector);
@@ -111,10 +120,7 @@ var Servo = (function (W, $) { //IIFE
         return self;
     }
 
-    $.extend(true, self, {
-        _: function () {
-            return Df;
-        },
+    $.extend(self, {
         __: Df,
         init: _init,
         attach: _attach,
@@ -122,7 +128,7 @@ var Servo = (function (W, $) { //IIFE
     });
 
     return self;
-}(window, jQuery));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

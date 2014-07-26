@@ -1,10 +1,11 @@
 /*jslint es5:true, white:false */
-/*globals Global, Servo, jQuery, window */
+/*globals _, C, W, Glob, Util, jQuery,
+        Servo, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Rotor = (function (W, $) { //IIFE
+var Rotor = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Rotor',
-        self = new Global(name, '(slide carousel abstraction)'),
+        self = new G.constructor(name, '(slide carousel abstraction)'),
         Df;
 
     Df = { // DEFAULTS
@@ -16,11 +17,17 @@ var Rotor = (function (W, $) { //IIFE
         },
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    // HELPERS (defaults dependancy only)
+    Rotor.wrap = function () {};
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
     /// attach expand/contract/status events to items with _reveal
 
     function flipRotor(rotor) {
-        C.log(name, 'flipRotor', rotor);
+        if (U.debug()) {
+            C.debug(name, 'flipRotor', rotor);
+        }
 
         if (rotor.status === 'active') {
             rotor.scroller.interval = Servo.auto(rotor.scroller);
@@ -30,10 +37,12 @@ var Rotor = (function (W, $) { //IIFE
     }
 
     function collect(slides) {
-        C.log(name, 'collect slides', slides.toString());
+        if (U.debug()) {
+            C.debug(name, 'collect slides', slides.toString());
+        }
         var callupon, rotor, port, scroller, slide;
 
-        slide = slides.first()
+        slide = slides.first();
         callupon = $.Callbacks();
         port = slide.parent().parent();
         scroller = port.data('scroller') || false;
@@ -76,10 +85,10 @@ var Rotor = (function (W, $) { //IIFE
                 return false;
             },
             toggle: function () {
-                rotor.activate() || rotor.reset();
+                return (rotor.activate() || rotor.reset());
             },
         };
-        rotor = $.extend( new(function RotoHelper(){}), rotor);
+        rotor = $.extend(new self.wrap(), rotor);
 
         Df.all.push(rotor);
         slide.data(name, rotor);
@@ -90,11 +99,13 @@ var Rotor = (function (W, $) { //IIFE
     }
 
     function _attach(selector) {
-        C.log(name, '_attach selector', selector)
+        if (U.debug()) {
+            C.debug(name, '_attach selector', selector);
+        }
         var rotor, slides;
 
         slides = $(selector + ' .slides');
-        rotor = collect( slides );
+        rotor = collect(slides);
         $(selector + '.control').on('click', rotor.toggle);
     }
 
@@ -104,20 +115,18 @@ var Rotor = (function (W, $) { //IIFE
         if (self.inited(true)) {
             return null;
         }
+        Df.inits();
         return self;
     }
 
-    $.extend(true, self, {
-        _: function () {
-            return Df;
-        },
+    $.extend(self, {
         __: Df,
         init: _init,
         attach: _attach,
     });
 
     return self;
-}(window, jQuery));
+}(jQuery, Glob, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

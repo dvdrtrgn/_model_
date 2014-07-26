@@ -1,5 +1,5 @@
 /*jslint es5:true, white:false */
-/*globals window */
+/*globals window, $ */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var W = window,
 C = W.console,

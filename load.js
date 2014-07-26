@@ -2,7 +2,7 @@
 /*globals _, C, W, ROOT, Global, Util, jQuery,
     Glob:true, Main, Modernizr, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Glob = new Global('Globals');
+var Load, Glob = new Global('Globals');
 
 (function ($, G, M) {
     'use strict';
@@ -10,7 +10,6 @@ var Glob = new Global('Globals');
     W.G = G;
     W.Load = {};
     W.Tests = $.Callbacks();
-    W.debug = 1;
 
     _.defaults(G, { /// all stubs terminated
         top: ROOT.dir + '/',
@@ -34,7 +33,7 @@ var Glob = new Global('Globals');
         W.debug--;
     }
     if (ROOT.conf.nom === 'localhost') {
-        W.debug++ > 1 && $('html').addClass('debug');
+        W.debug++;
     }
 
     Load.base = {
@@ -50,6 +49,7 @@ var Glob = new Global('Globals');
         G.src + '_util.js',
         ],
         complete: function () {
+            U = Util;
         },
     };
 
@@ -72,9 +72,8 @@ var Glob = new Global('Globals');
         G.src + '_main.js',
         ],
         complete: function () {
-            U = Util;
-            W.Main && W.Main(W, $).init();
             ROOT.loaded();
+            W.Main.init();
         },
     };
 

@@ -28,8 +28,9 @@ var Load, Glob = new Global('Globals');
                 $(this).removeClass('hover');
             });
         });
+        W.debug--;
     }
-    if (($.now() > new Date('2014/06/29')) || W.isIE || ROOT.conf.nom === 'wfmedia') {
+    if (ROOT.conf.nom === 'wfmedia') {
         W.debug--;
     }
     if (ROOT.conf.nom === 'localhost') {
@@ -72,8 +73,8 @@ var Load, Glob = new Global('Globals');
         G.src + '_main.js',
         ],
         complete: function () {
+            ROOT.loaded($);
             W.Main.init();
-            ROOT.loaded();
         },
     };
 

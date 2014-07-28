@@ -64,9 +64,9 @@ W.ROOT = ({
         R.D.write('<script src="' + R.lib + '/js/global.js"></script>');
         delete R._wrap;
     },
-    loaded: function () {
+    loaded: function ($) {
         $('body').removeClass('loading');
-        if (W.debug > 0) {
+        if (W.debug > 1) {
             $('html').addClass('dev');
         }
         if (C && C.groupCollapsed) {

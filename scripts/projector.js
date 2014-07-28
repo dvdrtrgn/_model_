@@ -99,10 +99,10 @@ var Projector = (function ($, G, U) { // IIFE
         if (U.debug()) {
             C.debug(name, '_attach selector', selector);
         }
-        var projector, slides;
+        var projector;
 
-        slides = $(selector + ' .slides');
-        projector = collect(slides);
+        Scroller.attach(selector + '.iS-port');
+        projector = collect($(selector + ' .slides'));
         $(selector + '.control').on('click', projector.toggle);
     }
 

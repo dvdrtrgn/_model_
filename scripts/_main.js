@@ -9,8 +9,7 @@ var Main = (function ($, G, U) { // IIFE
         Df;
 
     Df = { // DEFAULTS
-        inits: function () {
-        },
+        inits: function () {},
     };
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -22,8 +21,6 @@ var Main = (function ($, G, U) { // IIFE
         C.info('Main init @ ' + Date() + ' debug:', W.debug, self.mode);
 
         Df.inits();
-
-        Scroller.attach('._projector.iS-port');
         Projector.attach('._projector');
     }
 

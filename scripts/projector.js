@@ -34,15 +34,13 @@ var Projector = (function ($, G, U) { // IIFE
         }
     }
 
-    function collect(slides, scroller, button) {
+    function control(scroller) {
         if (U.debug()) {
-            C.debug(name, 'collect slides', slides.toString());
+            C.debug(name, 'control', scroller);
         }
         var projector = {
             port: $(scroller.wrapper),
             scroller: scroller,
-            slides: slides,
-            button: button,
             status: 'active',
             actuate: function () {
                 if (Df.current) {
@@ -97,11 +95,10 @@ var Projector = (function ($, G, U) { // IIFE
         var button, slides, projector, scroller;
 
         scroller = Scroller.attach(selector + '.iS-port');
-        slides = $(selector + ' .slides');
-        button = $(selector + '.control');
+        projector = control(scroller);
 
-        projector = collect(slides, scroller, button);
-        button.on('click', projector.toggle);
+        $(selector + '.control').on('click', projector.toggle);
+        return projector;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

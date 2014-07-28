@@ -58,10 +58,10 @@
 
 ._projector {
     .iS-proxy {
-        background-image: url(../images/controls/cubes.png);
+        background-image: url(../images/cubes.png);
     }
-    .slides {
-        background-image: url(../images/features/_bkgr.png);
+    .iS-view > * {
+        background-image: url(../images/metal.png);
 
         &:first-child::after {
             content: "first";

@@ -38,7 +38,7 @@ var Scroller = (function ($, G, U) { // IIFE
         var ln, pg;
 
         ln = scroller.pages.length;
-        pg = (1 + scroller.currentPage.pageX) % (ln - 1);
+        pg = (1 + scroller.currentPage.pageX) % ln;
         scroller.goToPage(pg, 0);
     }
 
@@ -77,23 +77,27 @@ var Scroller = (function ($, G, U) { // IIFE
         if (U.debug()) {
             C.debug(name, '_attachPort viewport', viewSelector);
         }
-        var viewPort, proxyPeg, iScroller;
+        var viewPort, gauge, iScroller;
 
         viewPort = $(viewSelector);
-        proxyPeg = viewPort.find('.iS-proxy') //
-        .on('click touchend', function (evt) {
+        gauge = viewPort.find('.iS-proxy') //
+        .on('mouseup touchend click', function (evt) {
             var cds = {
+                t: $(evt.target),
                 x: evt.offsetX,
                 y: evt.offsetY,
-                w: $(this).width(),
-                l: iScroller.pages.length - 1,
+                w: gauge.width(),
+                l: iScroller.pages.length,
                 calc: function () {
-                    return ((this.x / this.w * this.l) | 0);
+                    if (!cds.t.is(gauge)) {
+                        cds.x += cds.t.position().left;
+                    }
+                    return ((cds.x / cds.w * cds.l) | 0);
                 },
             };
             if (!cds.x) { // touch device has no offsetX?
                 evt.preventDefault();
-                proxyPeg.trigger('advance.' + name);
+                gauge.trigger('advance.' + name);
             } else {
                 iScroller.goToPage(cds.calc(), 0);
             }
@@ -102,7 +106,7 @@ var Scroller = (function ($, G, U) { // IIFE
             scrollNext(iScroller);
         });
 
-        Df.iscroll.indicators.el = proxyPeg.get(0);
+        Df.iscroll.indicators.el = gauge.get(0);
         iScroller = new IScroll(viewPort.get(0), Df.iscroll);
 
         // store IScroll (internally and as data on wrapper)

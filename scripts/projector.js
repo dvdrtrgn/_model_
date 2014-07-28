@@ -2,10 +2,10 @@
 /*globals _, C, W, Glob, Util, jQuery,
         Servo, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Rotor = (function ($, G, U) { // IIFE
+var Projector = (function ($, G, U) { // IIFE
     'use strict';
-    var name = 'Rotor',
-        self = new G.constructor(name, '(rotating slide carousel abstraction)'),
+    var name = 'Projector',
+        self = new G.constructor(name, '(carousel projector abstraction)'),
         Df;
 
     Df = { // DEFAULTS
@@ -16,21 +16,21 @@ var Rotor = (function ($, G, U) { // IIFE
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     // HELPERS (defaults dependancy only)
-    Rotor.wrap = function () {};
+    Projector.wrap = function () {};
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
     /// attach expand/contract/status events to items with _reveal
 
-    function flipRotor(rotor) {
+    function flipRotor(projector) {
         if (U.debug()) {
-            C.debug(name, 'flipRotor', rotor);
+            C.debug(name, 'flipRotor', projector);
         }
 
-        if (rotor.status === 'active') {
-            rotor.scroller.interval = Servo.auto(rotor.scroller);
+        if (projector.status === 'active') {
+            projector.scroller.interval = Servo.auto(projector.scroller);
         } else {
-            W.clearInterval(rotor.scroller.interval);
+            W.clearInterval(projector.scroller.interval);
         }
     }
 
@@ -38,14 +38,14 @@ var Rotor = (function ($, G, U) { // IIFE
         if (U.debug()) {
             C.debug(name, 'collect slides', slides.toString());
         }
-        var rotor, port, scroller, slide;
+        var projector, port, scroller, slide;
 
         slide = slides.first();
         port = slide.parent().parent();
         scroller = port.data('scroller') || false;
         port = scroller ? port : slide;
 
-        rotor = {
+        projector = {
             port: port,
             scroller: scroller,
             status: 'active',
@@ -53,56 +53,56 @@ var Rotor = (function ($, G, U) { // IIFE
                 if (Df.current) {
                     Df.current.reset();
                 }
-                flipRotor(rotor);
+                flipRotor(projector);
             },
             isnt: function (state) {
-                if (rotor.status !== state) {
-                    rotor.port.removeClass(rotor.status);
-                    rotor.status = state;
-                    rotor.port.addClass(rotor.status);
+                if (projector.status !== state) {
+                    projector.port.removeClass(projector.status);
+                    projector.status = state;
+                    projector.port.addClass(projector.status);
                     return true;
                 } else {
                     return false;
                 }
             },
             activate: function () {
-                if (rotor.isnt('active')) {
-                    rotor.actuate();
-                    Df.current = rotor;
+                if (projector.isnt('active')) {
+                    projector.actuate();
+                    Df.current = projector;
                     return true;
                 }
                 return false;
             },
             reset: function () {
-                if (rotor.isnt('normal')) {
+                if (projector.isnt('normal')) {
                     Df.current = null;
-                    rotor.actuate();
+                    projector.actuate();
                     return true;
                 }
                 return false;
             },
             toggle: function () {
-                return (rotor.activate() || rotor.reset());
+                return (projector.activate() || projector.reset());
             },
         };
-        rotor = $.extend(new self.wrap(), rotor);
+        projector = $.extend(new self.wrap(), projector);
 
-        Df.all.push(rotor);
-        slide.data(name, rotor);
-        rotor.reset();
+        Df.all.push(projector);
+        slide.data(name, projector);
+        projector.reset();
 
-        return rotor;
+        return projector;
     }
 
     function _attach(selector) {
         if (U.debug()) {
             C.debug(name, '_attach selector', selector);
         }
-        var rotor, slides;
+        var projector, slides;
 
         slides = $(selector + ' .slides');
-        rotor = collect(slides);
-        $(selector + '.control').on('click', rotor.toggle);
+        projector = collect(slides);
+        $(selector + '.control').on('click', projector.toggle);
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -129,7 +129,7 @@ var Rotor = (function ($, G, U) { // IIFE
 
 give selector
 make query
-make rotor controller
+make projector controller
 bind ref as data to query
 
 

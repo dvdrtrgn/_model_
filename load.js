@@ -67,7 +67,7 @@ var Load, Glob = new Global('Globals');
 
     Load.main = {
         both: [
-        G.src + 'rotor.js',
+        G.src + 'projector.js',
         G.src + 'servo.js',
         G.src + '_main.js',
         ],

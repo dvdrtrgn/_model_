@@ -1,6 +1,6 @@
 /*jslint es5:true, white:false */
 /*globals _, C, W, Glob, Util, jQuery,
-        Servo, */
+        Scroller, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Projector = (function ($, G, U) { // IIFE
     'use strict';
@@ -22,13 +22,13 @@ var Projector = (function ($, G, U) { // IIFE
     /// INTERNAL
     /// attach expand/contract/status events to items with _reveal
 
-    function flipRotor(projector) {
+    function switchAutoIn(projector) {
         if (U.debug()) {
-            C.debug(name, 'flipRotor', projector);
+            C.debug(name, 'switchAutoIn', projector);
         }
 
         if (projector.status === 'active') {
-            projector.scroller.interval = Servo.auto(projector.scroller);
+            projector.scroller.interval = Scroller.auto(projector.scroller);
         } else {
             W.clearInterval(projector.scroller.interval);
         }
@@ -53,7 +53,7 @@ var Projector = (function ($, G, U) { // IIFE
                 if (Df.current) {
                     Df.current.reset();
                 }
-                flipRotor(projector);
+                switchAutoIn(projector);
             },
             isnt: function (state) {
                 if (projector.status !== state) {
@@ -95,6 +95,7 @@ var Projector = (function ($, G, U) { // IIFE
     }
 
     function _attach(selector) {
+        self.init();
         if (U.debug()) {
             C.debug(name, '_attach selector', selector);
         }

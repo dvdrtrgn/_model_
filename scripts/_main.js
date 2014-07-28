@@ -1,6 +1,6 @@
 /*jslint es5:true, white:false */
 /*globals _, C, W, Glob, Util, jQuery,
-        Servo, Projector, */
+        Scroller, Projector, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Main = (function ($, G, U) { // IIFE
     'use strict';
@@ -23,7 +23,7 @@ var Main = (function ($, G, U) { // IIFE
 
         Df.inits();
 
-        Servo.attach('._projector.iS-port');
+        Scroller.attach('._projector.iS-port');
         Projector.attach('._projector');
     }
 

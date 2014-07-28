@@ -68,7 +68,7 @@ var Load, Glob = new Global('Globals');
     Load.main = {
         both: [
         G.src + 'projector.js',
-        G.src + 'servo.js',
+        G.src + 'scroller.js',
         G.src + '_main.js',
         ],
         complete: function () {

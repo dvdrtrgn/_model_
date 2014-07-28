@@ -2,9 +2,9 @@
 /*globals _, C, W, Glob, Util, jQuery,
         IScroll, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Servo = (function ($, G, U) { // IIFE
+var Scroller = (function ($, G, U) { // IIFE
     'use strict';
-    var name = 'Servo',
+    var name = 'Scroller',
         self = new G.constructor(name, '(wrap iscroll controller)'),
         Df;
 
@@ -72,6 +72,7 @@ var Servo = (function ($, G, U) { // IIFE
     }
 
     function _attach(viewSelector) {
+        self.init();
         if (U.debug()) {
             C.debug(name, '_attach viewport', viewSelector);
         }

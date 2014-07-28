@@ -12,9 +12,7 @@ var Rotor = (function ($, G, U) { // IIFE
         all: [],
         speed: 333,
         current: null,
-        inits: function () {
-            Df.inited = true;
-        },
+        inits: function () {},
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     // HELPERS (defaults dependancy only)
@@ -40,10 +38,9 @@ var Rotor = (function ($, G, U) { // IIFE
         if (U.debug()) {
             C.debug(name, 'collect slides', slides.toString());
         }
-        var callupon, rotor, port, scroller, slide;
+        var rotor, port, scroller, slide;
 
         slide = slides.first();
-        callupon = $.Callbacks();
         port = slide.parent().parent();
         scroller = port.data('scroller') || false;
         port = scroller ? port : slide;
@@ -56,7 +53,7 @@ var Rotor = (function ($, G, U) { // IIFE
                 if (Df.current) {
                     Df.current.reset();
                 }
-                callupon.fire(rotor);
+                flipRotor(rotor);
             },
             isnt: function (state) {
                 if (rotor.status !== state) {
@@ -92,7 +89,6 @@ var Rotor = (function ($, G, U) { // IIFE
 
         Df.all.push(rotor);
         slide.data(name, rotor);
-        callupon.add(flipRotor);
         rotor.reset();
 
         return rotor;

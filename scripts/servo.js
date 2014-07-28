@@ -10,7 +10,7 @@ var Servo = (function ($, G, U) { // IIFE
 
     Df = { // DEFAULTS
         all: [],
-        speed: 333, /* see iscroll */
+        speed: 3333, /* auto advance */
         current: null,
         iscroll: {
             indicators: {
@@ -26,9 +26,7 @@ var Servo = (function ($, G, U) { // IIFE
             snap: true,
             snapSpeed: 333,
         },
-        inits: function () {
-            Df.inited = true;
-        },
+        inits: function () {},
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     // HELPERS (defaults dependancy only)
@@ -59,7 +57,7 @@ var Servo = (function ($, G, U) { // IIFE
 
         interval = W.setInterval(function () {
             servoNext(scroller);
-        }, Df.speed * 10);
+        }, Df.speed);
 
         pager = W.isIE ? scroller.indicator1 : scroller.indicators[0];
 
@@ -106,6 +104,7 @@ var Servo = (function ($, G, U) { // IIFE
         iScroller = new IScroll(viewPort.get(0), Df.iscroll);
 
         // store IScroll on wrapper
+        Df.all.push(iScroller);
         viewPort.data('scroller', iScroller);
         return iScroller;
     }

@@ -10,8 +10,22 @@ var Servo = (function ($, G, U) { // IIFE
 
     Df = { // DEFAULTS
         all: [],
-        speed: 333,
+        speed: 333, /* see iscroll */
         current: null,
+        iscroll: {
+            indicators: {
+                el: null, /* later */
+                resize: false,
+                interactive: true,
+            },
+            keyBindings: true,
+            eventPassthrough: true,
+            momentum: false,
+            scrollX: 1,
+            scrollY: 0,
+            snap: true,
+            snapSpeed: 333,
+        },
         inits: function () {
             Df.inited = true;
         },
@@ -63,51 +77,37 @@ var Servo = (function ($, G, U) { // IIFE
         if (U.debug()) {
             C.debug(name, '_attach viewport', viewSelector);
         }
-        var viewport, peg, scroller;
+        var viewPort, proxyPeg, iScroller;
 
-        viewport = $(viewSelector);
-        peg = viewport.find('.iS-proxy');
-
-        peg.on('click touchend', function (evt) {
+        viewPort = $(viewSelector);
+        proxyPeg = viewPort.find('.iS-proxy') //
+        .on('click touchend', function (evt) {
             var cds = {
                 x: evt.offsetX,
                 y: evt.offsetY,
                 w: $(this).width(),
-                l: scroller.pages.length - 1,
+                l: iScroller.pages.length - 1,
                 calc: function () {
                     return ((this.x / this.w * this.l) | 0);
                 },
             };
-
             if (!cds.x) { // touch device has no offsetX?
                 evt.preventDefault();
-                peg.trigger('advance.' + name);
+                proxyPeg.trigger('advance.' + name);
             } else {
-                scroller.goToPage(cds.calc(), 0);
+                iScroller.goToPage(cds.calc(), 0);
             }
+        }) //
+        .on('advance.' + name, function () {
+            servoNext(iScroller);
         });
 
-        peg.on('advance.' + name, function () {
-            servoNext(scroller);
-        });
+        Df.iscroll.indicators.el = proxyPeg.get(0);
+        iScroller = new IScroll(viewPort.get(0), Df.iscroll);
 
-        scroller = new IScroll(viewport.get(0), {
-            indicators: {
-                el: peg.get(0),
-                resize: false,
-                interactive: true,
-            },
-            keyBindings: true,
-            eventPassthrough: true,
-            momentum: false,
-            scrollX: 1,
-            scrollY: 0,
-            snap: true,
-            snapSpeed: Df.speed,
-        });
-        // store on wrapper
-        viewport.data('scroller', scroller);
-        return scroller;
+        // store IScroll on wrapper
+        viewPort.data('scroller', iScroller);
+        return iScroller;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -5,7 +5,7 @@
 var Rotor = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Rotor',
-        self = new G.constructor(name, '(slide carousel abstraction)'),
+        self = new G.constructor(name, '(rotating slide carousel abstraction)'),
         Df;
 
     Df = { // DEFAULTS

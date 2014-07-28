@@ -31,9 +31,9 @@ var Scroller = (function ($, G, U) { // IIFE
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     // HELPERS (defaults dependancy only)
 
-    function servoNext(scroller) {
+    function scrollNext(scroller) {
         if (U.debug()) {
-            C.debug(name, 'servoNext', scroller);
+            C.debug(name, 'scrollNext', scroller);
         }
         var ln, pg;
 
@@ -46,9 +46,9 @@ var Scroller = (function ($, G, U) { // IIFE
     /// INTERNAL
     /// attach expand/contract/status events to items with _reveal
 
-    function _autoServo(scroller) {
+    function _autoScroll(scroller) {
         if (U.debug()) {
-            C.debug(name, '_autoServo', scroller);
+            C.debug(name, '_autoScroll', scroller);
         }
         var interval, pager;
 
@@ -57,7 +57,7 @@ var Scroller = (function ($, G, U) { // IIFE
         }
 
         interval = W.setInterval(function () {
-            servoNext(scroller);
+            scrollNext(scroller);
         }, Df.speed);
 
         pager = W.isIE ? scroller.indicator1 : scroller.indicators[0];
@@ -72,10 +72,10 @@ var Scroller = (function ($, G, U) { // IIFE
         return interval;
     }
 
-    function _attachView(viewSelector) {
+    function _attachPort(viewSelector) {
         self.init();
         if (U.debug()) {
-            C.debug(name, '_attachView viewport', viewSelector);
+            C.debug(name, '_attachPort viewport', viewSelector);
         }
         var viewPort, proxyPeg, iScroller;
 
@@ -99,7 +99,7 @@ var Scroller = (function ($, G, U) { // IIFE
             }
         }) //
         .on('advance.' + name, function () {
-            servoNext(iScroller);
+            scrollNext(iScroller);
         });
 
         Df.iscroll.indicators.el = proxyPeg.get(0);
@@ -124,8 +124,8 @@ var Scroller = (function ($, G, U) { // IIFE
     $.extend(self, {
         __: Df,
         init: _init,
-        attach: _attachView,
-        auto: _autoServo,
+        attach: _attachPort,
+        auto: _autoScroll,
     });
 
     return self;

@@ -34,19 +34,15 @@ var Projector = (function ($, G, U) { // IIFE
         }
     }
 
-    function collect(slides, scroller) {
+    function collect(slides, scroller, button) {
         if (U.debug()) {
             C.debug(name, 'collect slides', slides.toString());
         }
-        var projector, port, slide;
-
-        slide = slides.first();
-        port = slide.parent().parent();
-//        port = scroller ? port : slide;
-
-        projector = {
-            port: port,
+        var projector = {
+            port: $(scroller.wrapper),
             scroller: scroller,
+            slides: slides,
+            button: button,
             status: 'active',
             actuate: function () {
                 if (Df.current) {
@@ -84,11 +80,11 @@ var Projector = (function ($, G, U) { // IIFE
                 return (projector.activate() || projector.reset());
             },
         };
-        projector = $.extend(new self.wrap(), projector);
 
-        Df.all.push(projector);
-        slide.data(name, projector);
+        projector = $.extend(new self.wrap(), projector);
+        projector.port.data(name, projector);
         projector.reset();
+        Df.all.push(projector);
 
         return projector;
     }
@@ -102,13 +98,10 @@ var Projector = (function ($, G, U) { // IIFE
 
         scroller = Scroller.attach(selector + '.iS-port');
         slides = $(selector + ' .slides');
-        projector = collect(slides, scroller);
+        button = $(selector + '.control');
 
-        button = $(selector + '.control') //
-        .on('click', projector.toggle);
-
-        projector.slides = slides;
-        projector.button = button;
+        projector = collect(slides, scroller, button);
+        button.on('click', projector.toggle);
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

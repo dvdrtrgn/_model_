@@ -21,7 +21,9 @@ var Main = (function ($, G, U) { // IIFE
         C.info('Main init @ ' + Date() + ' debug:', W.debug, self.mode);
 
         Df.inits();
-        Projector.attach('._projector');
+        _.delay(function () {
+            Projector.attach('._projector');
+        });
     }
 
     $.extend(self, {

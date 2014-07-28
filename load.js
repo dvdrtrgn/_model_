@@ -72,8 +72,8 @@ var Load, Glob = new Global('Globals');
         G.src + '_main.js',
         ],
         complete: function () {
-            ROOT.loaded();
             W.Main.init();
+            ROOT.loaded();
         },
     };
 

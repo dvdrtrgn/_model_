@@ -11,7 +11,6 @@ var Scroller = (function ($, G, U) { // IIFE
     Df = { // DEFAULTS
         all: [],
         speed: 3333, /* auto advance */
-        current: null,
         iscroll: {
             indicators: {
                 el: null, /* later */
@@ -26,13 +25,11 @@ var Scroller = (function ($, G, U) { // IIFE
             snap: true,
             snapSpeed: 333,
         },
+        current: null,
         inits: function () {},
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     // HELPERS (defaults dependancy only)
-    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    /// INTERNAL
-    /// attach expand/contract/status events to items with _reveal
 
     function servoNext(scroller) {
         if (U.debug()) {
@@ -44,6 +41,10 @@ var Scroller = (function ($, G, U) { // IIFE
         pg = (1 + scroller.currentPage.pageX) % (ln - 1);
         scroller.goToPage(pg, 0);
     }
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
+    /// attach expand/contract/status events to items with _reveal
 
     function _autoServo(scroller) {
         if (U.debug()) {
@@ -71,10 +72,10 @@ var Scroller = (function ($, G, U) { // IIFE
         return interval;
     }
 
-    function _attach(viewSelector) {
+    function _attachView(viewSelector) {
         self.init();
         if (U.debug()) {
-            C.debug(name, '_attach viewport', viewSelector);
+            C.debug(name, '_attachView viewport', viewSelector);
         }
         var viewPort, proxyPeg, iScroller;
 
@@ -104,9 +105,9 @@ var Scroller = (function ($, G, U) { // IIFE
         Df.iscroll.indicators.el = proxyPeg.get(0);
         iScroller = new IScroll(viewPort.get(0), Df.iscroll);
 
-        // store IScroll on wrapper
+        // store IScroll (internally and as data on wrapper)
         Df.all.push(iScroller);
-        viewPort.data('scroller', iScroller);
+        // viewPort.data('scroller', iScroller);
         return iScroller;
     }
 
@@ -123,7 +124,7 @@ var Scroller = (function ($, G, U) { // IIFE
     $.extend(self, {
         __: Df,
         init: _init,
-        attach: _attach,
+        attach: _attachView,
         auto: _autoServo,
     });
 

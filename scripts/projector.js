@@ -34,16 +34,15 @@ var Projector = (function ($, G, U) { // IIFE
         }
     }
 
-    function collect(slides) {
+    function collect(slides, scroller) {
         if (U.debug()) {
             C.debug(name, 'collect slides', slides.toString());
         }
-        var projector, port, scroller, slide;
+        var projector, port, slide;
 
         slide = slides.first();
         port = slide.parent().parent();
-        scroller = port.data('scroller') || false;
-        port = scroller ? port : slide;
+//        port = scroller ? port : slide;
 
         projector = {
             port: port,
@@ -99,11 +98,17 @@ var Projector = (function ($, G, U) { // IIFE
         if (U.debug()) {
             C.debug(name, '_attach selector', selector);
         }
-        var projector;
+        var button, slides, projector, scroller;
 
-        Scroller.attach(selector + '.iS-port');
-        projector = collect($(selector + ' .slides'));
-        $(selector + '.control').on('click', projector.toggle);
+        scroller = Scroller.attach(selector + '.iS-port');
+        slides = $(selector + ' .slides');
+        projector = collect(slides, scroller);
+
+        button = $(selector + '.control') //
+        .on('click', projector.toggle);
+
+        projector.slides = slides;
+        projector.button = button;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

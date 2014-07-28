@@ -30,6 +30,7 @@ var Main = (function ($, G, U) { // IIFE
         },
         __: Df,
         init: _init,
+        mode: eval(U.testrict),
     });
 
     return self;

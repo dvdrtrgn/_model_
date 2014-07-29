@@ -8,7 +8,7 @@
     $height: $fullsize;
     $width: $fullsize / $count;
     $block: $height / 10;
-    $gauge: 33%;
+    $gauge: 25%;
 
     background-color: #333;
     box-shadow: 1px 1px 33px gray;
@@ -32,13 +32,14 @@
             cursor: -webkit-grab;
             float: left;
             height: $height;
-            width: $width;
             position: relative;
+            width: $width;
             z-index: 1;
         }
     }
     .iS-proxy {
-            background-color: #eee;
+        background-color: #eee;
+        background-size: (100% / ($count - 0.5)) 100%;
         cursor: pointer;
         height: $block;
         left: $fullsize / 2 - $gauge / 2; // center
@@ -59,8 +60,8 @@
 
 ._projector {
     &.iS-port {
-        width: 855px;
-        height: 333px;
+        height: 444px;
+        width: 999px;
     }
     .iS-view {
         & > * {
@@ -75,7 +76,7 @@
         }
     }
     .iS-proxy {
-        background-size: contain;
+        background-image: url(../images/cubes.png);
     }
 }
 

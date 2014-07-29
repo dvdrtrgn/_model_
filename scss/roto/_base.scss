@@ -3,12 +3,12 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 .iS-port {
-    $fullsize: 980px;
-    $count: 3;
-    $height: $fullsize / 2;
-    $block: $fullsize / 49;
-    $margin: $block / 2;
-    $gauge: ($count * 2 - 1) * $block;
+    $fullsize: 100%;
+    $count: 4;
+    $height: $fullsize;
+    $width: $fullsize / $count;
+    $block: $height / 10;
+    $gauge: 33%;
 
     background-color: #333;
     box-shadow: 1px 1px 33px gray;
@@ -16,10 +16,9 @@
     overflow: hidden;
     position: relative;
     text-align: center;
-    width: $fullsize;
 
     .iS-view {
-        height: $height + $margin * 2;
+        height: $height;
         position: relative;
         width: $fullsize * $count;
         -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -33,32 +32,36 @@
             cursor: -webkit-grab;
             float: left;
             height: $height;
-            margin: $block / 2;
-            width: $fullsize - $block;
+            width: $width;
             position: relative;
             z-index: 1;
         }
     }
     .iS-proxy {
+            background-color: #eee;
         cursor: pointer;
         height: $block;
         left: $fullsize / 2 - $gauge / 2; // center
         position: absolute;
-        top: $height - $block * 1.5; // x height + x/2 for margin
+        top: 80%; // x height + x/2 for margin
         width: $gauge;
         z-index: 1;
 
         .iS-peg {
             background-color: #ddd;
-            height: $block * 0.9;
+            height: 90%;
             opacity: 0.9;
             position: relative;
-            width: $block;
+            width: 100% / $count / 2;
         }
     }
 }
 
 ._projector {
+    &.iS-port {
+        width: 855px;
+        height: 333px;
+    }
     .iS-view {
         & > * {
             background-image: url(../images/metal.png);
@@ -72,7 +75,6 @@
         }
     }
     .iS-proxy {
-        background-image: url(../images/cubes.png);
         background-size: contain;
     }
 }

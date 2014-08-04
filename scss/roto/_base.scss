@@ -1,6 +1,9 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 /* ROTO / Base */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+$dark: #333;
+$lite: #ddd;
+$live: #c00;
 
 .iS-port {
     $fullsize: 100%;
@@ -10,7 +13,7 @@
     $block: $height / 10;
     $gauge: 25%;
 
-    background-color: #333;
+    background-color: $dark;
     box-shadow: 1px 1px 33px gray;
     margin: auto;
     overflow: hidden;
@@ -27,7 +30,7 @@
         -webkit-text-size-adjust: none;-moz-text-size-adjust: none;-ms-text-size-adjust: none;-o-text-size-adjust: none;text-size-adjust: none;
 
         & > * {
-            background-color: #eee;
+            background-color: $lite;
             background-size: 100% 100%;
             cursor: -webkit-grab;
             float: left;
@@ -47,14 +50,16 @@
         top: 80%; // x height + x/2 for margin
         width: $gauge;
         z-index: 1;
-
-        .iS-peg {
-            background-color: #ddd;
-            height: 90%;
-            opacity: 0.9;
-            position: relative;
-            width: 100% / $count / 2;
-        }
+    }
+    .iS-peg {
+        background-color: $lite;
+        height: 90%;
+        opacity: 0.9;
+        position: relative;
+        width: 100% / $count / 2;
+    }
+    &.active .iS-peg {
+        background-color: $live;
     }
 }
 

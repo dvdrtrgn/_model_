@@ -67,7 +67,7 @@ var Projector = (function ($, G, U) { // IIFE
                 return false;
             },
             reset: function () {
-                if (projector.isnt('normal')) {
+                if (projector.isnt('paused')) {
                     Df.current = null;
                     projector.actuate();
                     return true;

@@ -47,7 +47,7 @@ var Load, Glob = new Global('Globals');
         G.lib + 'iscroll/5.1.1/iscroll.js',
         ],
         both: [
-        G.src + '_util.js',
+        G.loc + '_util.js',
         ],
         complete: function () {
             U = Util;

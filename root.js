@@ -77,14 +77,14 @@ W.ROOT = ({
         var R = this;
         R.D = W.document;
         R.L = W.location;
-        if (C && C.groupCollapsed) {
-            C.groupCollapsed('ROOT', R);
-        }
         R._host(this);
         R._tops(this);
         R._down(this);
         R._wrap(this);
         delete R.init;
+        if (C && C.groupCollapsed) {
+            C.groupCollapsed('ROOT', R);
+        }
         return R;
     },
 }.init());

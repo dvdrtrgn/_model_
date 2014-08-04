@@ -2,13 +2,12 @@
 /*globals _, C, W, ROOT, Global, Util, jQuery,
     Glob:true, Main, Modernizr, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Load, Glob = new Global('Globals');
+var Glob = new Global('Glob');
 
 (function ($, G, M) {
     'use strict';
-    var U;
+    var Load = {}, U;
     W.G = G;
-    W.Load = {};
     W.Tests = $.Callbacks();
 
     _.defaults(G, { /// all stubs terminated

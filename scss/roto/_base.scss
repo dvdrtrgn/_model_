@@ -33,13 +33,13 @@
     }
     .iS-proxy {
         cursor: pointer;
-        height: 1rem;
+        height: $peg;
         position: absolute;
-        width: 8.8rem;
+        width: $count * ($peg + $gap);
     }
     .iS-peg {
-        background-color: red;
-        height: 1rem;
+        background-color: $live;
+        height: $peg;
         position: relative;
     }
 }

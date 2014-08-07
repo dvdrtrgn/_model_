@@ -127,10 +127,6 @@ var Projector = (function ($, G, U) { // IIFE
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 
-give selector
-make query
-make projector controller
-bind ref as data to query
 
 
 */

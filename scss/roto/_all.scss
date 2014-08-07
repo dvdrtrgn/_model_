@@ -4,7 +4,8 @@
 $count: 4;
 $fullsize: 100%;
 $show_tall: 25rem;
-$show_xtra: 4rem;
+$peg: 18px;
+$gap: $peg;
 
 $dark: #333;
 $lite: #ddd;
@@ -18,8 +19,6 @@ $live: #c00;
     77% { opacity: 1.0; }
 }
 
-$peg: 14px;
-$gap: 5px;
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @import "_base";

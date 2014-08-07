@@ -4,11 +4,14 @@
 
 .iS-port {
     @include transition( 0.5s cubic() );
-    height: $show_tall;
     background-color: $lite;
+    height: $show_tall;
 }
 .iS-view {
-    & > * {
+    img {
+        @include filter( blur(0px) );
+        @include transform( translate(0.5%, 0) scaleX(1.01) translateZ(0px) );
+        @include transition( 0.5s cubic() );
         background-image: url(../images/metal.png);
 
         &:first-child:after {
@@ -17,32 +20,21 @@
         &:last-child:before {
             content: 'last';
         }
-    }
-    img {
-        @include filter( blur(0px) );
-        @include transform( translate(0.5%, 0) scaleX(1.01) translateZ(0px) );
-        @include transition( 0.5s cubic() );
-        background-image: url(../images/metal.png);
-    }
-    .scrolling & {
-        img {
+        .scrolling & {
             @include filter( blur(2px) );
             @include transform( translate(-0.5%, 0) scaleX(1.01) translateZ(0px) );
             opacity: 0.9;
         }
     }
 }
-
 .iS-proxy {
     background-color: rgba(255, 255, 255, 0.5);
     background-image: url(../images/cubes.png);
     background-repeat: repeat-x;
-    border: 5px solid rgba(255, 255, 255, 0);
-    border-radius: 4px;
-    bottom: 1.5rem;
-    box-sizing: content-box;
+    border: $peg/2 solid rgba(255, 255, 255, 0);
+    bottom: $peg;
     height: $peg;
-    left: 2.25rem;
+    left: 2*$peg;
     position: absolute;
     width: ($peg + $gap) * $count - $gap;
     z-index: 9;
@@ -50,7 +42,6 @@
 .iS-peg {
     background-color: $lite;
     border-radius: 2px;
-    height: 100%;
     left: 0;
     position: absolute;
     width: $peg;
@@ -67,16 +58,8 @@
         }
     }
 }
-.c1 {
-    border-top: 1em solid red !important;
-}
-.c2 {
-    border-top: 1em solid green !important;
-}
-.c3 {
-    border-top: 1em solid yellow !important;
-}
-.c4 {
-    border-top: 1em solid blue !important;
-}
+.c1 { border-top: 1em solid red !important; }
+.c2 { border-top: 1em solid green !important; }
+.c3 { border-top: 1em solid yellow !important; }
+.c4 { border-top: 1em solid blue !important; }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

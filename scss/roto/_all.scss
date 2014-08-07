@@ -1,15 +1,27 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 /* ROTO */
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
-$fullsize: 980px;
+$count: 4;
+$fullsize: 100%;
+$show_tall: 25rem;
+$show_xtra: 4rem;
 
-.dev *:hover {
-    outline-color: rgba(255,0,0,0.5);
-    outline-offset: -1px;
-    outline-style: solid;
-    outline-width: 1px;
+$dark: #333;
+$lite: #ddd;
+$live: #c00;
+
+@include keyframes(throb) {
+    33% { opacity: 1.0; }
+    44% { opacity: 0.7; }
+    55% { opacity: 0.8; }
+    66% { opacity: 0.6; }
+    77% { opacity: 1.0; }
 }
+
+$peg: 14px;
+$gap: 5px;
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @import "_base";
+@import "_custom";
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

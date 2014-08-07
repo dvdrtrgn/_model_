@@ -1,27 +1,20 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 /* ROTO / Base */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-$dark: #333;
-$lite: #ddd;
-$live: #c00;
 
 .iS-port {
-    $fullsize: 100%;
-    $count: 4;
-    $height: $fullsize;
     $width: $fullsize / $count;
-    $block: $height / 10;
-    $gauge: 25%;
 
-    background-color: $dark;
-    box-shadow: 1px 1px 33px gray;
     margin: auto;
     overflow: hidden;
     position: relative;
     text-align: center;
 
+    .loading & {
+        visibility: hidden;
+    }
     .iS-view {
-        height: $height;
+        height: 100%;
         position: relative;
         width: $fullsize * $count;
         -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -30,58 +23,24 @@ $live: #c00;
         -webkit-text-size-adjust: none;-moz-text-size-adjust: none;-ms-text-size-adjust: none;-o-text-size-adjust: none;text-size-adjust: none;
 
         & > * {
-            background-color: $lite;
+            background-color: #eee;
             background-size: 100% 100%;
             cursor: -webkit-grab;
             float: left;
-            height: $height;
             position: relative;
             width: $width;
-            z-index: 1;
         }
     }
     .iS-proxy {
-        background-color: #eee;
-        background-size: (100% / ($count - 0.5)) 100%;
         cursor: pointer;
-        height: $block;
-        left: $fullsize / 2 - $gauge / 2; // center
+        height: 1rem;
         position: absolute;
-        top: 80%; // x height + x/2 for margin
-        width: $gauge;
-        z-index: 1;
+        width: 5rem;
     }
     .iS-peg {
-        background-color: $lite;
-        height: 90%;
-        opacity: 0.9;
+        background-color: red;
+        height: 1rem;
         position: relative;
-        width: 100% / $count / 2;
-    }
-    &.active .iS-peg {
-        background-color: $live;
-    }
-}
-
-._projector {
-    &.iS-port {
-        height: 444px;
-        width: 999px;
-    }
-    .iS-view {
-        & > * {
-            background-image: url(../images/metal.png);
-
-            &:first-child::after {
-                content: "first";
-            }
-            &:last-child::before {
-                content: 'last';
-            }
-        }
-    }
-    .iS-proxy {
-        background-image: url(../images/cubes.png);
     }
 }
 

@@ -1,0 +1,72 @@
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+/* ROTO / Custom */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+.iS-port {
+    @include transition( 0.5s cubic() );
+    height: $show_tall;
+    background-color: $lite;
+}
+.iS-view {
+    & > * {
+        background-image: url(../images/metal.png);
+
+        &:first-child::after {
+            content: "first";
+        }
+        &:last-child::before {
+            content: 'last';
+        }
+    }
+    img {
+        @include filter( blur(0px) );
+        @include transform( translate(0.5%, 0) scaleX(1.01) translateZ(0px) );
+        @include transition( 0.5s cubic() );
+        background-image: url(../images/metal.png);
+        top: $show_xtra / -2; /* half the dif */
+    }
+    .scrolling & {
+        img {
+            @include filter( blur(2px) );
+            @include transform( translate(-0.5%, 0) scaleX(1.01) translateZ(0px) );
+            opacity: 0.9;
+        }
+    }
+}
+
+.iS-proxy {
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url(../images/cubes.png);
+    background-repeat: repeat-x;
+    border: 5px solid rgba(255, 255, 255, 0);
+    border-radius: 4px;
+    bottom: 1.5rem;
+    box-sizing: content-box;
+    height: $peg;
+    left: 2.25rem;
+    position: absolute;
+    width: ($peg + $gap) * $count - $gap;
+    z-index: 9;
+}
+.iS-peg {
+    background-color: $lite;
+    border-radius: 2px;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: $peg;
+
+    &:hover {
+        background-color: $live;
+    }
+    .paused & {
+        @include animation( throb 3s ease-in-out infinite );
+        background-color: $live;
+
+        &:hover {
+            background-color: green;
+        }
+    }
+
+}
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

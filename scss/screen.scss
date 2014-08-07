@@ -6,5 +6,13 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 @import "core/_all";
 @import "roto/_all";
+
+.dev *:hover {
+    outline-color: rgba(255,0,0,0.5);
+    outline-offset: -1px;
+    outline-style: solid;
+    outline-width: 1px;
+}
+
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 /* >^º!º^< */

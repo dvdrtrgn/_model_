@@ -10,109 +10,130 @@ var Scroller = (function ($, G, U) { // IIFE
 
     Df = { // DEFAULTS
         all: [],
-        speed: 3333, /* auto advance */
+        speed: 7777, /* auto advance */
         iscroll: {
-            indicators: {
+            indicators: [{
                 el: null, /* later */
                 resize: false,
                 interactive: true,
-            },
-            keyBindings: true,
-            eventPassthrough: true,
-            momentum: false,
+            }],
+            keyBindings: false,
+            eventPassthrough: false,
+            momentum: true,
             scrollX: 1,
             scrollY: 0,
             snap: true,
-            snapSpeed: 333,
+            snapSpeed: 999,
         },
         current: null,
         inits: function () {},
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    // HELPERS (defaults dependancy only)
+    /// HELPERS
+    //  defaults dependancy only
+
+    Scroller.wrap = function () {};
 
     function scrollNext(scroller) {
-        if (U.debug()) {
+        if (U.debug(2)) {
             C.debug(name, 'scrollNext', scroller);
         }
         var ln, pg;
 
         ln = scroller.pages.length;
         pg = (1 + scroller.currentPage.pageX) % ln;
-        scroller.goToPage(pg, 0);
+        scroller._execEvent('scrollStart'); // polyfill event
+
+        _.delay( function () {
+            scroller.goToPage(pg, 0);
+        }, Df.iscroll.snapSpeed / 3);
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
-    /// attach expand/contract/status events to items with _reveal
+    //  attach expand/contract/status events to items with _reveal
 
     function _autoScroll(scroller) {
-        if (U.debug()) {
+        if (U.debug(2)) {
             C.debug(name, '_autoScroll', scroller);
         }
-        var interval, pager;
+        var interva, indicat;
 
         if (!scroller.pages) {
             return;
         }
 
-        interval = W.setInterval(function () {
+        interva = W.setInterval(function () {
             scrollNext(scroller);
         }, Df.speed);
 
-        pager = W.isIE ? scroller.indicator1 : scroller.indicators[0];
+        indicat = W.isIE ? scroller.indicator1 : scroller.indicators[0];
 
-        $(pager.wrapper) //
+        $(indicat.wrapper) //
         .parent() //
         .one('click keypress touchend', function () {
-            C.debug(name, 'click keypress touchend', scroller);
-            W.clearInterval(interval);
+            if (U.debug(2)) {
+                C.debug(name, 'click keypress touchend', scroller);
+            }
+            $(this).find('.control').trigger('toggle');
         });
-
-        return interval;
+        return interva;
     }
 
-    function _attachPort(viewSelector) {
-        self.init();
-        if (U.debug()) {
-            C.debug(name, '_attachPort viewport', viewSelector);
-        }
-        var viewPort, gauge, iScroller;
+    function _attachPort(sel) {
+        var port, proxy, scroller;
 
-        viewPort = $(viewSelector);
-        gauge = viewPort.find('.iS-proxy') //
-        .on('mouseup touchend click', function (evt) {
-            var cds = {
-                t: $(evt.target),
+        self.init(); // bueller?
+        port = $(sel);
+
+        if (U.debug(1)) {
+            C.debug(name, '_attachPort', sel);
+        }
+        if (!port.length) {
+            return {};
+        }
+        proxy = port.find('.iS-proxy');
+
+        proxy.on('click', function (evt) {
+            var aprox = ({
+                pg: null,
+                w: proxy.outerWidth(),
                 x: evt.offsetX,
                 y: evt.offsetY,
-                w: gauge.width(),
-                l: iScroller.pages.length,
+                ln: scroller.pages.length,
+                et: $(evt.target),
+                ev: evt,
                 calc: function () {
-                    if (!cds.t.is(gauge)) {
-                        cds.x += cds.t.position().left;
-                    }
-                    return ((cds.x / cds.w * cds.l) | 0);
+                    this.pg = (this.x / this.w * this.ln) | 0;
+                    return this;
                 },
-            };
-            if (!cds.x) { // touch device has no offsetX?
-                evt.preventDefault();
-                gauge.trigger('advance.' + name);
-            } else {
-                iScroller.goToPage(cds.calc(), 0);
+            }).calc();
+
+            if (U.debug(2)) {
+                C.debug(name, '_attachPort proxy calc', evt.type, aprox);
             }
-        }) //
-        .on('advance.' + name, function () {
-            scrollNext(iScroller);
+            scroller._execEvent('scrollStart'); // polyfill event
+            scroller.goToPage(aprox.pg, 0);
         });
 
-        Df.iscroll.indicators.el = gauge.get(0);
-        iScroller = new IScroll(viewPort.get(0), Df.iscroll);
+        proxy.on('advance.' + name, function () {
+            scrollNext(scroller);
+        });
+
+        Df.iscroll.indicators[0].el = proxy.get(0);
+        scroller = new IScroll(port.get(0), Df.iscroll); //github.com/cubiq/iscroll
+
+        scroller.on('scrollStart', function () {
+            port.addClass('scrolling');
+        });
+        scroller.on('scrollEnd', function () {
+            port.removeClass('scrolling');
+        });
 
         // store IScroll (internally and as data on wrapper)
-        Df.all.push(iScroller);
-        // viewPort.data('scroller', iScroller);
-        return iScroller;
+        Df.all.push(scroller);
+        port.data(name, scroller);
+        return scroller;
     }
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

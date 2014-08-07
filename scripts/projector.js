@@ -10,78 +10,79 @@ var Projector = (function ($, G, U) { // IIFE
 
     Df = { // DEFAULTS
         all: [],
-        speed: 333,
         current: null,
         inits: function () {},
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    // HELPERS (defaults dependancy only)
+    /// HELPERS
+    //  defaults dependancy only
     Projector.wrap = function () {};
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
-    /// attach expand/contract/status events to items with _reveal
+    //  attach expand/contract/status events to items with _reveal
 
-    function switchAutoIn(projector) {
-        if (U.debug()) {
-            C.debug(name, 'switchAutoIn', projector);
-        }
-
-        if (projector.status === 'active') {
-            projector.scroller.interval = Scroller.auto(projector.scroller);
-        } else {
-            W.clearInterval(projector.scroller.interval);
-        }
-    }
-
-    function control(scroller) {
-        if (U.debug()) {
-            C.debug(name, 'control', scroller);
+    function decorate(scroller) {
+        if (U.debug(2)) {
+            C.debug(name, 'decorate', scroller);
         }
         var projector = {
             port: $(scroller.wrapper),
             scroller: scroller,
             status: 'active',
+            timer: null,
             actuate: function () {
                 if (Df.current) {
                     Df.current.reset();
                 }
-                switchAutoIn(projector);
+                if (this.status === 'active') {
+                    this.timer = Scroller.auto(this.scroller);
+                } else {
+                    W.clearInterval(this.timer);
+                }
             },
-            isnt: function (state) {
-                if (projector.status !== state) {
-                    projector.port.removeClass(projector.status);
-                    projector.status = state;
-                    projector.port.addClass(projector.status);
+            changes: function (state) {
+                if (this.status !== state) {
+                    this.port.removeClass('scrolling ' + this.status);
+                    this.status = state;
+                    this.port.addClass(this.status);
                     return true;
                 } else {
                     return false;
                 }
             },
             activate: function () {
-                if (projector.isnt('active')) {
-                    projector.actuate();
-                    Df.current = projector;
+                if (this.changes('active')) {
+                    this.actuate();
+                    this.next();
+                    Df.current = this;
                     return true;
                 }
                 return false;
             },
             reset: function () {
-                if (projector.isnt('paused')) {
+                if (this.changes('paused')) {
                     Df.current = null;
-                    projector.actuate();
+                    this.actuate();
                     return true;
                 }
                 return false;
             },
             toggle: function () {
-                return (projector.activate() || projector.reset());
+                return (this.activate() || this.reset());
+            },
+            next: function () {
+                this.gauge.trigger('advance');
             },
         };
 
         projector = $.extend(new self.wrap(), projector);
         projector.port.data(name, projector);
-        projector.reset();
+
+        projector.control = projector.port.find('.control');
+        projector.gauge = projector.control.parent();
+        projector.actuate();
+
         Df.all.push(projector);
 
         return projector;
@@ -89,15 +90,18 @@ var Projector = (function ($, G, U) { // IIFE
 
     function _attach(selector) {
         self.init();
-        if (U.debug()) {
+        if (U.debug(2)) {
             C.debug(name, '_attach selector', selector);
         }
-        var button, slides, projector, scroller;
+        var projector, scroller;
 
-        scroller = Scroller.attach(selector + '.iS-port');
-        projector = control(scroller);
+        scroller = Scroller.attach(selector);
+        projector = decorate(scroller);
 
-        $(selector + '.control').on('click', projector.toggle);
+        $(selector + ' .control').on('click toggle', function (evt) {
+            evt.stopPropagation();
+            projector.toggle();
+        });
         return projector;
     }
 

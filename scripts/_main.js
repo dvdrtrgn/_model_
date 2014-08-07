@@ -6,12 +6,31 @@ var Main = (function ($, G, U) { // IIFE
     'use strict';
     var name = 'Main',
         self = new G.constructor(name, '(kicker and binder)'),
-        Df;
+        Df, body, html;
 
     Df = { // DEFAULTS
-        inits: function () {},
+        projector: null,
+        inits: function () {
+            body = $('body');
+            html = $('html');
+        },
     };
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    // HELPERS (defaults dependancy only)
 
+    function bindProjector() {
+        Df.projector = Projector.attach('.iS-port');
+
+        if (html.is('.dev')) {
+            Df.projector.toggle();
+        }
+    }
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
+
+    function bindings() {
+        bindProjector();
+    }
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function _init() {
@@ -19,11 +38,9 @@ var Main = (function ($, G, U) { // IIFE
             return null;
         }
         C.info('Main init @ ' + Date() + ' debug:', W.debug, self.mode);
-
         Df.inits();
-        _.delay(function () {
-            Projector.attach('._projector');
-        });
+
+        _.delay(bindings);
     }
 
     $.extend(self, {
@@ -37,7 +54,6 @@ var Main = (function ($, G, U) { // IIFE
 
     return self;
 }(jQuery, Glob, Util));
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /*

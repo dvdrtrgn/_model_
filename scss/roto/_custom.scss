@@ -1,65 +1,58 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 /* ROTO / Custom */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+$dark: #333;
+$lite: #ddd;
+$live: #c00;
 
 .iS-port {
     @include transition( 0.5s cubic() );
     background-color: $lite;
-    height: $show_tall;
-}
-.iS-view {
-    img {
-        @include filter( blur(0px) );
-        @include transform( translate(0.5%, 0) scaleX(1.01) translateZ(0px) );
-        @include transition( 0.5s cubic() );
-        background-image: url(../images/metal.png);
+    height: 20 * $peg;
 
-        &:first-child:after {
-            content: "first";
-        }
-        &:last-child:before {
-            content: 'last';
-        }
-        .scrolling & {
-            @include filter( blur(2px) );
-            @include transform( translate(-0.5%, 0) scaleX(1.01) translateZ(0px) );
-            opacity: 0.9;
+    .iS-view {
+        img {
+            @include filter( blur(0px) );
+            background-image: url(../images/metal.png);
+
+            &:first-child:after {
+                content: "first";
+            }
+            &:last-child:before {
+                content: 'last';
+            }
+            .scrolling & {
+                @include filter( blur(2px) );
+                @include transform( translate(-0.5%, 0) scaleX(1.01) translateZ(0px) );
+                opacity: 0.9;
+            }
         }
     }
-}
-.iS-proxy {
-    background-color: rgba(255, 255, 255, 0.5);
-    background-image: url(../images/cubes.png);
-    background-repeat: repeat-x;
-    border: $peg/2 solid rgba(255, 255, 255, 0);
-    bottom: $peg;
-    height: $peg;
-    left: 2*$peg;
-    position: absolute;
-    width: ($peg + $gap) * $count - $gap;
-    z-index: 9;
-}
-.iS-peg {
-    background-color: $lite;
-    border-radius: 2px;
-    left: 0;
-    position: absolute;
-    width: $peg;
-
-    &:hover {
-        background-color: $live;
+    .iS-proxy {
+        background-image: url(../images/cubes.png);
+        background-repeat: repeat-x;
+        border: $peg / 2 solid rgba(255, 255, 255, 0);
+        left: 2 * $peg;
     }
-    .paused & {
-        @include animation( throb 3s ease-in-out infinite );
-        background-color: $live;
+    .iS-peg {
+        background-color: $lite;
+        border-radius: 2px;
 
         &:hover {
-            background-color: green;
+            background-color: $live;
+        }
+        .paused & {
+            @include animation( throb 3s ease-in-out infinite );
+            background-color: $live;
+
+            &:hover {
+                background-color: green;
+            }
         }
     }
+    .c1 { border-top: 1em solid red !important; }
+    .c2 { border-top: 1em solid green !important; }
+    .c3 { border-top: 1em solid yellow !important; }
+    .c4 { border-top: 1em solid blue !important; }
 }
-.c1 { border-top: 1em solid red !important; }
-.c2 { border-top: 1em solid green !important; }
-.c3 { border-top: 1em solid yellow !important; }
-.c4 { border-top: 1em solid blue !important; }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

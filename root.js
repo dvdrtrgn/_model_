@@ -64,9 +64,9 @@ W.ROOT = ({
         R.D.write('<script src="' + R.lib + '/js/global.js"></script>');
         delete R._wrap;
     },
-    loaded: function () {
+    loaded: function ($) {
         $('body').removeClass('loading');
-        if (W.debug > 0) {
+        if (W.debug > 1) {
             $('html').addClass('dev');
         }
         if (C && C.groupCollapsed) {
@@ -77,14 +77,14 @@ W.ROOT = ({
         var R = this;
         R.D = W.document;
         R.L = W.location;
-        if (C && C.groupCollapsed) {
-            C.groupCollapsed('ROOT', R);
-        }
         R._host(this);
         R._tops(this);
         R._down(this);
         R._wrap(this);
         delete R.init;
+        if (C && C.groupCollapsed) {
+            C.groupCollapsed('ROOT', R);
+        }
         return R;
     },
 }.init());

@@ -1,15 +1,18 @@
 /*jslint es5:true, white:false */
-/*globals _, C, W, ROOT, Global, Util, jQuery,
-    Glob:true, Main, Modernizr, */
+/*globals _, C, W, ROOT, Global, Modernizr, jQuery,
+    Glob:true, Main:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Load, Glob = new Global('Globals');
+'use strict';
+var Glob, Load;
 
-(function ($, G, M) {
+Glob = new Global('Glob');
+
+(function ($, M, G) {
     'use strict';
     var U;
     W.G = G;
-    W.Load = {};
     W.Tests = $.Callbacks();
+    W.Load = {};
 
     _.defaults(G, { /// all stubs terminated
         top: ROOT.dir + '/',
@@ -28,8 +31,9 @@ var Load, Glob = new Global('Globals');
                 $(this).removeClass('hover');
             });
         });
+        W.debug--;
     }
-    if (($.now() > new Date('2014/06/29')) || W.isIE || ROOT.conf.nom === 'wfmedia') {
+    if (ROOT.conf.nom === 'wfmedia') {
         W.debug--;
     }
     if (ROOT.conf.nom === 'localhost') {
@@ -39,14 +43,14 @@ var Load, Glob = new Global('Globals');
     Load.base = {
         test: W.isIE,
         yep: [
-        G.lib + 'ie/split.js',
-        G.lib + 'iscroll/5.0.4/iscroll.js',
+            G.lib + 'ie/split.js',
+            G.lib + 'iscroll/5.0.4/iscroll.js',
         ],
         nope: [
-        G.lib + 'iscroll/5.1.1/iscroll.js',
+            G.lib + 'iscroll/5.1.1/iscroll.js',
         ],
         both: [
-        G.src + '_util.js',
+            G.loc + '_util.js',
         ],
         complete: function () {
             U = Util;
@@ -56,23 +60,23 @@ var Load, Glob = new Global('Globals');
     Load.font = {
         test: ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla1',
         yep: [
-        G.lib + 'fonts/archer.ssm.css',
-        G.lib + 'fonts/archer.ssm.itl.css',
+            // G.lib + 'fonts/archer.ssm.css',
+            // G.lib + 'fonts/archer.ssm.itl.css',
         ],
         nope: [
-        /* '//cloud.typography.com/6819872/620964/css/fonts.css', Normal */
-        '//cloud.typography.com/6819872/633184/css/fonts.css', /* ScrnSmrt */
+            /* '//cloud.typography.com/6819872/620964/css/fonts.css', Normal */
+            // '//cloud.typography.com/6819872/633184/css/fonts.css', /* ScrnSmrt */
         ],
     };
 
     Load.main = {
         both: [
-        G.src + 'rotor.js',
-        G.src + 'servo.js',
-        G.src + '_main.js',
+            G.src + 'projector.js',
+            G.src + 'scroller.js',
+            G.src + '_main.js',
         ],
         complete: function () {
-            ROOT.loaded();
+            ROOT.loaded($);
             W.Main.init();
         },
     };
@@ -81,11 +85,10 @@ var Load, Glob = new Global('Globals');
         test: W.debug > 0,
         //yep: [G.src + 'tests.js'],
         nope: [
-        'http://www.wellsfargomedia.com/lib/js/ecg-ga.js',
+            'http://www.wellsfargomedia.com/lib/js/ecg-ga.js',
         ],
     };
     M.load([Load.base, Load.font, Load.main, Load.test]);
 
-}(jQuery, Glob, Modernizr));
-
+}(jQuery, Modernizr, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

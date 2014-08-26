@@ -1,11 +1,7 @@
-/*jslint es5:true, white:false */
-/*globals _, C, W, ROOT, Global, Modernizr, jQuery,
-    Glob:true, Main:true, */
+/*jslint white:false */
+/*globals $, Global, Main, Modernizr, ROOT, _, jQuery, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-'use strict';
-var Glob, Load;
-
-Glob = new Global('Glob');
+var Data, Glob = new Global('Glob');
 
 (function ($, M, G) {
     'use strict';
@@ -33,7 +29,7 @@ Glob = new Global('Glob');
         });
         W.debug--;
     }
-    if (ROOT.conf.nom === 'wfmedia') {
+    if (ROOT.conf.nom === 'wfmedia' || ROOT.conf.nom === 'mfal') {
         W.debug--;
     }
     if (ROOT.conf.nom === 'localhost') {
@@ -43,14 +39,14 @@ Glob = new Global('Glob');
     Load.base = {
         test: W.isIE,
         yep: [
-            G.lib + 'ie/split.js',
+        G.lib + 'ie/split.js',
             G.lib + 'iscroll/5.0.4/iscroll.js',
         ],
         nope: [
             G.lib + 'iscroll/5.1.1/iscroll.js',
         ],
         both: [
-            G.loc + '_util.js',
+            'build/lib.js',
         ],
         complete: function () {
             U = Util;
@@ -59,31 +55,31 @@ Glob = new Global('Glob');
 
     Load.font = {
         test: ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla1',
-        yep: [
-            // G.lib + 'fonts/archer.ssm.css',
-            // G.lib + 'fonts/archer.ssm.itl.css',
-        ],
-        nope: [
-            /* '//cloud.typography.com/6819872/620964/css/fonts.css', Normal */
-            // '//cloud.typography.com/6819872/633184/css/fonts.css', /* ScrnSmrt */
-        ],
+        yep: [/*
+            G.lib + 'fonts/archer.ssm.css',
+            G.lib + 'fonts/archer.ssm.itl.css',
+        */],
+        nope: [/*
+            '//cloud.typography.com/6819872/620964/css/fonts.css', // Normal
+            '//cloud.typography.com/6819872/633184/css/fonts.css', // ScrnSmrt
+        */],
     };
 
     Load.main = {
         both: [
-            G.src + 'projector.js',
-            G.src + 'scroller.js',
-            G.src + '_main.js',
+            'build/src.js',
         ],
         complete: function () {
             ROOT.loaded($);
-            W.Main.init();
+            evil(W.Main && W.Main.init());
         },
     };
 
     Load.test = {
-        test: W.debug > 0,
-        //yep: [G.src + 'tests.js'],
+        test: W.debug >= 1,
+        yep: [
+            //G.src + 'tests.js'
+        ],
         nope: [
             'http://www.wellsfargomedia.com/lib/js/ecg-ga.js',
         ],

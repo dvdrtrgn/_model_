@@ -1,6 +1,6 @@
-/*jslint es5:true, white:false */
+/*jslint white:false */
 /*globals _, C, W, Glob, Util, jQuery,
-        IScroll, */
+        Scroller:true, IScroll, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Scroller = (function ($, G, U) { // IIFE
     'use strict';
@@ -44,7 +44,7 @@ var Scroller = (function ($, G, U) { // IIFE
         pg = (1 + scroller.currentPage.pageX) % ln;
         scroller._execEvent('scrollStart'); // polyfill event
 
-        _.delay( function () {
+        _.delay(function () {
             scroller.goToPage(pg, 0);
         }, Df.iscroll.snapSpeed / 3);
     }

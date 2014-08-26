@@ -21,7 +21,7 @@ var Main = (function ($, G, U) { // IIFE
     function bindProjector() {
         Df.projector = Projector.attach('.iS-port');
 
-        if (html.is('.dev')) {
+        if (U.debug()) {
             Df.projector.toggle();
         }
     }

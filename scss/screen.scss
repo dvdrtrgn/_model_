@@ -13,6 +13,19 @@
     outline-style: solid;
     outline-width: 1px;
 }
-
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+@media print {
+    body {
+        background: none;
+    }
+    .noprint {
+        display: none;
+    }
+    #Popup {
+        display: block;
+    }
+    #Wrap {
+        display: none;
+    }
+}
 /* >^º!º^< */

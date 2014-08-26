@@ -1,4 +1,4 @@
-/*jslint es5:true, white:false */
+/*jslint white: false */
 /*globals _, C, W, Glob, Util, jQuery,
         Scroller, Projector, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -37,8 +37,9 @@ var Main = (function ($, G, U) { // IIFE
         if (self.inited(true)) {
             return null;
         }
-        C.info('Main init @ ' + Date() + ' debug:', W.debug, self.mode);
         Df.inits();
+        self.serv = W.location.hostname;
+        C.info('Main init @ ' + Date() + ' debug:', W.debug, ROOT.evil);
 
         _.delay(bindings);
     }
@@ -54,6 +55,7 @@ var Main = (function ($, G, U) { // IIFE
 
     return self;
 }(jQuery, Glob, Util));
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 /*

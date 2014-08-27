@@ -1,4 +1,4 @@
-/*jslint white: false */
+/*jslint white:false, evil:true */
 /*globals _, C, W, Glob, Util, jQuery,
         Scroller, Projector, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -17,6 +17,7 @@ var Main = (function ($, G, U) { // IIFE
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     // HELPERS (defaults dependancy only)
+    // func to contextualize content
 
     function bindProjector() {
         Df.projector = Projector.attach('.iS-port');
@@ -32,6 +33,7 @@ var Main = (function ($, G, U) { // IIFE
         bindProjector();
     }
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+    /// INTERNAL
 
     function _init() {
         if (self.inited(true)) {

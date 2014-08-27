@@ -21,7 +21,7 @@ W.ROOT = ({
             nom: 'localhost',
             sub: '/wf-ecg/_model_',
         },
-        'localhost:8001': {
+        '127.0.0.1:8999': {
             nom: 'localhost',
             sub: '',
         },

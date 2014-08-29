@@ -30,7 +30,7 @@ module.exports = {
     },
     reloads: {
         options: {
-            livereload: true,
+            livereload: 7999,
         },
         files: ['app/**/*'],
     },

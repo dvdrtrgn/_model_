@@ -40,7 +40,6 @@ body {/* test */
         div {
             background: url('../images/galaxies1.png');
             height: 400%;
-            z-index: 3;
         }
     }
     .field1 {
@@ -49,7 +48,6 @@ body {/* test */
         div { // inner
             background: url('../images/galaxies2.png');
             height: 300%;
-            z-index: 2;
         }
     }
     .field2 {
@@ -58,7 +56,6 @@ body {/* test */
         div { // inner
             background: url('../images/stars.png');
             height: 200%;
-            z-index: 1;
         }
     }
     .touch {

@@ -11,69 +11,84 @@ body {/* test */
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-    }
-    body,ul,li {
         border: 0;
         margin: 0;
         padding: 0;
     }
     body {
-        font-family: ubuntu, helvetica, arial;
-        font-size: 12px;
         overflow: hidden; /* this is important to prevent the whole page to bounce */
-        background: #000;
+        background: #123;
     }
-    #wrapper {
+    .stars {
         bottom: 0;
         left: 0;
         overflow: hidden;
         position: absolute;
         top: 0;
         width: 100%;
-        z-index: 3;
+
+        div {
+            position: absolute;
+            width: 100%;
+            @include transform( translateZ(0) );
+        }
     }
-    #scroller {
+    .field0 {
+        z-index: 3;
+
+        div {
+            background: url('../images/galaxies1.png');
+            height: 4000px;
+            z-index: 3;
+        }
+    }
+    .field1 {
+        z-index: 2;
+
+        div { // inner
+            background: url('../images/galaxies2.png');
+            height: 3000px;
+            z-index: 2;
+        }
+    }
+    .field2 {
+        z-index: 1;
+
+        div { // inner
+            background: url('../images/stars.png');
+            height: 2000px;
+            z-index: 1;
+        }
+    }
+    .touch {
         @include text-size-adjust( none );
-        @include transform( translateZ(0) );
         @include user-select( none );
         -webkit-tap-highlight-color: rgba(0,0,0,0);
         -webkit-touch-callout: none;
+    }
+}
 
-        background: url(../images/galaxies1.png);
-        height: 4000px;
-        overflow: hidden;
-        position: absolute;
-        width: 100%;
-        z-index: 3;
+#tmp0 {
+    border-left: 3px solid red;
+    div {
+        border-left: 3px solid red;
+        color: red;
+        padding: 9rem;
     }
-    .starfield {
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        width: 100%;
+}
+#tmp1 {
+    border-left: 6px solid lime;
+    div {
+        border-left: 6px solid lime;
+        color: lime;
+        padding: 6rem;
     }
-    .starfield div {
-        position: absolute;
-        overflow: hidden;
-        @include transform( translateZ(0) );
-        width: 100%;
-    }
-    #starfield1 {
-        z-index: 2;
-    }
-    #stars1 {
-        background: url(../images/galaxies2.png);
-        height: 3000px;
-        z-index: 2;
-    }
-    #starfield2 {
-        z-index: 1;
-    }
-    #stars2 {
-        z-index: 1;
-        height: 2000px;
-        background: url(../images/stars.jpg);
+}
+#tmp2 {
+    border-left: 9px solid blue;
+    div {
+        border-left: 9px solid blue;
+        color: blue;
+        padding: 3rem;
     }
 }

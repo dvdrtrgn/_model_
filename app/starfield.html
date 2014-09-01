@@ -20,43 +20,45 @@
         <script src="./_root.js"></script>
         <link href="./build/screen.css" rel="stylesheet">
         <script defer src="./_load.js"></script>
-        <style type="text/css">
-        </style>
     </head>
     <body class="loading"><noscript> error: scripting is disabled </noscript>
         <div class="wrapper">
 
-            <div id="wrapper">
-                <div id="scroller"></div>
+            <div class="stars field0" id="tmp0">
+                <div class="touch">SCROLLER</div>
             </div>
 
-            <div class="starfield" id="starfield1">
-                <div id="stars1"></div>
+            <div class="stars field1" id="tmp1">
+                <div>STARS 1</div>
             </div>
 
-            <div class="starfield" id="starfield2">
-                <div id="stars2"></div>
+            <div class="stars field2" id="tmp2">
+                <div>STARS 2</div>
             </div>
         </div>
+
         <script>
             _.delay(function () {
-                var myScroll = new IScroll('#wrapper', {
+                var myScroll = new IScroll('.field0', {
                     mouseWheel: true,
                     indicators: [{
-                            el: document.getElementById('starfield1'),
+                            el: $('.field1')[0],
                             resize: false,
                             ignoreBoundaries: true,
                             speedRatioY: 0.4
                         }, {
-                            el: document.getElementById('starfield2'),
+                            el: $('.field2')[0],
                             resize: false,
                             ignoreBoundaries: true,
                             speedRatioY: 0.2
                         }]
                 });
 
+                document.addEventListener('touchmove', function (e) {
+                    e.preventDefault();
+                }, false);
 
-                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+                C.debug(myScroll);
             }, 999);
         </script>
     </body>

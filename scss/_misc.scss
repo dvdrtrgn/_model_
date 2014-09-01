@@ -23,13 +23,7 @@ body {/* test */
         overflow: hidden; /* this is important to prevent the whole page to bounce */
         background: #000;
     }
-    #wrapper {
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        width: 100%;
+    .field0 {
         z-index: 3;
     }
     #scroller {
@@ -41,12 +35,9 @@ body {/* test */
 
         background: url('../images/galaxies1.png');
         height: 4000px;
-        overflow: hidden;
-        position: absolute;
-        width: 100%;
         z-index: 3;
     }
-    .starfield {
+    .stars {
         bottom: 0;
         left: 0;
         overflow: hidden;
@@ -54,13 +45,13 @@ body {/* test */
         top: 0;
         width: 100%;
     }
-    .starfield div {
+    .stars div {
         position: absolute;
         overflow: hidden;
         @include transform( translateZ(0) );
         width: 100%;
     }
-    #starfield1 {
+    .field1 {
         z-index: 2;
     }
     #stars1 {
@@ -68,12 +59,31 @@ body {/* test */
         height: 3000px;
         z-index: 2;
     }
-    #starfield2 {
+    .field2 {
         z-index: 1;
     }
     #stars2 {
         background: url('../images/stars.png');
         height: 2000px;
         z-index: 1;
+    }
+}
+
+#tmp0 {
+    border-left: 3px solid red;
+    div {
+        border-left: 3px solid red;
+    }
+}
+#tmp1 {
+    border-left: 6px solid lime;
+    div {
+        border-left: 6px solid lime;
+    }
+}
+#tmp2 {
+    border-left: 9px solid blue;
+    div {
+        border-left: 9px solid blue;
     }
 }

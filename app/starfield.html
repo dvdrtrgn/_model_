@@ -24,30 +24,30 @@
     <body class="loading"><noscript> error: scripting is disabled </noscript>
         <div class="wrapper">
 
-            <div id="wrapper">
+            <div class="stars field0" id="tmp0">
                 <div id="scroller"></div>
             </div>
 
-            <div class="starfield" id="starfield1">
+            <div class="stars field1" id="tmp1">
                 <div id="stars1"></div>
             </div>
 
-            <div class="starfield" id="starfield2">
+            <div class="stars field2" id="tmp2">
                 <div id="stars2"></div>
             </div>
         </div>
 
         <script>
             _.delay(function () {
-                var myScroll = new IScroll('#wrapper', {
+                var myScroll = new IScroll('#tmp0', {
                     mouseWheel: true,
                     indicators: [{
-                            el: document.getElementById('starfield1'),
+                            el: document.getElementById('tmp1'),
                             resize: false,
                             ignoreBoundaries: true,
                             speedRatioY: 0.4
                         }, {
-                            el: document.getElementById('starfield2'),
+                            el: document.getElementById('tmp2'),
                             resize: false,
                             ignoreBoundaries: true,
                             speedRatioY: 0.2

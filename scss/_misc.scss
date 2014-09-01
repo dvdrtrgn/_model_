@@ -16,7 +16,6 @@ body {/* test */
         padding: 0;
     }
     body {
-        color: white;
         overflow: hidden; /* this is important to prevent the whole page to bounce */
         background: #123;
     }
@@ -29,8 +28,6 @@ body {/* test */
         width: 100%;
 
         div {
-            overflow: hidden;
-            padding: 1rem;
             position: absolute;
             width: 100%;
             @include transform( translateZ(0) );
@@ -75,17 +72,23 @@ body {/* test */
     border-left: 3px solid red;
     div {
         border-left: 3px solid red;
+        color: red;
+        padding: 9rem;
     }
 }
 #tmp1 {
     border-left: 6px solid lime;
     div {
         border-left: 6px solid lime;
+        color: lime;
+        padding: 6rem;
     }
 }
 #tmp2 {
     border-left: 9px solid blue;
     div {
         border-left: 9px solid blue;
+        color: blue;
+        padding: 3rem;
     }
 }

@@ -39,7 +39,7 @@ body {/* test */
         -webkit-tap-highlight-color: rgba(0,0,0,0);
         -webkit-touch-callout: none;
 
-        background: url(../images/galaxies1.png);
+        background: url('../images/galaxies1.png');
         height: 4000px;
         overflow: hidden;
         position: absolute;
@@ -64,7 +64,7 @@ body {/* test */
         z-index: 2;
     }
     #stars1 {
-        background: url(../images/galaxies2.png);
+        background: url('../images/galaxies2.png');
         height: 3000px;
         z-index: 2;
     }
@@ -72,8 +72,8 @@ body {/* test */
         z-index: 1;
     }
     #stars2 {
-        z-index: 1;
+        background: url('../images/stars.png');
         height: 2000px;
-        background: url(../images/stars.jpg);
+        z-index: 1;
     }
 }

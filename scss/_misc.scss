@@ -67,6 +67,21 @@ body {/* test */
         -webkit-touch-callout: none;
     }
 }
+.marker {
+    height: 0%;
+    position: absolute;
+    width: 10%;
+
+    p {
+        border: 1px solid white;
+        text-align: center;
+    }
+}
+.tl { top:    10%; left:  10%; }
+.tr { top:    10%; right: 10%; }
+.br { bottom: 10%; right: 10%; }
+.bl { bottom: 10%; left:  10%; }
+.md { left:   45%; top:   50%; }
 
 #tmp0 {
     border-left: 3px solid red;

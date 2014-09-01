@@ -58,6 +58,21 @@
                     e.preventDefault();
                 }, false);
 
+                function nametag(sel) {
+                    sel = $(sel || '.stars div');
+                    // add corners with name
+                    // add fixed with name
+                    sel.each(function () {
+                        var me = $(this), tag = $('<cite>').addClass('marker').text(me.text()).wrapInner('<p>');
+                        me.text('');
+                        me.append(tag.clone().addClass('tl'));
+                        me.append(tag.clone().addClass('tr'));
+                        me.append(tag.clone().addClass('br'));
+                        me.append(tag.clone().addClass('bl'));
+                        me.append(tag.clone().addClass('md'));
+                    });
+                }
+                nametag();
                 C.debug(myScroll);
             }, 999);
         </script>

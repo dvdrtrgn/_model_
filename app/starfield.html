@@ -20,8 +20,6 @@
         <script src="./_root.js"></script>
         <link href="./build/screen.css" rel="stylesheet">
         <script defer src="./_load.js"></script>
-        <style type="text/css">
-        </style>
     </head>
     <body class="loading"><noscript> error: scripting is disabled </noscript>
         <div class="wrapper">
@@ -38,6 +36,7 @@
                 <div id="stars2"></div>
             </div>
         </div>
+
         <script>
             _.delay(function () {
                 var myScroll = new IScroll('#wrapper', {
@@ -55,8 +54,11 @@
                         }]
                 });
 
+                document.addEventListener('touchmove', function (e) {
+                    e.preventDefault();
+                }, false);
 
-                document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+                C.debug(myScroll);
             }, 999);
         </script>
     </body>

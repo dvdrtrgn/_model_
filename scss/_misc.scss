@@ -16,6 +16,7 @@ body {/* test */
         padding: 0;
     }
     body {
+        font-family: impact;
         overflow: hidden; /* this is important to prevent the whole page to bounce */
         background: #123;
     }
@@ -38,7 +39,7 @@ body {/* test */
 
         div {
             background: url('../images/galaxies1.png');
-            height: 4000px;
+            height: 400%;
             z-index: 3;
         }
     }
@@ -47,7 +48,7 @@ body {/* test */
 
         div { // inner
             background: url('../images/galaxies2.png');
-            height: 3000px;
+            height: 300%;
             z-index: 2;
         }
     }
@@ -56,7 +57,7 @@ body {/* test */
 
         div { // inner
             background: url('../images/stars.png');
-            height: 2000px;
+            height: 200%;
             z-index: 1;
         }
     }
@@ -83,27 +84,24 @@ body {/* test */
 .bl { bottom: 10%; left:  10%; }
 .md { left:   45%; top:   50%; }
 
+$C1: red;
+$C2: lime;
+$C3 : blue;
 #tmp0 {
-    border-left: 3px solid red;
+    border: 3px dotted $C1;
     div {
-        border-left: 3px solid red;
-        color: red;
-        padding: 9rem;
+        border: 3px solid $C1; color: $C1;
     }
 }
 #tmp1 {
-    border-left: 6px solid lime;
+    border: 5px dotted $C2;
     div {
-        border-left: 6px solid lime;
-        color: lime;
-        padding: 6rem;
+        border: 5px solid $C2; color: $C2;
     }
 }
 #tmp2 {
-    border-left: 9px solid blue;
+    border: 7px dotted $C3;
     div {
-        border-left: 9px solid blue;
-        color: blue;
-        padding: 3rem;
+        border: 7px solid $C3; color: $C3;
     }
 }

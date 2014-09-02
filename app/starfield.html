@@ -1,7 +1,7 @@
 <!--[if IE]><![endif]--><!DOCTYPE html>
 <!--[if lt IE 8]>       <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>          <html lang="en" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->  <html lang="en" class="starfield"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->  <html lang="en" class="starfield test"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta content="ie=edge" http-equiv="x-ua-compatible">
@@ -25,7 +25,7 @@
         <div class="wrapper">
 
             <div class="stars field0" id="tmp0">
-                <div class="touch">SCROLLER</div>
+                <div class="touch">STARS 0</div>
             </div>
 
             <div class="stars field1" id="tmp1">
@@ -40,17 +40,17 @@
         <script>
             _.delay(function () {
                 var myScroll = new IScroll('.field0', {
+                    freeScroll: true,
                     mouseWheel: true,
+                    scrollX: true,
                     indicators: [{
                             el: $('.field1')[0],
-                            resize: false,
                             ignoreBoundaries: true,
-                            speedRatioY: 0.4
+                            resize: false,
                         }, {
                             el: $('.field2')[0],
-                            resize: false,
                             ignoreBoundaries: true,
-                            speedRatioY: 0.2
+                            resize: false,
                         }]
                 });
 
@@ -58,8 +58,22 @@
                     e.preventDefault();
                 }, false);
 
+                function nametag(sel) {
+                    // http://iscrolljs.com/#configuring
+                    sel = $(sel || '.stars div');
+                    // add corners with name
+                    // add fixed with name
+                    sel.each(function () {
+                        var me = $(this), tag = $('<cite>').addClass('marker').text(me.text()).wrapInner('<p>');
+                        me.text('');
+                        'tl tr br bl md'.split(' ').forEach(function (x) {
+                            me.append(tag.clone().addClass(x));
+                        });
+                    });
+                }
+                nametag();
                 C.debug(myScroll);
-            }, 999);
+            }, 666);
         </script>
     </body>
 </html>

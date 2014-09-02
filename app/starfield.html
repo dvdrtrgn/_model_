@@ -43,6 +43,7 @@
                     freeScroll: true,
                     mouseWheel: true,
                     scrollX: true,
+                    //snap: true,
                     indicators: [{
                             el: $('.field1')[0],
                             ignoreBoundaries: true,
@@ -61,11 +62,14 @@
                 function nametag(sel) {
                     // http://iscrolljs.com/#configuring
                     sel = $(sel || '.stars div');
-                    // add corners with name
-                    // add fixed with name
+                    // add fixed center cite?
                     sel.each(function () {
-                        var me = $(this), tag = $('<cite>').addClass('marker').text(me.text()).wrapInner('<p>');
+                        var me = $(this), tag;
+
+                        tag = $('<cite>').addClass('marker') //
+                        .text(me.text()).wrapInner('<span>');
                         me.text('');
+                        // add corner cites
                         'tl tr br bl md'.split(' ').forEach(function (x) {
                             me.append(tag.clone().addClass(x));
                         });

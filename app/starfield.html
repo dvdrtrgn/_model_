@@ -1,7 +1,7 @@
 <!--[if IE]><![endif]--><!DOCTYPE html>
 <!--[if lt IE 8]>       <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>          <html lang="en" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->  <html lang="en" class="starfield"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->  <html lang="en" class="starfield test"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta content="ie=edge" http-equiv="x-ua-compatible">
@@ -25,7 +25,7 @@
         <div class="wrapper">
 
             <div class="stars field0" id="tmp0">
-                <div class="touch">SCROLLER</div>
+                <div class="touch">STARS 0</div>
             </div>
 
             <div class="stars field1" id="tmp1">
@@ -45,12 +45,12 @@
                             el: $('.field1')[0],
                             resize: false,
                             ignoreBoundaries: true,
-                            speedRatioY: 0.666666,
+                            speedRatioY: 2/3,
                         }, {
                             el: $('.field2')[0],
                             resize: false,
                             ignoreBoundaries: true,
-                            speedRatioY: 0.333333,
+                            speedRatioY: 1/3,
                         }]
                 });
 
@@ -66,16 +66,14 @@
                     sel.each(function () {
                         var me = $(this), tag = $('<cite>').addClass('marker').text(me.text()).wrapInner('<p>');
                         me.text('');
-                        me.append(tag.clone().addClass('tl'));
-                        me.append(tag.clone().addClass('tr'));
-                        me.append(tag.clone().addClass('br'));
-                        me.append(tag.clone().addClass('bl'));
-                        me.append(tag.clone().addClass('md'));
+                        'tl tr br bl md'.split(' ').forEach(function (x) {
+                            me.append(tag.clone().addClass(x));
+                        });
                     });
                 }
                 nametag();
                 C.debug(myScroll);
-            }, 999);
+            }, 666);
         </script>
     </body>
 </html>

@@ -136,3 +136,12 @@ body {/* test */
         overflow: visible;
     }
 }
+.touch {
+    @include nosel();
+    cursor: -webkit-grab;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+}
+.squeeze {
+//    @include font-thin();
+}

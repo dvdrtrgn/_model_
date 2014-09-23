@@ -3,16 +3,13 @@ module.exports = {
     // WATCH
     // https://github.com/gruntjs/grunt-contrib-watch
 
-    options: {
-        livereload: false,
-    },
     lib: {
         files: ['libs/*.js'],
-        tasks: ['jshint', 'concat:lib'],
+        tasks: ['jshint:precat', 'concat:base'],
     },
     src: {
         files: ['scripts/*.js'],
-        tasks: ['jshint', 'concat:src'],
+        tasks: ['jshint:precat', 'concat:base'],
     },
     css: {
         files: ['scss/**/*.scss'],
@@ -21,17 +18,16 @@ module.exports = {
     html: {
         files: ['app/**/*.html'],
     },
-    config: {
-        options: {
-            reload: true,
-        },
-        files: ['Gruntfile.js', 'tasks/*.js', 'tasks/options/*.js'],
-        tasks: ['default'],
-    },
     reloads: {
         options: {
             livereload: 7999,
         },
         files: ['app/**/*'],
+        tasks: ['sync:base'],
+    },
+    warn: {
+        options: { reload: !false, },
+        files: ['Gruntfile.js', 'tasks/**/*'],
+        tasks: ['foobar'],
     },
 };

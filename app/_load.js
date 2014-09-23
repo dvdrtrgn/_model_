@@ -1,5 +1,6 @@
 /*jslint white:false */
-/*globals $, Global, Main, Modernizr, ROOT, _, jQuery, window */
+/*globals _, C, W, Glob:true, Util, jQuery,
+        Global, Modernizr, ROOT, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Data, Glob = new Global('Glob');
 
@@ -8,7 +9,7 @@ var Data, Glob = new Global('Glob');
     var U;
     W.G = G;
     W.Tests = $.Callbacks();
-    W.Load = {};
+    G.Load = {};
 
     _.defaults(G, { /// all stubs terminated
         top: ROOT.dir + '/',
@@ -36,10 +37,10 @@ var Data, Glob = new Global('Glob');
         W.debug++;
     }
 
-    Load.base = {
+    G.Load.base = {
         test: W.isIE,
         yep: [
-        G.lib + 'ie/split.js',
+            G.lib + 'ie/split.js',
             G.lib + 'iscroll/5.0.4/iscroll.js',
         ],
         nope: [
@@ -53,8 +54,8 @@ var Data, Glob = new Global('Glob');
         },
     };
 
-    Load.font = {
-        test: ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla1',
+    G.Load.font = {
+        test: ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla2',
         yep: [/*
             G.lib + 'fonts/archer.ssm.css',
             G.lib + 'fonts/archer.ssm.itl.css',
@@ -65,17 +66,19 @@ var Data, Glob = new Global('Glob');
         */],
     };
 
-    Load.main = {
+    G.Load.main = {
         both: [
             'build/src.js',
         ],
         complete: function () {
-            ROOT.loaded($);
+            _.delay(function () {
+                ROOT.loaded($);
+            }, 333);
             evil(W.Main && W.Main.init());
         },
     };
 
-    Load.test = {
+    G.Load.test = {
         test: W.debug >= 1,
         yep: [
             //G.src + 'tests.js'
@@ -84,7 +87,7 @@ var Data, Glob = new Global('Glob');
             'http://www.wellsfargomedia.com/lib/js/ecg-ga.js',
         ],
     };
-    M.load([Load.base, Load.font, Load.main, Load.test]);
+    M.load([G.Load.base, G.Load.font, G.Load.main, G.Load.test]);
 
 }(jQuery, Modernizr, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

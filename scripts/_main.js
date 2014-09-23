@@ -27,7 +27,7 @@ var Main = (function ($, G, U) { // IIFE
         }
     }
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-    /// INTERNAL
+    /// HANDLERS
 
     function bindings() {
         bindProjector();

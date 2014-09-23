@@ -77,18 +77,25 @@ body {/* test */
     $C2: #0c0;
     $C3: #25f;
 
-    .marker {
-        height: 0%;
+    cite.marker {
+        height: 1%;
         position: absolute;
-        width: 10%;
+        width: 1%;
 
-        p {
+        span {
+            display: inline-block;
             background-color: rgba(5,5,5, 0.2);
             border: 1em solid rgba(255,255,255, 0.1);
             border-radius: 15em / 5em;
             border-width: 0.5em 2em;
-            padding: 0.5em;
+            height: 400%;
+            left: -500%;
+            line-height: 0;
+            padding-top: 133%;
+            position: relative;
             text-align: center;
+            top: -200%;
+            width: 1000%;
         }
     }
     .tl { top:    10%; left:  10%; }
@@ -99,23 +106,42 @@ body {/* test */
 
     #tmp0 {
         border: 1px solid $C1;
-        font-size: 400%;
+        font-size: 300%;
         div {
             border: 2px dotted $C1; color: $C1;
         }
     }
     #tmp1 {
         border: 2px solid $C2;
-        font-size: 200%;
+        font-size: 150%;
         div {
             border: 3px dotted $C2; color: $C2;
         }
     }
     #tmp2 {
         border: 4px solid $C3;
-        font-size: 100%;
+        font-size: 75%;
         div {
             border: 4px dotted $C3; color: $C3;
         }
     }
+    .wrapper {
+        height: 50%;
+        left: 25%;
+        position: absolute;
+        top: 25%;
+        width: 50%;
+    }
+    .stars {
+        overflow: visible;
+    }
+}
+.touch {
+    @include nosel();
+    cursor: -webkit-grab;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+}
+.squeeze {
+//    @include font-thin();
 }

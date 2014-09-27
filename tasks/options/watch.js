@@ -23,7 +23,7 @@ module.exports = {
             livereload: 7999,
         },
         files: ['app/**/*'],
-        tasks: ['sync:base'],
+        tasks: ['jshint:precat', 'sync:base'],
     },
     warn: {
         options: { reload: !false, },

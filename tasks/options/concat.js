@@ -1,12 +1,16 @@
-//github.com/gruntjs/grunt-contrib-concat
 module.exports = {
+
+    // CONCAT
+    // https://github.com/gruntjs/grunt-contrib-concat
+
     options: {
-        sourceMap: true,
+        sourceMap: false,
     },
     bootstrap: {
         options: {
-            sourceMap: false,
+            sourceMap: false, // see uglify for map
         },
+        dest: 'app/build/boot.js',
         src: [
             'libs/bootstrap/jquery.js',
             'libs/bootstrap/modernizr.js',
@@ -14,19 +18,21 @@ module.exports = {
             'libs/bootstrap/console.js',
             'libs/bootstrap/global.js',
         ],
-        dest: 'app/build/boot.js',
+//        tasks: ['sync'],
     },
-    libs: {
-        src: [
-            'libs/*.js',
-        ],
-        dest: 'app/build/lib.js',
+    base: {
+        options: { sourceMap: false, },
+        files: {
+            'app/build/lib.js': ['libs/*.js'],
+            'app/build/src.js': ['scripts/[a-z]*.js', 'scripts/_[a-z]*.js'],
+        },
     },
-    scripts: {
-        src: [
-            'scripts/[a-z]*.js', 'scripts/_main.js',
-        ],
-        dest: 'app/build/src.js',
+    full: {
+        options: { sourceMap: true, },
+        files: {
+            'app/build/lib.js': ['libs/*.js'],
+            'app/build/src.js': ['scripts/[a-z]*.js', 'scripts/_[a-z]*.js'],
+        },
     },
 };
 

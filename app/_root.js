@@ -3,7 +3,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var W = window,
 C = W.console;
-W.debug = Number(new Date('2014/08/29') > new Date());
+W.debug = Number(new Date('2014/09/29') > new Date());
 W.ROOT = ({
     evil: "eval('var x=0'),(typeof(x)!=='number'?'':'non-')+'strict'",
     base: 0,
@@ -19,9 +19,9 @@ W.ROOT = ({
         },
         'localhost:8000': {
             nom: 'localhost',
-            sub: '/wf-ecg/_model_',
+            sub: '/wf-ecg/_model_/app',
         },
-        'localhost:8001': {
+        'localhost:8999': {
             nom: 'localhost',
             sub: '',
         },
@@ -61,12 +61,12 @@ W.ROOT = ({
     },
     _wrap: function (R) { // write out bootstrap element
         evil(R.base && R.D.write('<base href="' + R.base + '">'));
-        R.D.write('<script src="./build/boot.min.js"></script>');
+        R.D.write('<script src="' + R.dir + '/build/boot.min.js"></script>');
         delete R._wrap;
     },
     loaded: function ($) {
         $('body').removeClass('loading');
-        if (W.debug > 0) {
+        if (W.debug > 1) {
             $('html').addClass('dev');
         }
         if (C && C.groupCollapsed) {
@@ -91,6 +91,13 @@ W.ROOT = ({
             C.groupCollapsed('ROOT', R);
         }
         return R;
+    },
+    reload: function () {
+        var u = this.L.host.split(':');
+        if (u.length == 2) {
+            u = u[0] + ':' + (u[1] - 1000) + '/livereload.js?snipver=1';
+            this.D.write('<script src="http://' + u + '"><\/script>');
+        }
     },
 }.init());
 

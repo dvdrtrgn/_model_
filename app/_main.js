@@ -1,4 +1,4 @@
-/*jslint white:false, evil:true */
+/*jslint white:false */
 /*globals _, C, W, Glob, Util, jQuery,
         Scroller, Projector, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -16,7 +16,6 @@ var Main = (function ($, G, U) { // IIFE
 
             C.info('Main init @ ' + Date(), {
                 debug: W.debug,
-                evil: ROOT.evil,
             });
         },
     };
@@ -57,7 +56,6 @@ var Main = (function ($, G, U) { // IIFE
         },
         __: Df,
         init: _init,
-        mode: eval(U.testrict),
     });
 
     return self;

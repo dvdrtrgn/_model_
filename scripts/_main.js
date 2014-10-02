@@ -13,6 +13,11 @@ var Main = (function ($, G, U) { // IIFE
         inits: function () {
             body = $('body');
             html = $('html');
+
+            C.info('Main init @ ' + Date(), {
+                debug: W.debug,
+                evil: ROOT.evil,
+            });
         },
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -32,6 +37,7 @@ var Main = (function ($, G, U) { // IIFE
     function bindings() {
         bindProjector();
     }
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
 
@@ -41,7 +47,6 @@ var Main = (function ($, G, U) { // IIFE
         }
         Df.inits();
         self.serv = W.location.hostname;
-        C.info('Main init @ ' + Date() + ' debug:', W.debug, ROOT.evil);
 
         _.delay(bindings);
     }

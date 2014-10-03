@@ -73,7 +73,7 @@ W.ROOT = ({
     loaded: function ($) {
         $('body').removeClass('loading');
         if (W.debug > 1) {
-            $('html').addClass('dev');
+            $('html').addClass('debug');
         }
         if (C && C.groupCollapsed) {
             C.groupEnd();

@@ -67,7 +67,7 @@ W.getElementTreeXPath = function (element) { // SHIM _util.poly
             // Ignore document type declaration.
             if (sibling.nodeType == Node.DOCUMENT_TYPE_NODE) continue;
 
-            if (sibling.nodeName == element.nodeName)++index;
+            if (sibling.nodeName == element.nodeName) ++index;
         }
 
         var tagName = element.nodeName.toLowerCase();

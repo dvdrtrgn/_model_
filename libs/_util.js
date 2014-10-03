@@ -78,31 +78,31 @@ var Util = (function ($) { /// IIFE
     };
     // <parseUrl> like Location for hrefs... superparse
     $.parseUrl = function (str) {
-        var parseUrl = function ( url ) { // from jquery.mobile.1.4.2
-            if ( $.type( url ) === "object" ) {
+        var parseUrl = function (url) { // from jquery.mobile.1.4.2
+            if ($.type(url) === "object") {
                 return url;
             }
-            var matches = urlParseRE.exec( url || "" ) || [];
+            var matches = urlParseRE.exec(url || "") || [];
             return {
-                href:         matches[  0 ] || "",
-                hrefNoHash:   matches[  1 ] || "",
-                hrefNoSearch: matches[  2 ] || "",
-                domain:       matches[  3 ] || "",
-                protocol:     matches[  4 ] || "",
-                doubleSlash:  matches[  5 ] || "",
-                authority:    matches[  6 ] || "",
-                username:     matches[  8 ] || "",
-                password:     matches[  9 ] || "",
-                host:         matches[ 10 ] || "",
-                hostname:     matches[ 11 ] || "",
-                port:         matches[ 12 ] || "",
-                pathname:     matches[ 13 ] || "",
-                directory:    matches[ 14 ] || "",
-                filename:     matches[ 15 ] || "",
-                search:       matches[ 16 ] || "",
-                hash:         matches[ 17 ] || ""
+                href:         matches[0]  || "",
+                hrefNoHash:   matches[1]  || "",
+                hrefNoSearch: matches[2]  || "",
+                domain:       matches[3]  || "",
+                protocol:     matches[4]  || "",
+                doubleSlash:  matches[5]  || "",
+                authority:    matches[6]  || "",
+                username:     matches[8]  || "",
+                password:     matches[9]  || "",
+                host:         matches[10] || "",
+                hostname:     matches[11] || "",
+                port:         matches[12] || "",
+                pathname:     matches[13] || "",
+                directory:    matches[14] || "",
+                filename:     matches[15] || "",
+                search:       matches[16] || "",
+                hash:         matches[17] || ""
             };
-        }
+        };
         var url = parseUrl(str);
 
         url.hashstring = url.hash.slice(1);

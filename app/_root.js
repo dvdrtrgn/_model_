@@ -1,7 +1,7 @@
 /*jslint white:false, evil: true */
 /*globals window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var W = window,
+var W = window, /// change to Boot
 C = W.console;
 W.debug = Number(new Date('2014/09/29') > new Date());
 W.ROOT = ({
@@ -103,3 +103,7 @@ W.ROOT = ({
 }.init());
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*
+Originally built by WF-ECG INTERACTIVE (Wells Fargo Enterprise Creative Group).
+        We design and develop with a focus on web standards and best practices.
+*/

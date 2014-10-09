@@ -1,6 +1,6 @@
 /*jslint white:false */
 /*globals _, C, W, Global, jQuery,
-        Glob:true, Main, Modernizr, ROOT, */
+    Glob:true, Main, Modernizr, ROOT, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Data, Glob;
 

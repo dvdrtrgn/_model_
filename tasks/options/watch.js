@@ -16,7 +16,7 @@ module.exports = {
     },
     reloads: {
         options: {
-            livereload: 7999,
+            livereload: '<%= pkg.port0 %>',
         },
         files: ['app/**/*', '!app/**/*.map'],
         tasks: ['jshint:postcat', 'sync:base'],

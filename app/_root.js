@@ -16,6 +16,11 @@ W.ROOT = ({
             nom: 'wfmedia',
             sub: '/_model_',
         },
+        'ecg.hosting.wellsfargo.com': {
+            lib: '//www.wellsfargomedia.com/lib',
+            nom: 'mfal',
+            sub: '/mfal/foo/bar',
+        },
         '10.89.101.100': {
             nom: 'qla2',
             sub: '/wf-ecg/_model_',

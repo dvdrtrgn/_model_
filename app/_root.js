@@ -8,31 +8,7 @@ W.ROOT = ({
     mode: "eval('var x=0'),(typeof(x)!=='number'?'':'non-')+'strict'",
     base: 0,
     // adjust built-in page depth? (e.g. '-1' == '..')
-    conf: {
-        _: { /// any top level host
-            nom: '*',
-        },
-        'www.wellsfargomedia.com': {
-            nom: 'wfmedia',
-            sub: '/_model_',
-        },
-        'ecg.hosting.wellsfargo.com': {
-            lib: '//www.wellsfargomedia.com/lib',
-            nom: 'mfal',
-            sub: '/mfal/foo/bar',
-        },
-        '10.89.101.100': {
-            nom: 'qla2',
-            sub: '/wf-ecg/_model_',
-        },
-        'localhost:8000': {
-            nom: 'localhost',
-            sub: '/wf-ecg/_model_/app',
-        },
-        'localhost:8999': {
-            nom: 'localhost',
-        },
-    },
+    conf: null,
     dir: null,
     doc: null,
     lib: null,
@@ -86,9 +62,10 @@ W.ROOT = ({
         delete this.reload;
         delete this.loaded;
     },
-    init: function () {
+    init: function (O) {
         'use strict';
         var R = this;
+        R.conf = O || R.conf;
         R.mode = eval(R.mode);
         R.D = W.document;
         R.L = W.location;
@@ -105,7 +82,7 @@ W.ROOT = ({
             this.D.write('<script src="//' + u + '"><\/script>');
         }
     },
-}.init());
+}.init(W.Host));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

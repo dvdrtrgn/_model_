@@ -8,7 +8,7 @@ Glob = new Global('Glob');
 
 (function ($, M, G) {
     'use strict';
-    G.Load = {};
+    G._load = {};
     W.Tests = $.Callbacks();
 
     _.defaults(G, { /// all stubs terminated
@@ -35,7 +35,7 @@ Glob = new Global('Glob');
         W.debug++;
     }
 
-    G.Load.base = {
+    G._load.base = {
         test: W.msie,
         yep: [
             G.ven + 'msie/rem.min.js',
@@ -56,7 +56,7 @@ Glob = new Global('Glob');
         },
     };
 
-    G.Load.font = {
+    G._load.font = {
         test: (ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla2'),
         yep: [
             G.lib + (!W.msie ? 'fonts/archer.ssm.css'     : 'fonts/eot/archer.ssm.css'),
@@ -70,7 +70,7 @@ Glob = new Global('Glob');
         ],
         complete: function () {
             try {
-                if (!G.Load.font.test) {
+                if (!G._load.font.test) {
                     Typekit.load();
                 }
             } catch (e) {
@@ -79,7 +79,7 @@ Glob = new Global('Glob');
         },
     };
 
-    G.Load.main = {
+    G._load.main = {
         both: [
             G.dir + 'build/src.js',
             G.dir + '_main.js',
@@ -95,7 +95,7 @@ Glob = new Global('Glob');
         },
     };
 
-    G.Load.test = {
+    G._load.test = {
         test: W.debug >= 1,
         yep: [
             G.dir + '_test.js',
@@ -104,7 +104,7 @@ Glob = new Global('Glob');
             'http://www.wellsfargomedia.com/lib/js/ga-ecg.js',
         ],
     };
-    M.load([G.Load.base, G.Load.font, G.Load.main, G.Load.test]);
+    M.load([G._load.base, G._load.font, G._load.main, G._load.test]);
 
 }(jQuery, Modernizr, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

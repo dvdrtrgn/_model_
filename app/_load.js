@@ -36,7 +36,7 @@ Glob = new Global('Glob');
     }
 
     G.Load.base = {
-        test: W.isIE,
+        test: W.msie,
         yep: [
             G.ven + 'msie/rem.min.js',
             G.ven + 'msie/split.js',
@@ -59,9 +59,9 @@ Glob = new Global('Glob');
     G.Load.font = {
         test: (ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla2'),
         yep: [
-            G.lib + (!W.isIE ? 'fonts/archer.ssm.css'     : 'fonts/eot/archer.ssm.css'),
-            G.lib + (!W.isIE ? 'fonts/myriad.con.css'     : 'fonts/eot/myriad.con.css'),
-            G.lib + (!W.isIE ? 'fonts/myriad.css'         : 'fonts/eot/myriad.css'),
+            G.lib + (!W.msie ? 'fonts/archer.ssm.css'     : 'fonts/eot/archer.ssm.css'),
+            G.lib + (!W.msie ? 'fonts/myriad.con.css'     : 'fonts/eot/myriad.con.css'),
+            G.lib + (!W.msie ? 'fonts/myriad.css'         : 'fonts/eot/myriad.css'),
         ],
         nope: [/*
             '//cloud.typography.com/6819872/620964/css/fonts.css', // Normal */
@@ -86,7 +86,7 @@ Glob = new Global('Glob');
         ],
         complete: function () {
             _.delay(function () {
-                if (W.isIE) {
+                if (W.msie) {
                     M.load(G.ven + 'msie/selectivizr-min.js');
                 }
                 ROOT.loaded($);

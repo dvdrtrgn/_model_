@@ -1,7 +1,11 @@
 module.exports = function (grunt) {
 
     grunt.registerTask('default', [
-        'jshint:precat', 'concat:full', 'concat:bootstrap', 'jshint:postcat',
+        'jshint:precat',
+        'concat:libs',
+        //'concat:full',
+        'concat:bootstrap',
+        'jshint:postcat',
         'uglify:full',
         'sass:full',
         'sync:full',

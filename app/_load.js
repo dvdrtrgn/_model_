@@ -39,7 +39,6 @@ Glob = new Global('Glob');
         test: W.msie,
         yep: [
             G.ven + 'msie/rem.min.js',
-            G.ven + 'msie/split.js',
             G.ven + 'msie/iscroll.js', // fkin ie
         ],
         nope: [

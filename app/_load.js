@@ -1,22 +1,20 @@
 /*jslint white:false */
-/*globals _, C, W, Glob:true, Util, jQuery,
-        Global, Modernizr, ROOT, */
+/*globals _, C, W, Global, jQuery,
+    Glob:true, Main, Modernizr, ROOT, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Data, Glob = new Global('Glob');
+var Data, Glob;
+
+Glob = new Global('Glob');
 
 (function ($, M, G) {
     'use strict';
-    var U;
-    W.G = G;
+    G._load = {};
     W.Tests = $.Callbacks();
-    G.Load = {};
 
     _.defaults(G, { /// all stubs terminated
-        top: ROOT.dir + '/',
         dir: ROOT.dir + '/',
         lib: ROOT.lib + '/',
-        loc: ROOT.dir + '/lib/',
-        src: ROOT.dir + '/scripts/',
+        ven: ROOT.dir + '/vendor/',
     });
 
     if ($.browser.msie) {
@@ -37,29 +35,32 @@ var Data, Glob = new Global('Glob');
         W.debug++;
     }
 
-    G.Load.base = {
-        test: W.isIE,
+    G._load.base = {
+        test: W.msie,
         yep: [
-            G.lib + 'ie/split.js',
-            G.lib + 'iscroll/5.0.4/iscroll.js',
+            G.ven + 'msie/rem.min.js',
+            G.ven + 'msie/iscroll.js', // fkin ie
         ],
         nope: [
-            G.lib + 'iscroll/5.1.1/iscroll.js',
+            G.ven + 'iscroll.js',
         ],
         both: [
-            'build/lib.js',
+            G.lib + 'video-js/4.2.1/video-js.css',
+            G.lib + 'video-js/4.2.1/video.dev.js',
+            /* */
+            G.dir + 'build/libs.js',
         ],
         complete: function () {
-            U = Util;
+            Data = new G.constructor('Data', '(catchall data fixture)');
         },
     };
 
-    G.Load.font = {
+    G._load.font = {
         test: (ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla2'),
         yep: [
-            G.lib + (!W.isIE ? 'fonts/archer.ssm.css'     : 'fonts/eot/archer.ssm.css'),
-            G.lib + (!W.isIE ? 'fonts/myriad.con.css'     : 'fonts/eot/myriad.con.css'),
-            G.lib + (!W.isIE ? 'fonts/myriad.css'         : 'fonts/eot/myriad.css'),
+            G.lib + (!W.msie ? 'fonts/archer.ssm.css'     : 'fonts/eot/archer.ssm.css'),
+            G.lib + (!W.msie ? 'fonts/myriad.con.css'     : 'fonts/eot/myriad.con.css'),
+            G.lib + (!W.msie ? 'fonts/myriad.css'         : 'fonts/eot/myriad.css'),
         ],
         nope: [/*
             '//cloud.typography.com/6819872/620964/css/fonts.css', // Normal */
@@ -68,7 +69,7 @@ var Data, Glob = new Global('Glob');
         ],
         complete: function () {
             try {
-                if (!G.Load.font.test) {
+                if (!G._load.font.test) {
                     Typekit.load();
                 }
             } catch (e) {
@@ -77,28 +78,32 @@ var Data, Glob = new Global('Glob');
         },
     };
 
-    G.Load.main = {
+    G._load.main = {
         both: [
-            'build/src.js',
+            G.dir + 'build/main.js',
+            G.dir + '_main.js',
         ],
         complete: function () {
             _.delay(function () {
+                if (W.msie) {
+                    M.load(G.ven + 'msie/selectivizr-min.js');
+                }
                 ROOT.loaded($);
-            }, 333);
-            evil(W.Main && W.Main.init());
+            }, 1e3);
+            Main.init();
         },
     };
 
-    G.Load.test = {
+    G._load.test = {
         test: W.debug >= 1,
         yep: [
-            //G.src + 'tests.js'
+            G.dir + '_test.js',
         ],
         nope: [
             'http://www.wellsfargomedia.com/lib/js/ga-ecg.js',
         ],
     };
-    M.load([G.Load.base, G.Load.font, G.Load.main, G.Load.test]);
+    M.load([G._load.base, G._load.font, G._load.main, G._load.test]);
 
 }(jQuery, Modernizr, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

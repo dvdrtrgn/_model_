@@ -1,4 +1,4 @@
-/*jslint white:false, evil:true */
+/*jslint white:false */
 /*globals _, C, W, Glob, Util, jQuery,
         Scroller, Projector, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -13,6 +13,10 @@ var Main = (function ($, G, U) { // IIFE
         inits: function () {
             body = $('body');
             html = $('html');
+
+            C.info('Main init @ ' + Date(), {
+                debug: W.debug,
+            });
         },
     };
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -32,6 +36,7 @@ var Main = (function ($, G, U) { // IIFE
     function bindings() {
         bindProjector();
     }
+
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// INTERNAL
 
@@ -41,7 +46,6 @@ var Main = (function ($, G, U) { // IIFE
         }
         Df.inits();
         self.serv = W.location.hostname;
-        C.info('Main init @ ' + Date() + ' debug:', W.debug, ROOT.evil);
 
         _.delay(bindings);
     }
@@ -52,7 +56,6 @@ var Main = (function ($, G, U) { // IIFE
         },
         __: Df,
         init: _init,
-        mode: eval(U.testrict),
     });
 
     return self;

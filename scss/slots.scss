@@ -4,9 +4,7 @@
 @import "compass/css3/transition";
 @import "compass/css3/user-interface";
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
-@import "core/_all";
-@import "proj/_all";
-@import "stars/_all";
+@import "slots/_all";
 
 .debug *:hover {
     outline-color: rgba(255,155,055,0.5);
@@ -29,5 +27,4 @@
         display: none;
     }
 }
-@import "_misc";
 /* >^º!º^< */

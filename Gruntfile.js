@@ -37,7 +37,7 @@ module.exports = function(grunt) {
 
         return obj;
     }
-    console.log('EVALJS', evaljs('./tasks/options/'));
+    console.log('EVALJS', [evaljs('./tasks/options/')]);
 
     // Start initial config object
     conf.pkg = grunt.file.readJSON('./package.json');

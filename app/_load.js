@@ -39,17 +39,16 @@ Glob = new Global('Glob');
         test: W.msie,
         yep: [
             G.ven + 'msie/rem.min.js',
-            G.ven + 'msie/split.js',
             G.ven + 'msie/iscroll.js', // fkin ie
         ],
         nope: [
-            G.lib + 'iscroll/5.1.1/iscroll.js',
+            G.ven + 'iscroll.js',
         ],
         both: [
             G.lib + 'video-js/4.2.1/video-js.css',
             G.lib + 'video-js/4.2.1/video.dev.js',
             /* */
-            G.dir + 'build/lib.js',
+            G.dir + 'build/libs.js',
         ],
         complete: function () {
             Data = new G.constructor('Data', '(catchall data fixture)');
@@ -81,7 +80,7 @@ Glob = new Global('Glob');
 
     G._load.main = {
         both: [
-            G.dir + 'build/src.js',
+            G.dir + 'build/main.js',
             G.dir + '_main.js',
         ],
         complete: function () {

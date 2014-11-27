@@ -16,39 +16,33 @@ module.exports = {
         + '= = = = = = = = */\n',
         sourceMap: true,
     },
-    bootstrap: {
+    boot: {
         options: {
             sourceMap: false, // see uglify for map
         },
         files: {
             'app/build/boot.js': [
-                'libs/bootstrap/jquery.js',
-                'libs/bootstrap/modernizr.js',
-                'libs/bootstrap/lodash.underscore.js',
-                'libs/bootstrap/console.js',
-                'libs/bootstrap/global.js',
-                'libs/bootstrap/*.js',
+                'libs/boot/jquery.js',
+                'libs/boot/modernizr.js',
+                'libs/boot/lodash.underscore.js',
+                'libs/boot/console.js',
+                'libs/boot/global.js',
+                'libs/boot/*.js',
             ],
         },
     },
-    base: {
-        options: { sourceMap: false, },
-        files: {
-            'app/build/lib.js': ['libs/*.js'],
-            'app/build/src.js': ['scripts/[a-z]*.js', 'scripts/_[a-z]*.js'],
-        },
-    },
-    full: {
-        files: {
-            'app/build/lib.js': ['libs/*.js'],
-            'app/build/src.js': ['scripts/[a-z]*.js', 'scripts/_[a-z]*.js'],
-        },
-    },
     libs: {
+        options: {
+            sourceMap: false, // see uglify for map
+        },
         files: {
-            'app/build/bootstrap.js': [ 'libs/bootstrap/*.js'],
-            'app/build/poly.js': [ 'libs/poly/*.js'],
-            'app/build/xtend.js': [ 'libs/xtend/*.js'],
+            'app/build/libs.js': ['libs/**/*.js','!libs/boot/**'],
+        },
+    },
+    main: {
+        options: { sourceMap: true, },
+        files: {
+            'app/build/main.js': ['scripts/[a-z]*.js', 'scripts/_[a-z]*.js'],
         },
     },
 };

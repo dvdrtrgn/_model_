@@ -42,7 +42,7 @@ Glob = new Global('Glob');
             G.ven + 'msie/iscroll.js', // fkin ie
         ],
         nope: [
-            G.lib + 'iscroll/5.1.1/iscroll.js',
+            G.ven + 'iscroll.js',
         ],
         both: [
             G.lib + 'video-js/4.2.1/video-js.css',

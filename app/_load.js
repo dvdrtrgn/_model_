@@ -86,6 +86,7 @@ Glob = new Global('Glob');
         complete: function () {
             _.delay(function () {
                 if (W.msie) {
+                    M.load(G.ven + 'msie/respond.js');
                     M.load(G.ven + 'msie/selectivizr-min.js');
                 }
                 ROOT.loaded($);

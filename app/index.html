@@ -19,27 +19,26 @@
         <script src="./_host.js"></script>
         <script src="./_root.js"></script>
         <link href="./build/screen.css" rel="stylesheet">
-        <script defer src="./_load.js"></script>
+        <link href="./vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+        <script src="./vendor/bootstrap/bootstrap.min.js"></script>
     </head>
     <body class="loading"><noscript> error: scripting is disabled </noscript>
         <div class="wrapper">
 
-        <div class="iS-port">
+            <div class="iS-port">
 
-            <div class="iS-view">
-                <img class="c1" src="./images/metal.png">
-                <img class="c2" src="./images/metal.png">
-                <img class="c3" src="./images/metal.png">
-                <img class="c4" src="./images/metal.png">
-            </div>
+                <div class="iS-view">
+                    <img class="c1" src="./images/metal.png">
+                    <img class="c2" src="./images/metal.png">
+                    <img class="c3" src="./images/metal.png">
+                    <img class="c4" src="./images/metal.png">
+                </div>
 
-            <div title="slideshow" class="iS-proxy">
-                <span title="start/stop" class="control iS-peg"></span>
+                <div title="slideshow" class="iS-proxy">
+                    <span title="start/stop" class="control iS-peg"></span>
+                </div>
             </div>
-        </div>
             <div class="bs-example">
-                <link href="/lib/bootstrap/3.2.0/bootstrap.min.css" rel="stylesheet">
-                <script src="/lib/bootstrap/3.2.0/bootstrap.min.js"></script>
 
                 <nav id="navbar-example2" class="navbar navbar-default navbar-static" role="navigation">
                     <div class="container-fluid">
@@ -86,6 +85,8 @@
                 </div>
             </div><!-- /example -->
         </div>
+
+        <script src="./_load.js"></script>
         <script>
             _.delay(function () {
                 $('body').scrollspy({ target: '.iS-port' });

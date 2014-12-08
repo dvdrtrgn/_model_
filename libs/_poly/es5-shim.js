@@ -87,6 +87,13 @@ var supportsDescriptors = Object.defineProperty && (function () {
     }
 }());
 
+function _drtLog(f, v, n, o) { // @ DRT
+    console.warn([
+        (f ? 'force' : 'define'), v, 'property "' + n + '" on',
+        String(o.constructor).match(/\w+(?=\()/)
+    ].join(' '));
+}
+
 // Define configurable, writable and non-enumerable props
 // if they don't exist.
 var defineProperty;
@@ -99,11 +106,13 @@ if (supportsDescriptors) {
             writable: true,
             value: method
         });
+        if (0 <= window.debug) _drtLog(forceAssign, 'ES', name, object); // @ DRT
     };
 } else {
     defineProperty = function (object, name, method, forceAssign) {
         if (!forceAssign && (name in object)) { return; }
         object[name] = method;
+        if (0 <= window.debug) _drtLog(forceAssign, 'IE', name, object); // @ DRT
     };
 }
 var defineProperties = function (object, map, forceAssign) {

@@ -188,24 +188,11 @@ var Util = (function ($) { /// IIFE
 
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-    function _fixIE() {
-        $('body').on('mouseover', '*', function (evt) {
-            evt.stopPropagation();
-            $(this).addClass('hover');
-        }).on('mouseout', '*', function (evt) {
-            evt.stopPropagation();
-            $(this).removeClass('hover');
-        });
-    }
-
-    void(W.isIE && _fixIE());
-
     $.extend(self, {
         flatten: U.flatcat,
         isDef: U.defined,
         I: U.reflect,
         testrict: "eval('var x=0'),(typeof(x)!=='number'?'':'non-')+'strict'",
-        fixIE: _fixIE,
     }, U);
 
     return self;

@@ -17,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <!--  -->
         <!--[if lt IE 10]><script>msie=!0</script><![endif]-->
+        <script src="./_host.js"></script>
         <script src="./_root.js"></script>
         <link href="./build/screen.css" rel="stylesheet">
         <script defer src="./_load.js"></script>
@@ -55,7 +56,7 @@
                         }]
                 });
 
-                document.addEventListener('touchmove', function (e) {
+                $(document).on('touchmove', function (e) {
                     e.preventDefault();
                 }, false);
 

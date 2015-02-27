@@ -7,7 +7,7 @@ module.exports = {
         files: [ {
             cwd: 'app',
             src: ['**/*'],
-            dest: '/web/docs/<%= pkg.group %>/',
+            dest: '/web/<%= pkg.group %>/',
         }],
         //pretend: true,
         updateOnly: false,
@@ -17,7 +17,7 @@ module.exports = {
         files: [ {
             cwd: 'app',
             src: ['**/*'],
-            dest: '/web/docs/<%= pkg.group %>/',
+            dest: '/web/<%= pkg.group %>/',
         }],
         //pretend: true,
         updateOnly: true, // Don't remove any files from `dest` (works around 30% faster)

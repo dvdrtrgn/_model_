@@ -45,8 +45,8 @@ Glob = new Global('Glob');
             G.ven + 'iscroll.js',
         ],
         both: [
-            G.lib + 'video-js/4.2.1/video-js.css',
-            G.lib + 'video-js/4.2.1/video.dev.js',
+            G.lib + 'video-js/ecg/video-js.css',
+            G.lib + 'video-js/ecg/video.js',
             /* */
             G.dir + 'build/libs.js',
         ],
@@ -102,6 +102,7 @@ Glob = new Global('Glob');
         ],
         nope: [
             'http://www.wellsfargomedia.com/lib/js/ga-ecg.js',
+            'http://www.wellsfargomedia.com/lib/video-js/videojs.ga.js',
         ],
     };
     M.load([G._load.base, G._load.font, G._load.main, G._load.test]);

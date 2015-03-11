@@ -21,7 +21,7 @@ module.exports = {
             sourceMap: false, // see uglify for map
         },
         files: {
-            'app/build/boot.js': ['libs/boot/*.js'],
+            'app/build/boot.js': ['libs/_boot/*.js'],
         },
     },
     libs: {
@@ -29,7 +29,7 @@ module.exports = {
             sourceMap: false, // see uglify for map
         },
         files: {
-            'app/build/libs.js': ['libs/**/*.js', '!libs/boot/**'],
+            'app/build/libs.js': ['libs/**/*.js', '!libs/_boot/**'],
         },
     },
     main: {

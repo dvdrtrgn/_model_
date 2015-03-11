@@ -48,7 +48,7 @@ Glob = new Global('Glob');
             G.lib + 'video-js/ecg/video-js.css',
             G.lib + 'video-js/ecg/video.js',
             /* */
-            G.dir + 'build/libs.js',
+            G.dir + 'build/libs.min.js',
         ],
         complete: function () {
             Data = new G.constructor('Data', '(catchall data fixture)');
@@ -109,3 +109,7 @@ Glob = new Global('Glob');
 
 }(jQuery, Modernizr, Glob));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*
+Originally built by WF-ECG INTERACTIVE (Wells Fargo Enterprise Creative Group).
+        We design and develop with a focus on web standards and best practices.
+*/

@@ -41,7 +41,7 @@ var Main = (function ($, G, U) { // IIFE
     /// INTERNAL
 
     function _init() {
-        if (self.inited(true)) {
+        if (self.isInited(true)) {
             return null;
         }
         Df.inits();

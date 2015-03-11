@@ -1,60 +1,74 @@
 /*jslint white:false */
-/*globals W, C, Global:true */
+/*globals W, C, Glob:true */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-function Global(name, desc) {
+function Glob(name, desc) {
     var self = this,
-        init = false;
+        inited = false,
+        parent = self.constructor || this;
 
-    W[name] = self;
+    parent.noms = parent.noms || [];
+    parent.objs = parent.objs || {};
+    parent.inc();
 
-    self[''] = (name || 'glob#' + Global.inc());
+    name = (name || 'Glob');
+    desc = (desc || 'I’m from a lazy sod!');
 
-    self.inited = function (b) {
-        if (init) {
-            if (b) { // True (true)
-                W.debug > 0 && C.error('double init', name); // throw new Error(name + ' double inited');
-            } //        True (?) == Normal
+    if (name in parent.objs) {
+        name = (name + ':@' + parent.inc); // force unique id
+    }
+    self[''] = name;
+    //self['Ω'] = parent;
+
+    parent.noms.push(name);
+    parent.objs[name] = self;
+
+    self.isInited = function (b) {
+        if (inited) {
+            if (b) C.error('double init', name);
             return true;
         } else {
-            if (b) { // False (true)
-                W.debug > 0 && C.debug('init', name);
-                init = true; // First run
-            } else { // False (?)
-                W.debug > 0 && C.error('premature', name); // throw new Error(name + ' not inited');
+            if (b) { // first run, so just say no
+                W.debug > 0 && C.debug('inited', name);
+                inited = true;
+            } else { // affirmations only!
+                throw new Error(name + ' not inited');
             }
             return false;
         }
     };
-    W.debug > 0 && C.debug('load new Global', self, desc);
+    W.debug > 0 && C.log('create',  self, desc);
 }
 
-Global.addCounter = function (fn, nom) { // drt // I love this!
+Glob.addCounter = function (obj, nom) { // love this
     var num = -1,
-        mod = 0,
+        mod = Infinity,
         inc;
 
-    inc = fn[nom || 'inc'] = function () {
+    obj = obj || this;
+    inc = obj[nom || 'inc'] = function () { // always internally "inc"
         num++;
         return inc.valueOf();
     };
     inc.valueOf = function () {
-        return (mod ? num % mod : num);
+        return num % mod;
     };
     inc.limitTo = function (num) {
-        if (num !== undefined) {
-            mod = num | 0;
-        }
-        return mod;
+        mod = Math.abs(parseInt(num)) || Infinity;
+        return inc;
     };
     inc.reset = function () {
-        num = -1;
+        num = 0;
+        return inc;
     };
+    return inc;
 };
 
-Global.prototype.valueOf = function () {
+Glob.prototype.addCounter = Glob.addCounter;
+Glob.prototype.valueOf = function () {
     return this[''];
 };
 
-Global.addCounter(Global);
+Glob.addCounter();
+Glob = new Glob();
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

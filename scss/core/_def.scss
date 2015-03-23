@@ -36,6 +36,13 @@ $n_breeze:      #dadbbf;
 $n_khaki:       #bfcec2;
 $n_stone:       #d7d3c7;
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// TRANSLATE
+$link:  #3366cc;
+$link0: $e_blue;
+$gray:  $wf_gray;
+$grey: lighten($gray, 20%);
+
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 @include keyframes(throb) {
     33% { opacity: 1.0; }
     44% { opacity: 0.7; }

@@ -1,7 +1,7 @@
 /*jslint white:false, evil: true */
 /*globals window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var W = window, /// change to Boot
+var W = window, /// change to Host
 C = W.console;
 W.debug = Number(new Date('2014/09/29') > new Date());
 W.ROOT = ({

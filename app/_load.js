@@ -79,7 +79,6 @@ var Data;
     G._load.main = {
         both: [
             G.dir + 'build/main.js',
-            G.dir + '_main.js',
         ],
         complete: function () {
             _.delay(function () {

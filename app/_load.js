@@ -1,18 +1,17 @@
 /*jslint white:false */
 /*globals _, C, W, Glob, jQuery,
-    Main, Modernizr, ROOT, */
+    Main, Modernizr, HOST, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Data;
-
 (function ($, M, G) {
     'use strict';
     G._load = {};
+    G._host = HOST;
     W.Tests = $.Callbacks();
 
     _.defaults(G, { /// all stubs terminated
-        dir: ROOT.dir + '/',
-        lib: ROOT.lib + '/',
-        ven: ROOT.dir + '/vendor/',
+        dir: HOST.dir + '/',
+        lib: HOST.lib + '/',
+        ven: HOST.dir + '/vendor/',
     });
 
     if ($.browser.msie) {
@@ -26,10 +25,10 @@ var Data;
         });
         W.debug--;
     }
-    if (ROOT.conf.nom === 'wfmedia' || ROOT.conf.nom === 'mfal') {
+    if (HOST.conf.nom === 'wfmedia' || HOST.conf.nom === 'mfal') {
         W.debug--;
     }
-    if (ROOT.conf.nom === 'localhost') {
+    if (HOST.conf.nom === 'localhost') {
         W.debug++;
     }
 
@@ -49,12 +48,12 @@ var Data;
             G.dir + 'build/libs.min.js',
         ],
         complete: function () {
-            Data = new G.constructor('Data', '(catchall data fixture)');
+            G._data = new G.constructor('Data', '(catchall data fixture)');
         },
     };
 
     G._load.font = {
-        test: (ROOT.conf.nom === 'localhost' || ROOT.conf.nom === 'qla2'),
+        test: (HOST.conf.nom === 'localhost' || HOST.conf.nom === 'qla2'),
         yep: [
             G.lib + (!W.msie ? 'fonts/archer.ssm.css'     : 'fonts/eot/archer.ssm.css'),
             G.lib + (!W.msie ? 'fonts/myriad.con.css'     : 'fonts/eot/myriad.con.css'),
@@ -86,7 +85,7 @@ var Data;
                     M.load(G.ven + 'msie/respond.js');
                     M.load(G.ven + 'msie/selectivizr-min.js');
                 }
-                ROOT.loaded($);
+                HOST.loaded($);
             }, 1e3);
             Main.init();
         },

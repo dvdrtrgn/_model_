@@ -1,6 +1,24 @@
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
-/* mixins */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+/* CORE / mixins */
+//@import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+
+@mixin backGrad($clr1: white, $clr2: black){
+    //background-color: $clr1;  do not double the opacity
+    @include background-image( linear-gradient(top, $clr1 1%, $clr2 99%) );
+    $clr1: ie-hex-str(adjTrans($clr1, 0.2));
+    $clr2: ie-hex-str(adjTrans($clr2, 0.2));
+        //filter:      progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$clr1, endColorstr=$clr2);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00000000, endColorstr=#00000000);
+        -ms-filter: 'progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='+$clr1+', endColorstr='+$clr2+')';
+    .lt-ie9 & {
+    }
+}
+@mixin ieopacity($dec: 0.5) {
+    .lt-ie9 & {
+        filter: alpha(opacity=($dec*100));
+        opacity: $dec;
+    }
+}
 
 @mixin clearfix(){
     &:after {
@@ -16,6 +34,8 @@
     @include user-select(none);
     // cursor: move;
 }
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// UNITS
 @mixin rex($prop, $rem){
     #{$prop}: $rem * $remx;
     //#{$prop}: $rem * 1rem;
@@ -28,20 +48,28 @@
     @include rex('width', $w);
     @include rex('height', $h);
 }
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// ??
 @mixin textshadow() {
     text-shadow: 1px 1px 1px black;
 }
 @mixin edger($color: rgb(255,155,5)) {
-    outline-color: setTrans($color, 0.5);
-    outline-offset: 0.5px;
-    outline-style: solid;
-    outline-width: 1px;
+    .debug & {
+        outline-color: setTrans($color, 0.5);
+        outline-offset: 0.5px;
+        outline-style: solid;
+        outline-width: 1px;
+    }
+    .lt-ie9 & { outline-color: $color; }
 }
 @mixin edger2($color: rgb(255,155,5)) {
-    outline-color: setTrans($color, 0.5);
-    outline-offset: 1px;
-    outline-style: solid;
-    outline-width: 2px;
+    .debug & {
+        outline-color: setTrans($color, 0.5);
+        outline-offset: 1px;
+        outline-style: solid;
+        outline-width: 2px;
+    }
+    .lt-ie9 & { outline-color: $color; }
 }
 @mixin outline($color: $hilite, $width: 4) {
     outline: {
@@ -58,6 +86,7 @@
     background-color: setTrans($color, $opacity);
 }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+// FONTS
 @mixin font-archer() {
     //font-family: 'Archer A', 'Archer B', Georgia, serif;
     font-family: 'Archer SSm A', 'Archer SSm B', Archer, Georgia, serif;
@@ -126,5 +155,13 @@
     -webkit-column-count: auto;
     -moz-columns: $w;
     columns: $w;
+}
+@mixin centify(){
+    left: 0; right: 0;
+    margin-left: auto; margin-right: auto;
+}
+@mixin middify(){
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
 }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //

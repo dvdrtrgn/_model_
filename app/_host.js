@@ -107,7 +107,7 @@ W.HOST = ({
             this.D.write('<script src="//' + u + '"><\/script>');
         }
     },
-}.init(W.HOST));
+}.init(HOST));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

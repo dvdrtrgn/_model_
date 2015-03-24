@@ -4,6 +4,7 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 (function ($, M, G) {
     'use strict';
+    G['Ω'] = G.constructor.objs;
     G._load = {};
     G._host = HOST;
     W.Tests = $.Callbacks();
@@ -48,7 +49,7 @@
             G.dir + 'build/libs.min.js',
         ],
         complete: function () {
-            G._data = new G.constructor('Data', '(catchall data fixture)');
+            return new G.constructor('Data', '(catchall data fixture)');
         },
     };
 

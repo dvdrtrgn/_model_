@@ -4,10 +4,9 @@
 
 function Glob(name, desc) {
     var self = this,
-        inited = false,
-        parent = self.constructor || this;
+        parent = self.constructor || self;
 
-    parent.noms = parent.noms || [];
+    parent.noms = parent.noms || {};
     parent.objs = parent.objs || {};
     parent.inc();
 
@@ -17,26 +16,12 @@ function Glob(name, desc) {
     if (name in parent.objs) {
         name = (name + ':@' + parent.inc); // force unique id
     }
-    self[''] = name;
-    //self['Ω'] = parent;
+    self['.'] = name;
+    self['..'] = parent;
 
-    parent.noms.push(name);
+    parent.noms[name] = null;
     parent.objs[name] = self;
 
-    self.isInited = function (b) {
-        if (inited) {
-            if (b) C.error('double init', name);
-            return true;
-        } else {
-            if (b) { // first run, so just say no
-                W.debug > 0 && C.debug('inited', name);
-                inited = true;
-            } else { // affirmations only!
-                throw new Error(name + ' not inited');
-            }
-            return false;
-        }
-    };
     W.debug > 0 && C.log('create',  self, desc);
 }
 
@@ -65,8 +50,27 @@ Glob.addCounter = function (obj, nom) { // love this
 };
 
 Glob.prototype.addCounter = Glob.addCounter;
+Glob.prototype.isInited = function (b) {
+    var all, name;
+
+    all = this['..'].noms;
+    name = this['.'];
+
+    if (all[name]) {
+        if (b) C.error('double init', name);
+        return true;
+    } else {
+        if (b) { // first run, so just say no
+            W.debug > 0 && C.debug('inited', name);
+            all[name] = true;
+        } else { // affirmations only!
+            throw new Error(name + ' not inited');
+        }
+        return false;
+    }
+};
 Glob.prototype.valueOf = function () {
-    return this[''];
+    return this['.'];
 };
 
 Glob.addCounter();

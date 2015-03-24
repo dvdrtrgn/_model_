@@ -1,5 +1,5 @@
 /*jslint white:false, evil: true */
-/*globals W, C, _host:true */
+/*globals W:true, C:true, HOST:true */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var W = (W || window), C = (C || W.console), HOST = {
     _: { /// any top level host

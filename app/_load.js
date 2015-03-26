@@ -4,7 +4,6 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 (function ($, M, G) {
     'use strict';
-    G['Ω'] = G.constructor.objs;
     G._load = {};
     G._host = HOST;
     W.Tests = $.Callbacks();

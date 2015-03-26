@@ -22,7 +22,13 @@ function Glob(name, desc) {
     parent.noms[name] = null;
     parent.objs[name] = self;
 
-    W.debug > 0 && C.log('create',  self, desc);
+    if (W.debug > 0) {
+        if (name === 'Glob') {
+            desc = '(collects semi-globals)';
+            self['Ω'] = parent.objs;
+        }
+        C.log('create',  self, desc);
+    }
 }
 
 Glob.addCounter = function (obj, nom) { // love this
@@ -69,10 +75,12 @@ Glob.prototype.isInited = function (b) {
         return false;
     }
 };
+Glob.prototype.make = function (name, desc) {
+    return new this.constructor(name, desc);
+};
 Glob.prototype.valueOf = function () {
     return this['.'];
 };
-
 Glob.addCounter();
 Glob = new Glob();
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

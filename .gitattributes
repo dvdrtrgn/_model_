@@ -1,0 +1,2 @@
+media/*.*   filter=fat -crlf
+*/media/*.* filter=fat -crlf

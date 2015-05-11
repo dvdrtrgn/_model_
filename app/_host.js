@@ -1,5 +1,5 @@
 /*jslint white:false, evil: true */
-/*globals W, C, _host:true */
+/*globals W:true, C:true, HOST:true */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var W = (W || window), C = (C || W.console), HOST = {
     _: { /// any top level host
@@ -27,7 +27,7 @@ var W = (W || window), C = (C || W.console), HOST = {
     },
 };
 
-W.debug = Number(new Date('2014/09/29') > new Date());
+W.debug = Number(new Date('2015/04/01') > new Date()); // projected deploy
 
 W.HOST = ({
     mode: "eval('var x=0'),(typeof(x)!=='number'?'':'non-')+'strict'",
@@ -77,9 +77,9 @@ W.HOST = ({
         return (delete R._wrap) && R;
     },
     loaded: function ($) {
-        $('body').removeClass('loading');
-        if (W.debug > 0) {
-            $('html').addClass('debug');
+        if ($) {
+            $('body').removeClass('loading');
+            if (W.debug > 0) $('html').addClass('debug');
         }
         if (C && C.groupCollapsed) {
             C.groupEnd();

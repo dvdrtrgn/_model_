@@ -2,7 +2,7 @@
 /*globals C, W, define */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-define(['jquery', 'lodash'], function ($, _) {
+define(['jquery', 'lodash', 'lib/projector'], function ($, _, Projector) {
     'use strict';
 
     var Db = 0;
@@ -33,30 +33,28 @@ define(['jquery', 'lodash'], function ($, _) {
 
     });
 
-    define(['jquery', 'lodash', 'lib/projector'], function ($, _, Projector) {
-        Df = { // DEFAULTS
-            projector: null,
-            inits: function () {
-                body = $('body');
-                html = $('html');
+    var Df = { // DEFAULTS
+        projector: null,
+        inits: function () {
+            body = $('body');
+            html = $('html');
 
-                C.info('Main init @ ' + Date(), {
-                    debug: W.debug,
-                });
-            },
-        };
+            C.info('Main init @ ' + Date(), {
+                debug: W.debug,
+            });
+        },
+    };
 
-        function bindProjector() {
-            Df.projector = Projector.attach('.iS-port');
+    function bindProjector() {
+        Df.projector = Projector.attach('.iS-port');
 
-            if (U.debug()) {
-                Df.projector.toggle();
-            }
+        if (U.debug()) {
+            Df.projector.toggle();
         }
-        function bindings() {
-            bindProjector();
-        }
-    });
+    }
+    function bindings() {
+        bindProjector();
+    }
 });
 /*
 

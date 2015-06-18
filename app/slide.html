@@ -14,8 +14,12 @@
         <meta name="viewport" content="width=device-width">
         <!--  -->
         <!--[if lt IE 10]><script>msie=!0</script><![endif]-->
-        <script src="./_host.js"></script>
+        <!--<script src="./_host.js"></script>-->
         <link href="./build/screen.css" rel="stylesheet">
+        <script src="/lib/requirejs/2.1.17/require.js"
+                data-main="./config"
+                data-main="./build/app"
+        ></script>
     </head>
     <body class="loading"><noscript> error: scripting is disabled </noscript>
         <div class="wrapper">
@@ -36,8 +40,8 @@
 
         </div>
 
-        <script src="./_load.js"></script>
+        <!--<script src="./_load.js"></script>-->
 
-        <!--/livereload.js?snipver=1--><script>HOST.reload();</script>
+        <!--/livereload.js?snipver=1--><!--<script>HOST.reload();</script>-->
     </body>
 </html>

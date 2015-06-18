@@ -1,6 +1,6 @@
 /*jslint white:false */
 /*globals _, C, W, Glob, Util, jQuery,
-        Scroller, */
+        Projector: true, Scroller, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Projector = (function ($, G, U) { // IIFE
     'use strict';

@@ -1,14 +1,26 @@
 module.exports = function (grunt) {
 
+    var bash = require('child_process').exec,
+        cmd = 'node /usr/local/bin/r.js -o build.js';
+
+    bash(cmd, function(error, stdout, stderr) {
+        var slug = '\n * * * BASH * * * \n';
+
+        if (!error) grunt.log.write(slug, 'Exe', cmd, stdout);
+        else grunt.log.write(slug, 'Err', slug, error, stderr);
+
+        grunt.log.write(slug, '\n\n');
+    });
+
     grunt.registerTask('default', [
         'jshint:precat',
-        'concat',
+        //'concat',
         'jshint:postcat',
-        'uglify',
+        //'uglify',
         'sass:full',
-        'sync:clean',
         'connect:full',
         'watch',
+        'sync:clean',
     ]);
 
     grunt.registerTask('easy', [

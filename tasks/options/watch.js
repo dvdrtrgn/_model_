@@ -22,7 +22,7 @@ module.exports = {
         options: {
             livereload: '<%= pkg.port0 %>',
         },
-        files: ['app/**/*', '!app/**/*.map'],
+        files: ['app/**/*', '!app/**/*.map', '!app/build/app*'],
         tasks: ['jshint:postcat', 'sync:update'],
     },
     warn: {

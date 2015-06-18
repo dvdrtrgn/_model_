@@ -10,12 +10,13 @@ require.config({
     paths: {
         src: 'scripts',
         lib: 'scripts/libs',
+        ven: 'scripts/vendor',
         jquery: '/mfal/lib/jquery/1.8.2/jquery',
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
     }
 });
 
 // Load the main app module to start the app
-require(['lib/console', 'lib/xtn-jq', 'src/main']);
+require(['lib/console', 'lib/glob', 'lib/util', 'lib/xtn-jq', 'src/main']);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

@@ -11,6 +11,7 @@ require.config({
         src: 'scripts',
         lib: 'scripts/libs',
         ven: 'vendor',
+        venm: 'vendor/msie',
         jquery: '/mfal/lib/jquery/1.8.2/jquery',
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
     },
@@ -24,7 +25,7 @@ require.config({
             exports: 'Util'
         },
         'lib/scroller': {
-            deps: ['lib/util', 'ven/iscroll'],
+            deps: ['lib/util'],
             exports: 'Scroller'
         },
         'lib/projector': {
@@ -35,6 +36,6 @@ require.config({
 });
 
 // Load the main app module to start the app
-require(['lib/console', 'lib/xtn-jq', 'src/main']);
+require(['lib/console', 'jquery', 'lib/xtn-jq', 'src/main']);
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

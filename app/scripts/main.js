@@ -11,15 +11,10 @@ define(['jquery', 'lodash'], function ($, _) {
         var Df;
 
         try { W.SHIET.init($) } catch (err) { C.error(err) }
-
-        if (SHIET.ltie9) {
-            require(['msie/nwmatcher.min', 'msie/rem.min', 'msie/selectivizr-min', 'msie/split']);
-        }
-
         if (Db && W.location.hostname === 'localhost') $('html').addClass('debug');
 
-
         Df = { // DEFAULTS
+            iscroll: SHIET.ltie9 ? 'venm/iscroll' : 'ven/iscroll',
             projector: null,
             inits: function () {
                 C.info(Nom, 'init @ ' + Date(), {
@@ -38,7 +33,10 @@ define(['jquery', 'lodash'], function ($, _) {
             Df.projector = Projector.attach('.iS-port');
         }
 
-        require(['lib/projector'], _init);
+        if (SHIET.ltie9) {
+            require(['venm/nwmatcher.min', 'venm/rem.min', 'venm/selectivizr-min', 'venm/split']);
+        }
+        require(['lib/projector', Df.iscroll], _init);
         return Df;
     });
 /*

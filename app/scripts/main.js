@@ -10,7 +10,7 @@ define(['jquery', 'lodash'], function ($, _) {
         var Nom = 'Main';
         var Df;
 
-        try { W.SHIET.init($) } catch (err) { C.error(err) }
+        try { W.SHIET.init($); } catch (err) { C.error(err); }
         if (Db && W.location.hostname === 'localhost') $('html').addClass('debug');
 
         Df = { // DEFAULTS

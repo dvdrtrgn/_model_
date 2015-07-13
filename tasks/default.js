@@ -13,14 +13,14 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('default', [
+        'sass:full',
         'jshint:precat',
         //'concat',
         'jshint:postcat',
         //'uglify',
-        'sass:full',
-        'connect:full',
-        'watch',
         'sync:clean',
+        //'connect:full',
+        'watch',
     ]);
 
     grunt.registerTask('easy', [

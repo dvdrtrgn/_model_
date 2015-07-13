@@ -12,5 +12,5 @@ module.exports = {
         //'-W061': true, // ???
     },
     precat: ['libs/*.js', 'app/*.js', 'scripts/*.js'],
-    postcat: ['app/*.js', 'app/build/main.js'],
+    postcat: ['app/libs/*.js', 'app/scripts/*.js', 'app/build/main.js'],
 };

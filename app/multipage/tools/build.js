@@ -1,4 +1,5 @@
-{
+/*jslint -W030 */
+({
     appDir: '../www',
     mainConfigFile: '../www/js/common.js',
     dir: '../www-built',
@@ -40,4 +41,4 @@
         }
 
     ]
-}
+});

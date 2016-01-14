@@ -11,11 +11,12 @@
         <meta content="blah blah blah." name="description">
         <meta name="viewport" content="width=device-width">
         <!--  -->
-        <!--[if lt IE 10]><script>msie=!0</script><![endif]-->
-        <script src="./_host.js"></script>
-        <link href="./build/screen.css" rel="stylesheet">
-        <link href="./vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
-        <script src="./vendor/bootstrap/bootstrap.min.js"></script>
+        <link href="/mfal/lib/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/lib/requirejs/2.1.17/require.js"
+                data-main="./_main"
+                data-main="./build/app"
+        ></script>
+        <link href="../../build/screen.css" rel="stylesheet">
         <style>
             body {
                 /*background-color: #333!important;*/
@@ -119,14 +120,5 @@
             </div><!-- /example -->
         </div>
 
-        <script src="./_load.js"></script>
-        <script>
-            _.delay(function () {
-                $('body').scrollspy({ target: '.iS-port' });
-                $('body').scrollspy({ target: '.navbar-example' });
-            }, 999);
-        </script>
-
-        <!--/livereload.js?snipver=1--><script>HOST.reload();</script>
     </body>
 </html>

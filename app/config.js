@@ -16,12 +16,8 @@ require.config({
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
     },
     shim: {
-        'lib/glob': {
-            deps: [],
-            exports: 'Glob'
-        },
         'lib/util': {
-            deps: ['jquery', 'lib/glob'],
+            deps: ['jquery'],
             exports: 'Util'
         },
         'lib/scroller': {

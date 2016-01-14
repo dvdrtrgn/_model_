@@ -12,7 +12,7 @@ define(function(){
 
     function hashCheck(){
         if (window.location.hash != currentHash){
-            for (var i = 0, currentRoute; currentRoute = routes[i++];){
+            for (var i = 0, currentRoute; (currentRoute = routes[i++]);){
                 if (window.location.hash == currentRoute.hash)
                     loadController(currentRoute.controller);
             }

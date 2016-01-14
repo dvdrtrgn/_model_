@@ -1,8 +1,8 @@
 /*jslint white:false */
-/*globals _, C, W, Glob, jQuery,
-    Main, Modernizr, HOST, */
+/*global _, C, W, jQuery, Main, Modernizr, HOST, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-(function ($, M, G) {
+var G = {};
+(function ($, M) {
     'use strict';
     G._load = {};
     G._host = HOST;
@@ -103,7 +103,7 @@
     };
     M.load([G._load.base, G._load.font, G._load.main, G._load.test]);
 
-}(jQuery, Modernizr, Glob));
+}(jQuery, Modernizr));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 Originally built by WF-ECG INTERACTIVE (Wells Fargo Enterprise Creative Group).

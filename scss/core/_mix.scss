@@ -35,20 +35,6 @@
     // cursor: move;
 }
 // - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
-// UNITS
-@mixin rex($prop, $rem){
-    #{$prop}: $rem * $remx;
-    //#{$prop}: $rem * 1rem;
-}
-@mixin pos($x:0, $y:0){
-    @include rex('left', $x);
-    @include rex('top', $y);
-}
-@mixin siz($w:0, $h:0){
-    @include rex('width', $w);
-    @include rex('height', $h);
-}
-// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
 // ??
 @mixin textshadow() {
     text-shadow: 1px 1px 1px black;

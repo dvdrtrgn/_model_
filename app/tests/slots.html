@@ -1,116 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta content="ie=edge" http-equiv="x-ua-compatible">
-        <meta http-equiv="cache-control" content="max-age=0, must-revalidate">
-        <!--  -->
-        <title>SimpleGrid</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <!--[if lt IE 10]><script>msie=!0</script><![endif]-->
-
-        <link rel="stylesheet" href="../build/slots.css">
-        <style>
-            body {
-                background-color: white;
-            }
-            .lt-ie9 div div { background-color: rgb(234,234,234); }
-            div div {
-                background-color: rgba(111,111,111,0.1);
-            }
-            .lt-ie9 .example-slots .row { background-color: rgb(255,255,255); }
-            .lt-ie9 .example-slots .row p { background-color: rgb(255,255,244); }
-            .example-slots .row p {
-                background-color: rgba(255,255,222,0.3);
-                border-radius: 6px;
-                font-family: Menlo, 'Panic Sans', monospace;
-                margin: 4px;
-                padding: 2px;
-            }
-        </style>
-    </head>
-    <body class="slots">
+  <head>
+    <title>slots</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="cache-control" content="max-age=0, must-revalidate">
+    <meta name="viewport" content="width=device-width">
+    <script>(function(l,i,s,t){s=l.pathname;t=s.toLowerCase().replace(/index/,i||'index');t=t.match
+        (/\w+\.\w+$/)?t:t.replace(/\/*$/,'/index.html');if(t!==s)l.pathname=t;}(location));</script>
+    <!--  -->
+    <meta content="Originally built by WF-ECG INTERACTIVE (Wells Fargo Enterprise Creative Group).
+          We design and develop with a focus on web standards and best practices." name="author">
+    <meta content="blah blah blah." name="description">
+    <!--  -->
+    <link rel="stylesheet" href="../build/slots.css">
+    <style>
+      body {
+          background-color: white;
+      }
+      .lt-ie9 div div { background-color: rgb(234,234,234); }
+      div div {
+          background-color: rgba(111,111,111,0.1);
+      }
+      .lt-ie9 .example-slots .row { background-color: rgb(255,255,255); }
+      .lt-ie9 .example-slots .row p { background-color: rgb(255,255,244); }
+      .example-slots .row p {
+          background-color: rgba(255,255,222,0.3);
+          border-radius: 6px;
+          font-family: Menlo, 'Panic Sans', monospace;
+          margin: 4px;
+          padding: 2px;
+      }
+    </style>
+  </head>
+  <body class="slots">
+    <div class="row">
+      <div class="row example-slots">
+        <p>Slots 0-5 represent the 6-column grid. These slots can be combined to create a 3-column grid too.</p>
         <div class="row">
-            <div class="row example-slots">
-                <p>Slots 0-5 represent the 6-column grid. These slots can be combined to create a 3-column grid too.</p>
-                <div class="row">
-                    <div class="slot00"><p>.slot00</p></div>
-                    <div class="slot11"><p>.slot11</p></div>
-                    <div class="slot22"><p>.slot22</p></div>
-                    <div class="slot33"><p>.slot33</p></div>
-                    <div class="slot44"><p>.slot44</p></div>
-                    <div class="slot55"><p>.slot55</p></div>
-                </div>
-
-                <p>Slots 6-9 represent the 4-column grid.
-                <div class="row">
-                    <div class="slot66"><p>.slot66</p></div>
-                    <div class="slot77"><p>.slot77</p></div>
-                    <div class="slot88"><p>.slot88</p></div>
-                    <div class="slot99"><p>.slot99</p></div>
-                </div>
-
-                <p>Combining slots is as simple as connecting their slot numbers with dashes.</p>
-                <div class="row">
-                    <div class="slot00"><p>.slot00</p></div>
-                    <div class="slot12"><p>.slot12</p></div>
-                    <div class="slot35"><p>.slot35</p></div>
-                </div>
-
-                <p>In some situations, you might want to combine the 4- &amp; 6-column grids in a single row. Just use the slot numbers that best represent each slots position in that row.</p>
-                <div class="row">
-                    <div class="slot00"><p>.slot00</p></div>
-                    <div class="slot77"><p>.slot77</p></div>
-                    <div class="slot88"><p>.slot88</p></div>
-                    <div class="slot45"><p>.slot45</p></div>
-                </div>
-
-                <p>Nesting: Just add <code>.row</code>s within <code>.row</code>s, and then assemble the slots in each row as per usual.</p>
-                <div class="row">
-                    <div class="slot00">                <p>.slot00</p></div>
-                    <div class="slot13">                <p>.slot13</p>
-                        <div class="row">
-                            <div class="slot00">        <p>.slot00</p>
-                                <div class="row">
-                                    <div class="slot00"><p>.slot00</p></div>
-                                </div>
-                            </div>
-                            <div class="slot23">        <p>.slot23</p>
-                                <div class="row">
-                                    <div class="slot00"><p>.slot00</p></div>
-                                    <div class="slot55"><p>.slot55</p></div>
-                                </div>
-                                <div class="row">
-                                    <div class="slot03"><p>.slot03</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slot45">                <p>.slot45</p>
-                        <div class="row">
-                            <div class="slot44">        <p>.slot44</p></div>
-                            <div class="slot55">        <p>.slot55</p></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-                <p>100% for both 6-col and 4-col</p>
-                <div class="row">
-                    <div class="slot05"><p>full     (05)</p></div>
-                    <div class="slot00"><p>sixth    (00)</p></div>
-                    <div class="slot15"><p>5 / 6    (15)</p></div>
-                    <div class="slot01"><p>1 / 3    (01)</p></div>
-                    <div class="slot14"><p>2 / 3    (14)</p></div>
-                    <div class="slot69"><p>full     (69)</p></div>
-                    <div class="slot66"><p>quarter  (66)</p></div>
-                    <div class="slot78"><p>half     (78)</p></div>
-                    <div class="slot99"><p>quarter  (99)</p></div>
-                    <div class="slot77"><p>quarter  (77)</p></div>
-                    <div class="slot78"><p>half     (78)</p></div>
-                    <div class="slot77"><p>quarter  (77)</p></div>
-                </div>
-            </div>
-            <!-- / .example-grids -->
+          <div class="slot00"><p>.slot00</p></div>
+          <div class="slot11"><p>.slot11</p></div>
+          <div class="slot22"><p>.slot22</p></div>
+          <div class="slot33"><p>.slot33</p></div>
+          <div class="slot44"><p>.slot44</p></div>
+          <div class="slot55"><p>.slot55</p></div>
         </div>
-    </body>
+
+        <p>Slots 6-9 represent the 4-column grid.
+        <div class="row">
+          <div class="slot66"><p>.slot66</p></div>
+          <div class="slot77"><p>.slot77</p></div>
+          <div class="slot88"><p>.slot88</p></div>
+          <div class="slot99"><p>.slot99</p></div>
+        </div>
+
+        <p>Combining slots is as simple as connecting their slot numbers with dashes.</p>
+        <div class="row">
+          <div class="slot00"><p>.slot00</p></div>
+          <div class="slot12"><p>.slot12</p></div>
+          <div class="slot35"><p>.slot35</p></div>
+        </div>
+
+        <p>In some situations, you might want to combine the 4- &amp; 6-column grids in a single row. Just use the slot numbers that best represent each slots position in that row.</p>
+        <div class="row">
+          <div class="slot00"><p>.slot00</p></div>
+          <div class="slot77"><p>.slot77</p></div>
+          <div class="slot88"><p>.slot88</p></div>
+          <div class="slot45"><p>.slot45</p></div>
+        </div>
+
+        <p>Nesting: Just add <code>.row</code>s within <code>.row</code>s, and then assemble the slots in each row as per usual.</p>
+        <div class="row">
+          <div class="slot00">                <p>.slot00</p></div>
+          <div class="slot13">                <p>.slot13</p>
+            <div class="row">
+              <div class="slot00">        <p>.slot00</p>
+                <div class="row">
+                  <div class="slot00"><p>.slot00</p></div>
+                </div>
+              </div>
+              <div class="slot23">        <p>.slot23</p>
+                <div class="row">
+                  <div class="slot00"><p>.slot00</p></div>
+                  <div class="slot55"><p>.slot55</p></div>
+                </div>
+                <div class="row">
+                  <div class="slot03"><p>.slot03</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slot45">                <p>.slot45</p>
+            <div class="row">
+              <div class="slot44">        <p>.slot44</p></div>
+              <div class="slot55">        <p>.slot55</p></div>
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+        <p>100% for both 6-col and 4-col</p>
+        <div class="row">
+          <div class="slot05"><p>full     (05)</p></div>
+          <div class="slot00"><p>sixth    (00)</p></div>
+          <div class="slot15"><p>5 / 6    (15)</p></div>
+          <div class="slot01"><p>1 / 3    (01)</p></div>
+          <div class="slot14"><p>2 / 3    (14)</p></div>
+          <div class="slot69"><p>full     (69)</p></div>
+          <div class="slot66"><p>quarter  (66)</p></div>
+          <div class="slot78"><p>half     (78)</p></div>
+          <div class="slot99"><p>quarter  (99)</p></div>
+          <div class="slot77"><p>quarter  (77)</p></div>
+          <div class="slot78"><p>half     (78)</p></div>
+          <div class="slot77"><p>quarter  (77)</p></div>
+        </div>
+      </div>
+      <!-- / .example-grids -->
+    </div>
+  </body>
 </html>

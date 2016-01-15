@@ -44,12 +44,16 @@ require.config({
 require(['lib/console', 'boots', 'jquery', 'lodash', 'lib/xtn-jq'], function () {
 
     $('body').removeClass('loading');
-    if (W.debug > 0 || W.location.hostname === 'localhost') {
-        $('html').addClass('debug');
-        require(['lr']);
-        C.warn('LiveReloading');
-    }
 
+    if (W.debug > 1 || W.location.hostname === 'localhost') {
+        $('html').addClass('debug');
+
+        require(['lr'], function () {
+            C.warn('LiveReloading @ ' + W.debug);
+        }, function () {
+            C.info('no LiveReloading @ ' + W.debug);
+        });
+    }
 });
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

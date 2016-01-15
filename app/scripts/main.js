@@ -14,17 +14,12 @@ define(['jquery', 'lodash'], function ($, _) {
         if (Db && W.location.hostname === 'localhost') $('html').addClass('debug');
 
         Df = { // DEFAULTS
-            iscroll: SHIET.ltie9 ? 'venm/iscroll' : 'ven/iscroll',
             projector: null,
             inits: function () {
                 C.info(Nom, 'init @ ' + Date(), {
                     debug: W.debug,
                 });
 
-                // PAGE LOADED
-                _.delay(function () {
-                    $('body').removeClass('loading');
-                }, 333);
             },
         };
 
@@ -33,9 +28,6 @@ define(['jquery', 'lodash'], function ($, _) {
             Df.projector = Projector.attach('.iS-port');
         }
 
-        if (SHIET.ltie9) {
-            require(['venm/nwmatcher.min', 'venm/rem.min', 'venm/selectivizr-min', 'venm/split']);
-        }
         require(['lib/projector', Df.iscroll], _init);
         return Df;
     });

@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*global define, window, Projector */
+/*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  created drt 2014
 
@@ -42,7 +42,6 @@ require(['../../config'], function () {
             C.info(Nom, 'init @ ' + Date(), {
                 debug: W.debug,
             });
-            $('body').removeClass('loading');
             $('.scrollspy-example').scrollspy({target: '#navbar-example2'});
 
         }

@@ -1,17 +1,19 @@
 /*jslint white:false */
 /*globals require, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var W = (W && W.window || window), C = (W.C || W.console || {});
+var W = (W && W.window || window),
+    C = (W.C || W.console || {});
 
 W.SHIET = {};
 
 require.config({
     baseUrl: '.',
     paths: {
+        lr: 'http://localhost:7999/livereload.js?snipver=1',
         src: 'scripts',
         lib: 'scripts/libs',
         ven: 'vendor',
-        venm: 'vendor/msie',
+        iscroll: 'vendor/iscroll',
         jquery: '/mfal/lib/jquery/1.11.3/jquery',
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
         boots: '/mfal/lib/bootstrap/3.3.5/js/bootstrap.min',
@@ -29,15 +31,25 @@ require.config({
             deps: ['lib/scroller'],
             exports: 'Projector'
         },
+        'iscroll': {
+            exports: 'IScroll'
+        },
         'boots': {
-            //These script dependencies should be loaded before loading
-            //backbone.js
             deps: ['jquery'],
         }
     },
 });
 
 // Load the main app module to start the app
-require(['lib/console', 'boots', 'jquery', 'lib/xtn-jq']);
+require(['lib/console', 'boots', 'jquery', 'lodash', 'lib/xtn-jq'], function () {
+
+    $('body').removeClass('loading');
+    if (W.debug > 0 || W.location.hostname === 'localhost') {
+        $('html').addClass('debug');
+        require(['lr']);
+        C.warn('LiveReloading');
+    }
+
+});
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

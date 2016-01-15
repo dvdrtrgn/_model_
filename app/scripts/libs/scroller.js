@@ -1,23 +1,28 @@
 /*jslint white:false */
-/*global _, C, W, Util, jQuery, Scroller:true, IScroll, */
+/*global define, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Scroller = (function ($, U) { // IIFE
+define(['jquery', 'ven/iscroll'], function ($) {
     'use strict';
-    var name = 'Scroller',
-        self = {}, // (wrap iscroll controller)
-        Df;
 
-    Df = { // DEFAULTS
+    var Nom = 'Scroller',
+        self = {}, // (wrap iscroll controller)
+        W = (W && W.window || window),
+        C = (W.C || W.console || {}),
+        Db = 0, Df;
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+    Df = {// DEFAULTS
         all: [],
         speed: 7777,
         /* auto advance */
         iscroll: {
             indicators: [{
-                el: null,
-                /* later */
-                resize: false,
-                interactive: true,
-            }],
+                    el: null,
+                    /* later */
+                    resize: false,
+                    interactive: true,
+                }],
             keyBindings: false,
             eventPassthrough: false,
             momentum: true,
@@ -35,7 +40,7 @@ var Scroller = (function ($, U) { // IIFE
     self.wrap = function () {};
 
     function scrollNext(scroller) {
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, 'scrollNext', scroller);
         }
         var ln, pg;
@@ -52,7 +57,7 @@ var Scroller = (function ($, U) { // IIFE
     /// INTERNAL
 
     function _autoScroll(scroller) {
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, '_autoScroll', scroller);
         }
         if (!scroller.pages) {
@@ -69,7 +74,7 @@ var Scroller = (function ($, U) { // IIFE
         self.init(); // bueller?
         port = $(sel);
 
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, '_attachPort', sel);
         }
         if (!port.length) {
@@ -92,7 +97,7 @@ var Scroller = (function ($, U) { // IIFE
                 },
             }).calc();
 
-            if (U.debug(2)) {
+            if ($.util.debug(2)) {
                 C.debug(name, '_attachPort proxy calc', evt.type, aprox);
             }
             scroller._execEvent('scrollStart'); // polyfill event
@@ -137,11 +142,11 @@ var Scroller = (function ($, U) { // IIFE
     });
 
     return self;
-}(jQuery, Util));
+});
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 
 
 
-*/
+ */

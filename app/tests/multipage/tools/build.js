@@ -12,12 +12,11 @@
             //top level dependencies, "include" will find
             //nested dependencies.
             include: ['jquery',
-                      'app/lib',
-                      'app/controller/Base',
-                      'app/model/Base'
+                'app/lib',
+                'app/controller/Base',
+                'app/model/Base'
             ]
         },
-
         //Now set up a build layer for each page, but exclude
         //the common one. "exclude" will exclude
         //the nested, built dependencies from "common". Any
@@ -32,7 +31,6 @@
             include: ['app/main1'],
             exclude: ['../common']
         },
-
         {
             //module names are relative to baseUrl
             name: '../page2',

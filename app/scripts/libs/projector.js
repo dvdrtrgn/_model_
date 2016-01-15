@@ -1,13 +1,18 @@
 /*jslint white:false */
-/*global _, C, W, Util, jQuery, Projector: true, Scroller, */
+/*global define, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Projector = (function ($, U) { // IIFE
+define(['jquery', 'lib/scroller'], function ($, Scroller) {
     'use strict';
-    var name = 'Projector',
-        self = {}, // (carousel projector abstraction)
-        Df;
 
-    Df = { // DEFAULTS
+    var Nom = 'Projector',
+        self = {}, // (carousel projector abstraction)
+        W = (W && W.window || window),
+        C = (W.C || W.console || {}),
+        Db = 0, Df;
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+    Df = {// DEFAULTS
         all: [],
         current: null,
         inits: function () {},
@@ -21,7 +26,7 @@ var Projector = (function ($, U) { // IIFE
     /// INTERNAL
 
     function decorate(scroller) {
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, 'decorate', scroller);
         }
         var projector = {
@@ -95,7 +100,7 @@ var Projector = (function ($, U) { // IIFE
 
     function _attach(selector) {
         self.init();
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, '_attach selector', selector);
         }
         var projector, scroller;
@@ -128,11 +133,11 @@ var Projector = (function ($, U) { // IIFE
     });
 
     return self;
-}(jQuery, Util));
+});
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 
 
 
-*/
+ */

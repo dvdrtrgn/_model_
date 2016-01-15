@@ -5,11 +5,12 @@
 define(['jquery'], function ($) {
     'use strict';
 
-    var Db = 0;
-    var Nom = 'Hash';
-    var W = (W && W.window || window), C = (W.C || W.console || {});
+    var Nom = 'Hash',
+        W = (W && W.window || window),
+        C = (W.C || W.console || {}),
+        Db = 0;
 
-    return function Hash(sel) {
+    function Hash(sel) {
         var api, ele;
         sel = sel || 'body';
 
@@ -24,7 +25,8 @@ define(['jquery'], function ($) {
             x = JSON.stringify(x);
             y = JSON.stringify(y);
             z = x === y;
-            if (Db > 1) C.log(Nom + '[compare]', x, y, z);
+            if (Db > 1)
+                C.log(Nom + '[compare]', x, y, z);
             return z;
         }
 
@@ -36,7 +38,8 @@ define(['jquery'], function ($) {
             $.each(arr, function (i, e) {
                 var arr = e.split('=');
 
-                if (arr[0]) obj[arr[0]] = arr[1];
+                if (arr[0])
+                    obj[arr[0]] = arr[1];
             });
 
             api.obj = obj;
@@ -45,7 +48,8 @@ define(['jquery'], function ($) {
                 $.publish('change.' + Nom, obj);
             }
 
-            if (Db > 1) C.log(Nom + '[_breakHash]', obj);
+            if (Db > 1)
+                C.log(Nom + '[_breakHash]', obj);
             return obj;
         }
 
@@ -66,12 +70,14 @@ define(['jquery'], function ($) {
             ele.data(Nom, api);
         }
 
-            init: {
-                if (Db > 0) C.log(Nom + '[[init]]', api);
-                return api;
-            }
-    };
+        init: {
+            if (Db > 0)
+                C.log(Nom + '[[init]]', api);
+            return api;
+        }
+    }
 
+    return Hash;
 });
 
 /*

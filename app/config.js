@@ -5,6 +5,7 @@ var W = (W && W.window || window),
     C = (W.C || W.console || {});
 
 W.SHIET = {};
+W.debug = 1;
 
 require.config({
     baseUrl: '.',
@@ -13,25 +14,12 @@ require.config({
         src: 'scripts',
         lib: 'scripts/libs',
         ven: 'vendor',
-        iscroll: 'vendor/iscroll',
         jquery: '/mfal/lib/jquery/1.11.3/jquery',
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
         boots: '/mfal/lib/bootstrap/3.3.5/js/bootstrap.min',
     },
     shim: {
-        'lib/util': {
-            deps: ['jquery'],
-            exports: 'Util'
-        },
-        'lib/scroller': {
-            deps: ['lib/util'],
-            exports: 'Scroller'
-        },
-        'lib/projector': {
-            deps: ['lib/scroller'],
-            exports: 'Projector'
-        },
-        'iscroll': {
+        'ven/iscroll': {
             exports: 'IScroll'
         },
         'boots': {

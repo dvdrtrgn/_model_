@@ -23,13 +23,13 @@ require(['../../config'], function () {
         deps: ['../../config'],
     });
 
-    require(['lodash', 'iscroll', 'lib/scroller', 'lib/projector'], function (_, IScroll) {
+    require(['lodash', 'lib/projector'], function (_, Projector) {
         'use strict';
 
         var Nom = 'Main',
             Df;
 
-        Df = { // DEFAULTS
+        Df = {// DEFAULTS
             projector: null,
         };
 
@@ -38,7 +38,7 @@ require(['../../config'], function () {
                 debug: W.debug,
             });
 
-            $(document).on('touchmove', function (e) {
+            $(W.document).on('touchmove', function (e) {
                 e.preventDefault();
             }, false);
 

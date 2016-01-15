@@ -2,7 +2,7 @@
 /*globals C, W, define */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-define(['jquery', 'lodash'], function ($, _) {
+define(['jquery', 'lodash', 'lib/projector'], function ($, _, Projector) {
     'use strict';
 
     var Db = 0;

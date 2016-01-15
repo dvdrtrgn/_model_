@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*global define, window, Projector */
+/*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  created drt 2014
 
@@ -23,7 +23,7 @@ require(['../../config'], function () {
         deps: ['../../config'],
     });
 
-    require(['iscroll'], function (IScroll) {
+    require(['lodash', 'ven/iscroll'], function (_, IScroll) {
         'use strict';
 
         var Nom = 'Main',

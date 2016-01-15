@@ -1,7 +1,7 @@
 /*jslint white:false */
-/*global _, C, W, jQuery, Scroller:true, IScroll, */
+/*global define, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Scroller = (function ($) { // IIFE
+define(['jquery', 'ven/iscroll'], function ($) {
     'use strict';
 
     var Nom = 'Scroller',
@@ -142,7 +142,7 @@ var Scroller = (function ($) { // IIFE
     });
 
     return self;
-}(jQuery));
+});
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

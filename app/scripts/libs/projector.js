@@ -1,7 +1,7 @@
 /*jslint white:false */
-/*global _, C, W, jQuery, Projector: true, Scroller, */
+/*global define, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Projector = (function ($) { // IIFE
+define(['jquery', 'lib/scroller'], function ($, Scroller) {
     'use strict';
 
     var Nom = 'Projector',
@@ -133,7 +133,7 @@ var Projector = (function ($) { // IIFE
     });
 
     return self;
-}(jQuery));
+});
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

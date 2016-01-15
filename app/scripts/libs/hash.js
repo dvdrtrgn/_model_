@@ -5,11 +5,12 @@
 define(['jquery'], function ($) {
     'use strict';
 
-    var Db = 0;
-    var Nom = 'Hash';
-    var W = (W && W.window || window), C = (W.C || W.console || {});
+    var Nom = 'Hash',
+        W = (W && W.window || window),
+        C = (W.C || W.console || {}),
+        Db = 0;
 
-    return function Hash(sel) {
+    function Hash(sel) {
         var api, ele;
         sel = sel || 'body';
 
@@ -74,8 +75,9 @@ define(['jquery'], function ($) {
                 C.log(Nom + '[[init]]', api);
             return api;
         }
-    };
+    }
 
+    return Hash;
 });
 
 /*

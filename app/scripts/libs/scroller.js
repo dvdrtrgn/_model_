@@ -3,9 +3,14 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 var Scroller = (function ($) { // IIFE
     'use strict';
-    var name = 'Scroller',
+
+    var Nom = 'Scroller',
         self = {}, // (wrap iscroll controller)
-        Df;
+        W = (W && W.window || window),
+        C = (W.C || W.console || {}),
+        Db = 0, Df;
+
+    /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     Df = {// DEFAULTS
         all: [],
@@ -35,7 +40,7 @@ var Scroller = (function ($) { // IIFE
     self.wrap = function () {};
 
     function scrollNext(scroller) {
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, 'scrollNext', scroller);
         }
         var ln, pg;
@@ -52,7 +57,7 @@ var Scroller = (function ($) { // IIFE
     /// INTERNAL
 
     function _autoScroll(scroller) {
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, '_autoScroll', scroller);
         }
         if (!scroller.pages) {
@@ -69,7 +74,7 @@ var Scroller = (function ($) { // IIFE
         self.init(); // bueller?
         port = $(sel);
 
-        if (U.debug(2)) {
+        if ($.util.debug(2)) {
             C.debug(name, '_attachPort', sel);
         }
         if (!port.length) {
@@ -92,7 +97,7 @@ var Scroller = (function ($) { // IIFE
                 },
             }).calc();
 
-            if (U.debug(2)) {
+            if ($.util.debug(2)) {
                 C.debug(name, '_attachPort proxy calc', evt.type, aprox);
             }
             scroller._execEvent('scrollStart'); // polyfill event

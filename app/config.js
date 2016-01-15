@@ -20,12 +20,7 @@ require.config({
         boots: '/mfal/lib/bootstrap/3.3.5/js/bootstrap.min',
     },
     shim: {
-        'lib/util': {
-            deps: ['jquery'],
-            exports: 'Util'
-        },
         'lib/scroller': {
-            deps: ['lib/util'],
             exports: 'Scroller'
         },
         'lib/projector': {

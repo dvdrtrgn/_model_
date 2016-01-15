@@ -97,12 +97,12 @@ var Util = (function ($) { /// IIFE
 
     U.xyStore = function (ele, restore) {
         var e = $(ele),
-        xy = e.position(),
-        dat = e.data(),
-        auto = {
-            left: 'auto',
-            top: 'auto'
-        };
+            xy = e.position(),
+            dat = e.data(),
+            auto = {
+                left: 'auto',
+                top: 'auto'
+            };
 
         if (restore) {
             // either 1 restore or 2 reset to auto
@@ -114,10 +114,10 @@ var Util = (function ($) { /// IIFE
 
     U.abstractXY = function (evt) {
         var o = {},
-        bs = $('body').scrollTop(),
-        hs = $('html').scrollTop(),
-        ie = $.browser.msie,
-        ff = $.browser.mozilla;
+            bs = $('body').scrollTop(),
+            hs = $('html').scrollTop(),
+            ie = $.browser.msie,
+            ff = $.browser.mozilla;
 
         if (ie) {
             o.x = evt.pageX;
@@ -131,9 +131,9 @@ var Util = (function ($) { /// IIFE
 
     U.makeMailtos = function (ele) {
         $('.email', (ele || 'body')) //
-        .removeClass('email') //
-        .addClass('mailto') //
-        .toMailto();
+            .removeClass('email') //
+            .addClass('mailto') //
+            .toMailto();
     };
 
     U.mfal = function () {
@@ -156,8 +156,8 @@ var Util = (function ($) { /// IIFE
         };
         $('[href="."]').each(function () {
             supplant.apply(this, ['reload', function () {
-                W.location.reload();
-            }]);
+                    W.location.reload();
+                }]);
         });
         $('[href=".."]').each(function () {
             supplant.apply(this, ['teamworks', 'http://portal.teamworks.wellsfargo.com/']);
@@ -166,7 +166,7 @@ var Util = (function ($) { /// IIFE
 
     U.query = function (nom) {
         var A = W.location.search.slice(1).split('&'),
-        O = {};
+            O = {};
 
         $.each(A, function (i, e) {
             var x = e.split('=');

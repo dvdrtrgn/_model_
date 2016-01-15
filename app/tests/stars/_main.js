@@ -61,7 +61,7 @@ require(['../../config'], function () {
                     var me = $(this), tag;
 
                     tag = $('<cite>').addClass('marker') //
-                    .text(me.text()).wrapInner('<span>');
+                        .text(me.text()).wrapInner('<span>');
                     me.text('');
                     // add corner cites
                     'tl tr br bl md'.split(' ').forEach(function (x) {

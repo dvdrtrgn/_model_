@@ -7,17 +7,17 @@ var Scroller = (function ($, U) { // IIFE
         self = {}, // (wrap iscroll controller)
         Df;
 
-    Df = { // DEFAULTS
+    Df = {// DEFAULTS
         all: [],
         speed: 7777,
         /* auto advance */
         iscroll: {
             indicators: [{
-                el: null,
-                /* later */
-                resize: false,
-                interactive: true,
-            }],
+                    el: null,
+                    /* later */
+                    resize: false,
+                    interactive: true,
+                }],
             keyBindings: false,
             eventPassthrough: false,
             momentum: true,
@@ -144,4 +144,4 @@ var Scroller = (function ($, U) { // IIFE
 
 
 
-*/
+ */

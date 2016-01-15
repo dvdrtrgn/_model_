@@ -38,7 +38,8 @@ define(['jquery', 'lodash'], function ($, _) {
         });
     };
 
-    if (Db > 0) C.log(Nom + '[[init]]');
+    if (Db > 0)
+        C.log(Nom + '[[init]]');
 
 });
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

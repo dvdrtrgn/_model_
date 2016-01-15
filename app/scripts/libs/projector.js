@@ -7,7 +7,7 @@ var Projector = (function ($, U) { // IIFE
         self = {}, // (carousel projector abstraction)
         Df;
 
-    Df = { // DEFAULTS
+    Df = {// DEFAULTS
         all: [],
         current: null,
         inits: function () {},
@@ -135,4 +135,4 @@ var Projector = (function ($, U) { // IIFE
 
 
 
-*/
+ */

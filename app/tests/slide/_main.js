@@ -29,7 +29,7 @@ require(['../../config'], function () {
         var Nom = 'Main',
             Df;
 
-        Df = { // DEFAULTS
+        Df = {// DEFAULTS
             projector: null,
         };
 

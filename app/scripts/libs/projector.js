@@ -1,11 +1,10 @@
 /*jslint white:false */
-/*globals _, C, W, Glob, Util, jQuery,
-        Projector: true, Scroller, */
+/*global _, C, W, Util, jQuery, Projector: true, Scroller, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Projector = (function ($, G, U) { // IIFE
+var Projector = (function ($, U) { // IIFE
     'use strict';
     var name = 'Projector',
-        self = new G.constructor(name, '(carousel projector abstraction)'),
+        self = {}, // (carousel projector abstraction)
         Df;
 
     Df = { // DEFAULTS
@@ -114,9 +113,10 @@ var Projector = (function ($, G, U) { // IIFE
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function _init() {
-        if (self.isInited(true)) {
+        if (self.isInited) {
             return null;
         }
+        self.isInited = true;
         Df.inits();
         return self;
     }
@@ -128,7 +128,7 @@ var Projector = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Glob, Util));
+}(jQuery, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

@@ -1,11 +1,11 @@
 /*jslint white:false */
-/*globals _, C, W, Glob, Util, jQuery,
+/*global _, C, W, Util, jQuery,
         Test:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Test = (function ($, G, U) { // IIFE
+var Test = (function ($, U) { // IIFE
     'use strict';
     var name = 'Test',
-        self = new G.constructor(name, '(misc experiments)'),
+        self = {}, // (misc experiments)
         Df;
 
     Df = { // DEFAULTS
@@ -31,7 +31,7 @@ var Test = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Glob, Util));
+}(jQuery, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

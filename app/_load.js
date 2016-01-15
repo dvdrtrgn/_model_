@@ -1,8 +1,8 @@
 /*jslint white:false */
-/*globals _, C, W, Glob, jQuery,
-    Main, Modernizr, HOST, */
+/*global _, C, W, jQuery, Main, Modernizr, HOST, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-(function ($, M, G) {
+var G = {};
+(function ($, M) {
     'use strict';
     G._load = {};
     G._host = HOST;
@@ -14,30 +14,7 @@
         ven: HOST.dir + '/vendor/',
     });
 
-    if ($.browser.msie) {
-        $(function () {
-            $('html').addClass('msie');
-            $('body').on('mouseover', '.region, .widget, a, li', function () {
-                $(this).addClass('hover');
-            }).on('mouseout', '.region, .widget, a, li', function () {
-                $(this).removeClass('hover');
-            });
-        });
-        W.debug--;
-    }
-    if (HOST.conf.nom === 'wfmedia' || HOST.conf.nom === 'mfal') {
-        W.debug--;
-    }
-    if (HOST.conf.nom === 'localhost') {
-        W.debug++;
-    }
-
     G._load.base = {
-        test: W.msie,
-        yep: [
-            G.ven + 'msie/rem.min.js',
-            G.ven + 'msie/iscroll.js', // fkin ie
-        ],
         nope: [
             G.ven + 'iscroll.js',
         ],
@@ -52,39 +29,12 @@
         },
     };
 
-    G._load.font = {
-        test: (HOST.conf.nom === 'localhost' || HOST.conf.nom === 'qla2'),
-        yep: [
-            G.lib + (!W.msie ? 'fonts/archer.ssm.css'     : 'fonts/eot/archer.ssm.css'),
-            G.lib + (!W.msie ? 'fonts/myriad.con.css'     : 'fonts/eot/myriad.con.css'),
-            G.lib + (!W.msie ? 'fonts/myriad.css'         : 'fonts/eot/myriad.css'),
-        ],
-        nope: [/*
-            '//cloud.typography.com/6819872/620964/css/fonts.css', // Normal */
-            '//cloud.typography.com/6819872/633184/css/fonts.css', // ScrnSmrt
-            '//use.typekit.net/cqz6fet.js',
-        ],
-        complete: function () {
-            try {
-                if (!G._load.font.test) {
-                    Typekit.load();
-                }
-            } catch (e) {
-                C.error('typekit');
-            }
-        },
-    };
-
     G._load.main = {
         both: [
             G.dir + 'build/main.js',
         ],
         complete: function () {
             _.delay(function () {
-                if (W.msie) {
-                    M.load(G.ven + 'msie/respond.js');
-                    M.load(G.ven + 'msie/selectivizr-min.js');
-                }
                 HOST.loaded($);
             }, 1e3);
             Main.init();
@@ -103,7 +53,7 @@
     };
     M.load([G._load.base, G._load.font, G._load.main, G._load.test]);
 
-}(jQuery, Modernizr, Glob));
+}(jQuery, Modernizr));
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*
 Originally built by WF-ECG INTERACTIVE (Wells Fargo Enterprise Creative Group).

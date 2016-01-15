@@ -1,11 +1,10 @@
 /*jslint white:false */
-/*globals _, C, W, Glob, Util, jQuery,
-        Scroller:true, IScroll, */
+/*global _, C, W, Util, jQuery, Scroller:true, IScroll, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Scroller = (function ($, G, U) { // IIFE
+var Scroller = (function ($, U) { // IIFE
     'use strict';
     var name = 'Scroller',
-        self = new G.constructor(name, '(wrap iscroll controller)'),
+        self = {}, // (wrap iscroll controller)
         Df;
 
     Df = { // DEFAULTS
@@ -122,9 +121,10 @@ var Scroller = (function ($, G, U) { // IIFE
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
     function _init() {
-        if (self.isInited(true)) {
+        if (self.isInited) {
             return null;
         }
+        self.isInited = true;
         Df.inits();
         return self;
     }
@@ -137,7 +137,7 @@ var Scroller = (function ($, G, U) { // IIFE
     });
 
     return self;
-}(jQuery, Glob, Util));
+}(jQuery, Util));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

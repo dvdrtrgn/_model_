@@ -1,5 +1,5 @@
 /*jslint  white:false */
-/*globals define, window */
+/*global define, window */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 define(['jquery', 'lodash'], function ($, _) {

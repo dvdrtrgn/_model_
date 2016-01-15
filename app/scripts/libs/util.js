@@ -1,12 +1,11 @@
 /*jslint white:false */
-/*globals _, C, W, ROOT, Glob, jQuery,
-        Util:true, */
+/*global _, C, W, ROOT, jQuery, Util:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-var Util = (function ($, G) { /// IIFE
+var Util = (function ($) { /// IIFE
     'use strict';
     var name = 'Util',
-        self = new G.constructor(name, '(limited utils)'),
+        self = {}, // (limited utils)
         U;
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
     /// CONSTANTS
@@ -210,7 +209,7 @@ var Util = (function ($, G) { /// IIFE
     }, U);
 
     return self;
-}(jQuery, Glob));
+}(jQuery));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

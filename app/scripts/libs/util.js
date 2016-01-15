@@ -1,5 +1,5 @@
 /*jslint white:false */
-/*global _, C, W, ROOT, jQuery, Util:true, */
+/*global C, W, jQuery, Util:true, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
 var Util = (function ($) { /// IIFE

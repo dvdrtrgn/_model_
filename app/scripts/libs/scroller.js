@@ -1,7 +1,7 @@
 /*jslint white:false */
-/*global _, C, W, Util, jQuery, Scroller:true, IScroll, */
+/*global _, C, W, jQuery, Scroller:true, IScroll, */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-var Scroller = (function ($, U) { // IIFE
+var Scroller = (function ($) { // IIFE
     'use strict';
     var name = 'Scroller',
         self = {}, // (wrap iscroll controller)
@@ -137,7 +137,7 @@ var Scroller = (function ($, U) { // IIFE
     });
 
     return self;
-}(jQuery, Util));
+}(jQuery));
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*

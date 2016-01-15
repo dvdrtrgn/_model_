@@ -5,6 +5,7 @@ var W = (W && W.window || window),
     C = (W.C || W.console || {});
 
 W.SHIET = {};
+W.debug = 1;
 
 require.config({
     baseUrl: '.',

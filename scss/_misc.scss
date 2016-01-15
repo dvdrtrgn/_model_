@@ -1,8 +1,20 @@
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* Misc */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-body {/* test */
-    /*     border: 1em solid lime;*/
+.debug *:hover {
+    outline-color: rgba(255,155,055,0.5);
+    outline-offset: 0.5px;
+    outline-style: solid;
+    outline-width: 1px;
+}
+// - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - - + - //
+@media print {
+    body {
+        background: none;
+    }
+    .noprint {
+        display: none;
+    }
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /*  OUR LIL FRIEND
@@ -52,5 +64,4 @@ body {/* test */
     no-webworkers
     postmessage
     sessionstorage
-
 */

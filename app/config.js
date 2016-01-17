@@ -5,18 +5,22 @@ var W = (W && W.window || window),
     C = (W.C || W.console || {});
 
 W.SHIET = {};
-W.debug = 1;
+W.debug = Number(new Date('2016/01/01') > new Date());
 
 require.config({
-    baseUrl: '.',
+    baseUrl: 'scripts',
     paths: {
         lr: 'http://localhost:7999/livereload.js?snipver=1',
-        src: 'scripts',
-        lib: 'scripts/libs',
-        ven: 'vendor',
+        lib: 'libs',
+        test: '../tests',
+        ven: '../vendor',
         jquery: '/mfal/lib/jquery/1.11.3/jquery',
         lodash: '/mfal/lib/underscore/js-1.4.4/lodash.underscore',
         boots: '/mfal/lib/bootstrap/3.3.5/js/bootstrap.min',
+        //
+        box: 'libs/box',
+        pair: 'libs/pair',
+        //
     },
     shim: {
         'ven/iscroll': {

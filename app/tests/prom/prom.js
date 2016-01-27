@@ -21,6 +21,13 @@ function relay(fn, sec) {
 function mock(fn) {
     return relay(fn, Math.random());
 }
+function fetching(msg, rsp) {
+    rsp.json().then(function(obj){
+        console.info(msg + '...fetched', obj);
+        return obj;
+    });
+    return ('fetching...' + msg);
+}
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /// BASICS

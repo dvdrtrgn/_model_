@@ -149,13 +149,18 @@ function fn5() {
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 // CATCH
+
 function fn6() {
     new Promise(function (resolve, reject) {
         mock(function () {
-            reject('Failure achieved!');
+            reject(new Error('Failure achieved!'));
         });
+    }).then(function() {
+        console.log('fn6 // then1', arguments);
     }).catch(function (err) {
         console.log('fn6 // catch: ', err);
+    }).then(function() {
+        console.log('fn6 // then2', arguments);
     });
 }
 

@@ -163,11 +163,31 @@ function fn6() {
         console.log('fn6 // then2', arguments);
     });
 }
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// ALL
+
+function fn7() {
+    // firing off multiple requests at one time:
+    var prom1 = fetch('data/bob1.json');
+    var prom2 = fetch('data/story.json');
+
+    // prom1 = Promise.reject({statusText: 'fake respose 1'});
+    prom2 = Promise.resolve({statusText: 'fake respose 2'});
+
+    Promise.all([prom1, prom2]).then(function(result) {
+        console.log('fn7 // resolutions', arguments); // fetches "done"
+        console.log(fetching('fn7 // response 1 json', result[0]));
+        console.log('fn7 // response 2 status', result[1].statusText);
+    }).catch(function(err) {
+        console.warn('fn7 // 1 or more promise rejected', err);
+    });;
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
 relay(fn1, 1);
 relay(fn2, 2);
 relay(fn3, 3);
 relay(fn4, 4);
 relay(fn5, 5);
 relay(fn6, 6);
+relay(fn7, 7);

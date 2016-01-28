@@ -184,10 +184,15 @@ function fn7() {
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
-relay(fn1, 1);
-relay(fn2, 2);
-relay(fn3, 3);
-relay(fn4, 4);
-relay(fn5, 5);
-relay(fn6, 6);
-relay(fn7, 7);
+function fn() {
+    relay(fn1, 1);
+    relay(fn2, 2);
+    relay(fn3, 3);
+    relay(fn4, 4);
+    relay(fn5, 5);
+    relay(fn6, 6);
+    relay(fn7, 7);
+    relay(fn8, 8);
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

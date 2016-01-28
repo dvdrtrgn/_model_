@@ -21,6 +21,9 @@ function relay(fn, sec) {
 function mock(fn) {
     return relay(fn, Math.random());
 }
+function toss(fn1, fn2) {
+    mock(perchance() < 50 ? fn1 : fn2);
+}
 function fetching(msg, rsp) {
     rsp.json().then(function(obj){
         console.info(msg + '...fetched', obj);
@@ -181,6 +184,33 @@ function fn7() {
     }).catch(function(err) {
         console.warn('fn7 // 1 or more promise rejected', err);
     });;
+}
+
+function fn8() {
+    // catch fires for the first rejection:
+    var prom1, prom2;
+
+    prom1 = new Promise(function(resolve, reject) {
+        toss(function() {
+            resolve('res prom1');
+        }, function() {
+            reject('rej prom1');
+        });
+    });
+    prom2 = new Promise(function(resolve, reject) {
+        toss(function() {
+            resolve('res prom2');
+        }, function() {
+            reject('rej prom2');
+        });
+    });
+
+    Promise.all([prom1, prom2])
+    .then(function(rez) {
+        console.log('fn8 // Then all:', rez);
+    }).catch(function(err) {
+        console.log('fn8 // Catching 1st failure:', [err]);
+    });
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 

@@ -25,8 +25,8 @@ function toss(fn1, fn2) {
     mock(perchance() < 50 ? fn1 : fn2);
 }
 function fetching(msg, rsp) {
-    rsp.json().then(function(obj){
-        console.info(msg + '...fetched', obj);
+    rsp.json().then(function (obj){
+        console.debug(msg + '...fetched', obj);
         return obj;
     });
     return ('fetching...' + msg);
@@ -53,8 +53,10 @@ function fn1() {
         console.warn('fn1 //', [err], 'Coin flipped...shit happens :(');
     });
 }
+
 // It's up to the developer to manually call resolve or reject within
 // the body of the callback based on the result of their given task.
+
 function fn2() {
     // Return a new promise.
     function get(url) {
@@ -82,13 +84,15 @@ function fn2() {
     }
 
     // Use it!
-    get('data/story.json').then(function (response) {
-        console.log('fn2 // Success!', JSON.parse(response));
+    get('data/story.json').then(function (rsp) {
+        console.log('fn2 // Success!', JSON.parse(rsp));
     }, function (error) {
         console.warn('fn2 // Failed!', error);
     });
 }
+
 // Sometimes you don't need to complete an async tasks within the promise
+
 function fn3() {
     var userCache = {
         bob0: 'Roberts'
@@ -104,12 +108,12 @@ function fn3() {
 
         // Use the fetch API, it returns a promise
         return fetch('data/' + username + '.json')
-            .then(function (response) {
-                return response.json(); // Convert to JSON
-            }).then(function (result) {
-                userCache[username] = result.lastName;
+            .then(function (rsp) {
+                return rsp.json(); // Convert to JSON
+            }).then(function (rez) {
+                userCache[username] = rez.lastName;
                 console.log('fn3 // userCache', userCache);
-                return result;
+                return rez;
             }).catch(function () {
                 throw new Error('Could not find user: ' + username);
             });
@@ -123,19 +127,19 @@ function fn3() {
 // THEN
 
 function fn4() {
-    new Promise(function (resolve) {
+    new Promise(function (res) {
         mock(function () {
-            resolve(10);
+            res(10);
         });
-    }).then(function (result) {
-        console.log('fn4 // Bo Derick?', result);
+    }).then(function (rez) {
+        console.log('fn4 // Bo Derick?', rez);
     });
 }
 
 function fn5() {
-    new Promise(function (resolve, reject) {
+    new Promise(function (res, rej) {
         mock(function () {
-            resolve(2);
+            res(2);
         });
     }).then(function (num) {
         console.log('fn5 // take ' + num + ' then double it');
@@ -154,15 +158,15 @@ function fn5() {
 // CATCH
 
 function fn6() {
-    new Promise(function (resolve, reject) {
+    new Promise(function (res, rej) {
         mock(function () {
-            reject(new Error('Failure achieved!'));
+            rej(new Error('Failure achieved!'));
         });
-    }).then(function() {
+    }).then(function () {
         console.log('fn6 // then1', arguments);
     }).catch(function (err) {
         console.log('fn6 // catch: ', err);
-    }).then(function() {
+    }).then(function () {
         console.log('fn6 // then2', arguments);
     });
 }
@@ -177,11 +181,11 @@ function fn7() {
     // prom1 = Promise.reject({statusText: 'fake respose 1'});
     prom2 = Promise.resolve({statusText: 'fake respose 2'});
 
-    Promise.all([prom1, prom2]).then(function(result) {
+    Promise.all([prom1, prom2]).then(function (rez) {
         console.log('fn7 // resolutions', arguments); // fetches "done"
-        console.log(fetching('fn7 // response 1 json', result[0]));
-        console.log('fn7 // response 2 status', result[1].statusText);
-    }).catch(function(err) {
+        console.log(fetching('fn7 // response 1 json', rez[0]));
+        console.log('fn7 // response 2 status', rez[1].statusText);
+    }).catch(function (err) {
         console.warn('fn7 // 1 or more promise rejected', err);
     });;
 }
@@ -190,25 +194,25 @@ function fn8() {
     // catch fires for the first rejection:
     var prom1, prom2;
 
-    prom1 = new Promise(function(resolve, reject) {
-        toss(function() {
-            resolve('res prom1');
-        }, function() {
-            reject('rej prom1');
+    prom1 = new Promise(function (res, rej) {
+        toss(function () {
+            res('res prom1');
+        }, function () {
+            rej('rej prom1');
         });
     });
-    prom2 = new Promise(function(resolve, reject) {
-        toss(function() {
-            resolve('res prom2');
-        }, function() {
-            reject('rej prom2');
+    prom2 = new Promise(function (res, rej) {
+        toss(function () {
+            res('res prom2');
+        }, function () {
+            rej('rej prom2');
         });
     });
 
     Promise.all([prom1, prom2])
-    .then(function(rez) {
+    .then(function (rez) {
         console.log('fn8 // Then all:', rez);
-    }).catch(function(err) {
+    }).catch(function (err) {
         console.log('fn8 // Catching 1st failure:', [err]);
     });
 }

@@ -24,6 +24,15 @@ function mock(fn) {
 function toss(fn1, fn2) {
     mock(perchance() < 50 ? fn1 : fn2);
 }
+function flip(nom) {
+    return new Promise(function (res, rej) {
+        toss(function () {
+            res('res ' + nom);
+        }, function () {
+            rej('rej ' + nom);
+        });
+    });
+}
 function fetching(msg, rsp) {
     rsp.json().then(function (obj){
         console.debug(msg + '...fetched', obj);
@@ -194,30 +203,37 @@ function fn8() {
     // catch fires for the first rejection:
     var prom1, prom2;
 
-    prom1 = new Promise(function (res, rej) {
-        toss(function () {
-            res('res prom1');
-        }, function () {
-            rej('rej prom1');
-        });
-    });
-    prom2 = new Promise(function (res, rej) {
-        toss(function () {
-            res('res prom2');
-        }, function () {
-            rej('rej prom2');
-        });
-    });
+    prom1 = flip('prom1');
+    prom2 = flip('prom2');
 
-    Promise.all([prom1, prom2])
-    .then(function (rez) {
-        console.log('fn8 // Then all:', rez);
-    }).catch(function (err) {
-        console.log('fn8 // Catching 1st failure:', [err]);
+    Promise.all([prom1, prom2]).then(function () {
+        console.log('fn8 // All resolved:', arguments);
+    }).catch(function () {
+        console.warn('fn8 // 1st reject:', arguments);
     });
 }
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+// RACE
+// triggers as soon as any promise is resolved or rejected:
 
+function fn9() {
+    var prom1, prom2;
+
+    prom1 = flip('prom1');
+    prom2 = flip('prom2');
+
+    Promise.race([prom1, prom2]).then(function () {
+        console.log('fn9 // 1st resolved:', arguments);
+    }).catch(function () {
+        console.warn('fn9 // 1st rejected:', arguments);
+    });
+
+    // From the console:
+    // Then: Second!
+
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function fn() {
     relay(fn1, 1);
     relay(fn2, 2);
@@ -227,6 +243,7 @@ function fn() {
     relay(fn6, 6);
     relay(fn7, 7);
     relay(fn8, 8);
+    relay(fn9, 9);
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */

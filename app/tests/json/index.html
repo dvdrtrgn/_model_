@@ -26,11 +26,14 @@
       textarea {
           height: 33em;
       }
+      .error {
+          color: red;
+      }
     </style>
   </head>
   <body>
     <form action=".">
-      <div>JSAVE (path / data)</div>
+      <div>JSAVE (path / data) <a id="Url" href=""></a></div>
 
       <input type="text" name="path" value="test">
       <textarea name="data">
@@ -40,11 +43,12 @@
       </textarea>
       <input type="submit">
 
-      <div id="Url"></div>
     </form>
 
     <script>
+      var area = $('textarea');
       var form = $('form:first').submit(post);
+      var link = $('#Url');
 
       function post() {
           $.ajax({
@@ -59,13 +63,17 @@
                   //console.debug('success:', arguments);
 
                   if (obj.raw === null) {
+                      area.addClass('error');
                       console.warn('bad json, reading:', [obj.read]);
                   } else {
+                      area.removeClass('error');
                       console.info('written and read:', JSON.parse(obj.read));
                   }
 
-                  $('#Url').html(obj.link) //
-                      .find('a').attr('target', '_blank');
+                  link.text(obj.link).attr({
+                      href: obj.link,
+                      target: '_blank',
+                  });
               },
               error: function () {
                   console.error('error:', arguments);

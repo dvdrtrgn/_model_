@@ -82,12 +82,12 @@ function clog($msg, $obj) {
     echo implode('', $arr);
 }
 
-$nom = bitSaver($path, $data);
+$link = bitSaver($path, $data);
 
 $json = array(
     'dbg' => $debug,
     'doc' => $DOC,
-    'link' => "<a href=$nom>$nom</a>",
+    'link' => $link,
     'read' => file_get_contents("$DOC$DAT$path.json"),
     'raw' => $data,
 );

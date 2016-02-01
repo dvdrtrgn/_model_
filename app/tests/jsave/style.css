@@ -1,0 +1,23 @@
+* {
+    font-family: monospace;
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+form {
+    margin: auto;
+    width: 66%;
+}
+textarea, input {
+    border: 1px solid gray;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+    line-height: 1.2em;
+    padding: 0.3rem;
+    width: 90%;
+}
+textarea {
+    height: 33em;
+}
+.error {
+    color: red;
+}

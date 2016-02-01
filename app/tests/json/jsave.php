@@ -52,10 +52,10 @@ function bitSaver($path, $data) {
 
     if (!empty($path) && !empty($data)) {
         ensureDir($root . dirname($path));
-        file_put_contents("$root$path.js", $data);
+        file_put_contents("$root$path.json", $data);
     }
 
-    return "$DAT$path.js";
+    return "$DAT$path.json";
 }
 
 $nom = bitSaver($path, $data);
@@ -63,10 +63,10 @@ $nom = bitSaver($path, $data);
 $json = array(
     'doc' => $DOC,
     'link' => "<a href=$nom>$nom</a>",
-    'read' => file_get_contents("$DOC$DAT$path.js"),
+    'read' => file_get_contents("$DOC$DAT$path.json"),
 );
 
-if (!$debug && !empty($path)) {
+if (!$debug || !empty($path)) {
     header('Content-type: application/json');
     echo json_encode($json);
     die();

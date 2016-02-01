@@ -11,11 +11,11 @@ require './jsave_cf.php';
     <style>@import "./style.css";</style>
   </head>
   <body>
-    <form action=".">
-      <div>JSAVE (path / data) <a id="Url" href="">#</a></div>
+    <form id="Form" action=".">
+      <div>JSAVE (path / data) <a id="Link" href="">#</a></div>
 
-      <input type="text" name="path" value="<?php echo "$DATA[path]"; ?>">
-      <textarea name="data"><?php echo stripslashes("$DATA[data]"); ?></textarea>
+      <input id="Path" type="text" name="path" value="<?php echo "$DATA[path]"; ?>">
+      <textarea id="Data" name="data"><?php echo stripslashes("$DATA[data]"); ?></textarea>
       <input type="submit">
 
     </form>

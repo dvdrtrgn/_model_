@@ -20,6 +20,7 @@ require './jsave_cf.php';
 
     </form>
 
+    <script src="./jsave.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

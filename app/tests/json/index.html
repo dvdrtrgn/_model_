@@ -57,8 +57,15 @@
               },
               success: function (obj) {
                   console.debug('success:', arguments);
-                  $('#Url').html(obj.link).find('a').attr('target', '_blank');
-                  console.info('read:', JSON.parse(obj.read));
+
+                  if (obj.raw === null) {
+                      console.warn('bad json, reading:', [obj.read]);
+                  } else {
+                      console.info('written and read:', JSON.parse(obj.read));
+                  }
+
+                  $('#Url').html(obj.link) //
+                      .find('a').attr('target', '_blank');
               },
               error: function () {
                   console.error('error:', arguments);

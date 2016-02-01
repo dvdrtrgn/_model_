@@ -2,6 +2,7 @@
 # php -S localhost:8999
 setDebug(0);
 header('Access-Control-Allow-Origin: *');
+ini_set('magic_quotes_gpc', 'off'); // does this work?
 
 ### SUPER GLOBS
 
@@ -14,34 +15,48 @@ $DATA = $_SESSION;
 $SELF = $_SERVER['PHP_SELF'];
 $SERV = $_SERVER;
 
+setDebug("$DATA[dbg]");
+
 ### GLOBALS
 
 $DAT = getDataRoot();
 $DOC = getDocRoot();
 
 $url = "$SERV[HTTP_HOST]$DAT";
-$data = "$DATA[data]";
+$data = json_decode(stripslashes("$DATA[data]")); // parse test
 $path = "$DATA[path]";
 
 function setDebug($dbg) {
     global $debug;
-    $debug = empty($dbg) ? 0 : $dbg;
-    ini_set('display_errors', $debug > 0 ? 1 : 0);
-    error_reporting($debug > 1 ? E_ALL : E_WARNING);
+
+    if (empty($dbg)) {
+        return;
+    }
+
+    ini_set('display_errors', $dbg > 0 ? 1 : 0);
+    error_reporting($dbg > 1 ? E_ALL : E_WARNING);
+    $debug = $dbg;
 }
+
 function getDataRoot() {
     global $SERV;
     return dirname("$SERV[PHP_SELF]") . '/data/';
 }
+
 function getDocRoot() {
     global $SERV;
     return "$SERV[DOCUMENT_ROOT]";
 }
+
 function ensureDir($path) {
     global $debug;
+
     if (!is_dir($path)) {
         ensureDir(dirname($path));
-        if ($debug) echo "<hr>$path<hr>";
+
+        if ($debug) {
+            echo "<hr>$path<hr>";
+        }
         mkdir($path, 0777);
     }
 }
@@ -52,7 +67,7 @@ function bitSaver($path, $data) {
 
     if (!empty($path) && !empty($data)) {
         ensureDir($root . dirname($path));
-        file_put_contents("$root$path.json", $data);
+        file_put_contents("$root$path.json", json_encode($data));
     }
 
     return "$DAT$path.json";
@@ -64,9 +79,10 @@ $json = array(
     'doc' => $DOC,
     'link' => "<a href=$nom>$nom</a>",
     'read' => file_get_contents("$DOC$DAT$path.json"),
+    'raw' => $data,
 );
 
-if (!$debug || !empty($path)) {
+if ($debug < 2 && !empty($path)) {
     header('Content-type: application/json');
     echo json_encode($json);
     die();
@@ -81,10 +97,16 @@ if (!$debug || !empty($path)) {
   <body>
     <pre><?php
         if ($debug) {
-            $DATA['debug'] = $debug;
-            echo 'Json:'; print_r($json);
-            echo 'Sess:'; print_r($DATA);
-            echo 'SERV:'; print_r($SERV);
+            $DATA['dbg'] = $debug;
+
+            echo 'Json:';
+            print_r($json);
+
+            echo 'Sess:';
+            print_r($DATA);
+
+            echo 'SERV:';
+            print_r($SERV);
         }
         ?></pre>
   </body>

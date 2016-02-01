@@ -1,3 +1,6 @@
+<?php
+require './jsave_cf.php';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,12 +38,8 @@
     <form action=".">
       <div>JSAVE (path / data) <a id="Url" href="">#</a></div>
 
-      <input type="text" name="path" value="test">
-      <textarea name="data">
-{
-    "num": 1234
-}
-      </textarea>
+      <input type="text" name="path" value="<?php echo "$DATA[path]"; ?>">
+      <textarea name="data"><?php echo stripslashes("$DATA[data]"); ?></textarea>
       <input type="submit">
 
     </form>

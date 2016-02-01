@@ -24,7 +24,7 @@
           width: 90%;
       }
       textarea {
-          height: 10em;
+          height: 33em;
       }
     </style>
   </head>
@@ -56,7 +56,7 @@
                   path: form.find('[name=path]').val(),
               },
               success: function (obj) {
-                  console.debug('success:', arguments);
+                  //console.debug('success:', arguments);
 
                   if (obj.raw === null) {
                       console.warn('bad json, reading:', [obj.read]);

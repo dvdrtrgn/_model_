@@ -73,9 +73,19 @@ function bitSaver($path, $data) {
     return "$DAT$path.json";
 }
 
+function clog($msg, $obj) {
+    $str = json_encode($obj);
+    $arr = array();
+    $arr[] = '<script>';
+    $arr[] = "console.log('$msg', JSON.parse('$str'));";
+    $arr[] = '</script>';
+    echo implode('', $arr);
+}
+
 $nom = bitSaver($path, $data);
 
 $json = array(
+    'dbg' => $debug,
     'doc' => $DOC,
     'link' => "<a href=$nom>$nom</a>",
     'read' => file_get_contents("$DOC$DAT$path.json"),
@@ -102,8 +112,7 @@ if ($debug < 2 && !empty($path)) {
             echo 'Json:';
             print_r($json);
 
-            echo 'Sess:';
-            print_r($DATA);
+            clog('Sess:', $DATA);
 
             echo 'SERV:';
             print_r($SERV);

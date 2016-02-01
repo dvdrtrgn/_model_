@@ -33,7 +33,7 @@
   </head>
   <body>
     <form action=".">
-      <div>JSAVE (path / data) <a id="Url" href=""></a></div>
+      <div>JSAVE (path / data) <a id="Url" href="">#</a></div>
 
       <input type="text" name="path" value="test">
       <textarea name="data">

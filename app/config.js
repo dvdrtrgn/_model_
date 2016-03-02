@@ -33,7 +33,7 @@ require.config({
 });
 
 // Load the main app module to start the app
-require(['lib/console', 'boots', 'jquery', 'lodash', 'lib/xtn-jq'], function () {
+require(['lib/console', 'boots', 'jquery', 'lodash', 'lib/jq-xtn'], function () {
 
     $('body').removeClass('loading');
 

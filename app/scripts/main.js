@@ -10,6 +10,15 @@ define(['jquery', 'lodash', 'lib/projector'], function ($, _, Projector) {
     var Nom = 'Main';
     var Df;
 
+    function fakeId() {
+        var str = btoa(Math.random() * 1e9 | 0);
+        return str.replace(/\W/g, '$');
+    }
+    function boostrap(url, fn) {
+        $('<script>').appendTo('head').on('load', fn) //
+            .attr('src', 'https://cdnjs.cloudflare.com/ajax/libs/' + url);
+    }
+
     try {
         W.SHIET.init($);
     } catch (err) {

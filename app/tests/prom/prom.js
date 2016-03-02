@@ -34,7 +34,7 @@ function flip(nom) {
     });
 }
 function fetching(msg, rsp) {
-    rsp.json().then(function (obj){
+    rsp.json().then(function (obj) {
         console.debug(msg + '...fetched', obj);
         return obj;
     });
@@ -43,6 +43,20 @@ function fetching(msg, rsp) {
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /// BASICS
+function fn0() {
+    var ele, prom;
+
+    ele = document.createElement('button');
+    ele.textContent = (new Date()).valueOf();
+    document.body.appendChild(ele);
+
+    return new Promise(function (resolve) {
+        ele.addEventListener('click', resolve); // pass thru
+    }).then(function (val) {
+        ele.parentNode.removeChild(ele);
+        return console.log('resolver', val.target) || val;
+    });
+}
 
 function fn1() {
     var task = new Promise(function (res, rej) {
@@ -112,20 +126,21 @@ function fn3() {
 
         if (userCache[username]) {
             // Return a promise without the "new" keyword
+            console.log('fn3 // found', username, userCache[username]);
             return Promise.resolve(userCache[username]);
         }
 
         // Use the fetch API, it returns a promise
         return fetch('data/' + username + '.json')
-            .then(function (rsp) {
-                return rsp.json(); // Convert to JSON
-            }).then(function (rez) {
-                userCache[username] = rez.lastName;
-                console.log('fn3 // userCache', userCache);
-                return rez;
-            }).catch(function () {
-                throw new Error('Could not find user: ' + username);
-            });
+        .then(function (rsp) {
+            return rsp.json(); // Convert to JSON
+        }).then(function (rez) {
+            userCache[username] = rez.lastName;
+            console.log('fn3 // found', username, userCache[username]);
+            return rez;
+        }).catch(function () {
+            throw new Error('Could not find user: ' + username);
+        });
     }
 
     console.log('fn3 // bob0', getUserDetail('bob0'));
@@ -196,7 +211,7 @@ function fn7() {
         console.log('fn7 // response 2 status', rez[1].statusText);
     }).catch(function (err) {
         console.warn('fn7 // 1 or more promise rejected', err);
-    });;
+    });
 }
 
 function fn8() {

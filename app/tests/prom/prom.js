@@ -41,20 +41,27 @@ function fetching(msg, rsp) {
     return ('fetching...' + msg);
 }
 
+function time() {
+    return (new Date()).valueOf();
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /// BASICS
 function fn0() {
-    var ele, prom;
+    var ele, D = document, now = time();
 
-    ele = document.createElement('button');
-    ele.textContent = (new Date()).valueOf();
-    document.body.appendChild(ele);
+    ele = D.body.appendChild(D.createElement('button'));
+    ele.textContent = now;
 
-    return new Promise(function (resolve) {
-        ele.addEventListener('click', resolve); // pass thru
-    }).then(function (val) {
-        ele.parentNode.removeChild(ele);
-        return console.log('resolver', val.target) || val;
+    return new Promise(function (Then, Catch) { // async
+        ele.addEventListener('click', Then); // pass thru
+        window.setTimeout(Catch, 1e4, ele);
+    }).then(function (arg) { // try cb
+        console.info('Then', arg.path);
+    }).catch(function (arg) { // catch cb
+        console.warn('Catch', arg, fn0.tot);
+    }).chain(function () { // finally cb
+        ele.textContent = time() - now;
     });
 }
 
@@ -132,9 +139,9 @@ function fn3() {
 
         // Use the fetch API, it returns a promise
         return fetch('data/' + username + '.json')
-        .then(function (rsp) {
-            return rsp.json(); // Convert to JSON
-        }).then(function (rez) {
+            .then(function (rsp) {
+                return rsp.json(); // Convert to JSON
+            }).then(function (rez) {
             userCache[username] = rez.lastName;
             console.log('fn3 // found', username, userCache[username]);
             return rez;
